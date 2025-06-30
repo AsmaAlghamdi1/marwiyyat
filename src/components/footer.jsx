@@ -11,7 +11,7 @@ export const Footer = () => {
                 <div className="footer-sections">
                     <div className="footer-section">
                         <h4>البوابة</h4>
-                        <p>عن البوابة</p>
+                        <p>الأهداف</p>
                     </div>
                     <div className="footer-section">
                         <h4>الدعم</h4>
