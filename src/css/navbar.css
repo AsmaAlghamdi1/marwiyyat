@@ -1,0 +1,52 @@
+nav {
+    width: 100%;
+    background-color: white;
+    padding: 1rem 2rem;
+    direction: rtl;
+    font-family: 'Lama Sans', sans-serif;
+}
+
+.navbar {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+    gap: 4rem;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar ul li a {
+    color: #1f2937;
+    font-weight: 400;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+span {
+    font-weight: 700;
+}
+
+.language {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #1f2937;
+}
+
+.language img {
+    width: 20px;
+    height: 20px;
+}
+
+.logo img {
+    width: 220px;
+    height: auto;
+}
