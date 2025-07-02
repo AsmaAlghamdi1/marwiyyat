@@ -1,5 +1,6 @@
 nav {
     width: 100%;
+    height: 9vh;
     background-color: white;
     padding: 1rem 2rem;
     direction: rtl;
@@ -8,6 +9,7 @@ nav {
 
 .navbar {
     max-width: 1280px;
+    padding: 0;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -47,6 +49,117 @@ span {
 }
 
 .logo img {
-    width: 220px;
+    width: 7rem;
     height: auto;
+    transition: 0.3s ease;
 }
+
+.logo:hover{
+    transform: scale(0.1);
+}
+
+/* 
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    top: 0;
+    z-index: 50;
+    font-family: 'Lama Sans', sans-serif;
+}
+
+.navbar .logo {
+    width: 12rem;
+    height: auto;
+    margin: 1.5rem;
+    min-width: 5rem;
+}
+
+.navbar .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    font-size: 1.125rem;
+    margin-right: 5rem;
+}
+
+.navbar .nav-links a {
+    color: black;
+    font-weight: 400;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.navbar .nav-links a:hover {
+    color: #654B42;
+}
+
+span {
+    font-weight: 600;
+}
+
+.navbar .lang-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.lang-link {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+} */
+
+
+
+
+
+/* 
+ .header{
+    position: fixed;
+    top:0;
+    left: 0;
+    width:100%;
+    padding:4rem 12% 4rem;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 5;
+ }
+ .logo{
+    font-size: 3rem;
+    color: var(--text-color);
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.3s ease;
+ }
+ .logo:hover{
+   transform: scale(1.1); /*  to make it bigger  */
+ /* }
+ .logo span{
+    color: var(--main-color);
+    text-shadow: 0 0 25px var(--main-color);
+ }
+ .navbar a{
+    font-size: 1.8rem;
+    color: var(--text-color);
+    margin-left: 4rem;
+    font-weight: 500;
+    transition: 0.3s ease;
+    border-bottom: 3px solid transparent;
+    text-decoration: none;
+ }
+ .navbar a:hover,
+ .navbar a.active{
+  color: var(--main-color);
+  border-bottom: 3px solid var(--main-color);
+ }
+ #menu-icon{
+    font-size: 3.6rem;
+    color:var(--main-color);
+    display: none;
+    cursor: pointer;
+ } */ 

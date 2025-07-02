@@ -35,6 +35,7 @@ export const Footer = () => {
             </div>
 
             <hr className="footer-line" />
+            <span className="copy-right">&copy; 2025 جميع الحقوق محفوظة لمركز البيانات التنموية.</span>
         </footer>
     );
 };
