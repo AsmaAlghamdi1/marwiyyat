@@ -1,0 +1,68 @@
+/* src/css/whatWeOffer.css */
+.offer-section {
+  background-color: #fff;
+  padding: 80px 20px;
+  direction: rtl;
+  font-family: "Cairo", sans-serif;
+}
+
+.offer-flex-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  margin: auto;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.offer-content {
+  flex: 1;
+}
+
+.offer-title {
+  font-size: 30px;
+  font-weight: 700;
+  color: #00715d;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.offer-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  justify-items: center;
+}
+
+.offer-item {
+  background-color: #f8f8f8;
+  border-radius: 20px;
+  padding: 40px 25px;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+.offer-item:hover {
+  transform: translateY(-5px);
+}
+
+.icon-circle {
+  width: 100px;
+  height: 100px;
+  background-color: #00715d;
+  color: white;
+  font-size: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 25px;
+}
+
+.offer-text {
+  font-size: 20px;
+  color: #333;
+  font-weight: 500;
+}

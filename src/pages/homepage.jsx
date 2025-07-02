@@ -1,16 +1,12 @@
-import {Navbar} from '../components/navbar'
-import {Herosection} from '../components/herosection'
-import {Footer} from '../components/footer'
-import '../css/homepage.css'
+import {Navbar} from './components/navbar'
+import {Footer} from './components/footer'
 
 function Homepage() {
   return (
-    <div className='main-container'>
-       <Navbar/>
-       <Herosection/>
-       <Footer/>
-    </div>
-   
+    <>
+    <Navbar/>
+     <Footer/>
+    </>
   )
 }
 export default Homepage
