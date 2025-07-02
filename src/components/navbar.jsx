@@ -1,38 +1,62 @@
 import React from "react";
 import logo from '../assets/ddclogo.png';
 import language from '../assets/blacklanguage.png';
-import { FiAlignJustify } from "react-icons/fi";
+import { FaBars,FaTimes } from "react-icons/fa";
 import '../CSS/navbar.css';
+import {useRef} from 'react'
 
 export const Navbar = () => {
-    return (
-        <nav>
-            <div className="navbar">
-                <div className="logo">
-                    <img src={logo} alt="DDC Logo" />
-                </div>
-                
-                <ul>
-                    <li>
-                        <a href="#home" className="hover:text-primary transition-colors">الرئيسية</a>
-                    </li>
-                    <li>
-                        <a href="#events" className="hover:text-primary transition-colors">الأهداف</a>
-                    </li>
-                    <li>
-                        <a href="#map" className="hover:text-primary transition-colors">الخريطة التفاعلية</a>
-                    </li>
-                    <li>
-                        <a href="#contact" className="hover:text-primary transition-colors">تواصل معنا</a>
-                    </li>
-                </ul>
+    const navRef=useRef();
 
-                <div className="language">
-                    <span> English</span>
-                    <img src={language} alt="language" />
-                </div>
-            </div>
-        </nav>
+    const showNavbar=()=>{
+        navRef.current.classList.toggle("responsive_nav");
+    }
+    return (
+        <header>
+            <img src={logo} alt="DDC LOGO" width={120} height={50}/>
+            <nav ref={navRef}>
+
+                <a href="/#">الرئيسية</a>
+                <a href="/#">الأهداف</a>
+                <a href="/#">الخريطة التفاعلية</a>
+                <a href="/#">تواصل معنا</a>  
+                <span><img src={language} alt="language" width={20} height={20} /> English</span>
+                   
+                <button className="nav-btn nav-close-btn" onClick={showNavbar}>
+                    <FaTimes/>
+                </button>
+            </nav>
+            <button className="nav-btn" onClick={showNavbar}> 
+                <FaBars/>
+            </button>
+        </header>
+        // <nav>
+        //     <div className="navbar">
+        //         <div className="logo">
+        //             <img src={logo} alt="DDC Logo" />
+        //         </div>
+                
+        //         <ul>
+        //             <li>
+        //                 <a href="#home" className="hover:text-primary transition-colors">الرئيسية</a>
+        //             </li>
+        //             <li>
+        //                 <a href="#events" className="hover:text-primary transition-colors">الأهداف</a>
+        //             </li>
+        //             <li>
+        //                 <a href="#map" className="hover:text-primary transition-colors">الخريطة التفاعلية</a>
+        //             </li>
+        //             <li>
+        //                 <a href="#contact" className="hover:text-primary transition-colors">تواصل معنا</a>
+        //             </li>
+        //         </ul>
+
+        //         <div className="language">
+        //             <span> English</span>
+        //             <img src={language} alt="language" />
+        //         </div>
+        //     </div>
+        // </nav>
 
 
 
