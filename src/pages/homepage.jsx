@@ -5,6 +5,7 @@ import {Footer} from '../components/footer'
 import '../css/homepage.css'
 import ProjectsSlider from '../components/ProjectsSlider';
 import { Whatisirth } from '../components/WhatIsIrth';
+import {Mobadrahsection} from '../components/mobadrahsection'
 
 
 function Homepage() {
@@ -23,9 +24,9 @@ function Homepage() {
        <section id='contact'>
 
        </section>
-       <Whatisirth/>
+       {/* <Whatisirth/>
        <ProjectsSlider/>
-
+<Mobadrahsection/> */}
        <Footer/>
     </div>
   )
