@@ -1,0 +1,36 @@
+.mobadrah {
+    width: 100%;
+    height: 65vh;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-image: url('../assets/albalad.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-align: right;
+    direction: rtl;
+    padding: 0 2rem;
+    font-family: 'Lama Sans', sans-serif;
+}
+
+.mobadrah-section1 h2,
+.mobadrah-section2 h2 {
+    font-family: 'Cairo', 'Amiri', 'Noto Naskh Arabic', Arial, sans-serif;    
+    font-weight: 700;
+    font-size: 25px;
+    color: white;
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.7);
+    margin: 0;
+
+}
+
+.mobadrah-section1 h2 {
+    text-align: right;
+}
+
+.mobadrah-section2 h2 {
+    text-align: left;
+    padding-top: 25%;
+}
