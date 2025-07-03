@@ -10,7 +10,7 @@ function Homepage() {
   <div className='main-container'>
        <Navbar/>
        <Herosection/>
-       <WhatWeOffer />
+       <WhatWeOffer /> 
        <Footer/>
     </div>
   )

@@ -4,7 +4,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../css/ProjectsSlider.css';
 
-const ProjectsSlider = () => {
+export const ProjectsSlider = () => {
   const settings = {
     centerMode: true,
     centerPadding: '0px',
