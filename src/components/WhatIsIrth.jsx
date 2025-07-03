@@ -2,7 +2,8 @@ import React from "react";
 import '../css/WhatIsIrth.css';
 import { CiSearch } from "react-icons/ci";
 import { GoPeople } from "react-icons/go";
-
+import art from "../assets/arts.png"
+import content from "../assets/trusted-content.png"
 
 
 export const Whatisirth =()=>{
@@ -21,11 +22,11 @@ export const Whatisirth =()=>{
                 <p>تعزيز المشاركة المجتمعية</p>
             </div>
             <div className="feature">
-                <div className="circle-icon"></div>
+                <div className="circle-icon"><img src={art} height={30} width={30}/></div>
                 <p>رقمنة الفنون الشعبية</p>
             </div>
             <div className="feature">
-                <div className="circle-icon"></div>
+                <div className="circle-icon"><img src={content} height={30} width={30}/></div>
                 <p>توفير محتوى موثوق</p>
             </div>
         </div>

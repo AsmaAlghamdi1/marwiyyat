@@ -1,6 +1,6 @@
 .hero {
     width: 100%;
-    height: 80vh;
+    height: 100vh;
     margin: 0 auto;
     display: flex;
     justify-content: flex-start;
@@ -11,14 +11,17 @@
     background-repeat: no-repeat;
     text-align: right;
     direction: rtl;
-    padding: 0 2rem;
+    padding: 0 5.5rem;
     font-family: 'Lama Sans', sans-serif;
+    image-rendering: crisp-edges;
 }
 .hero-section h2 {
     color: #0C8F5C;
+     font-size: 2.5rem;
 }
 .hero-section p{
      color: #000000;
+     font-size: 1.5rem;
 }
 .explore-btn {
     background-color: #0C8F5C;
@@ -26,10 +29,10 @@
     padding: 10px 20px;
     border: none;
     border-radius: 6px;
-    font-size: 1rem;
+    font-size: 1.25rem;
     cursor: pointer;
     margin-top: 20px;
-    clip-path: polygon(20px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 30px);
+    clip-path: polygon(20px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 35px);
     /* box-shadow: 0 10 20px rgba(54, 53, 53, 0.74); */
     /* transform: scale(1.05); */
 }
