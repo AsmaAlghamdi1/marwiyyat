@@ -1,0 +1,48 @@
+.projects-section {
+  background-color: #fff;
+  padding: 80px 20px;
+  direction: rtl;
+  font-family: 'Lama Sans', sans-serif;
+}
+
+.projects-title {
+  font-size: 30px;
+  font-weight: 700;
+  color: #00715d;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.project-card {
+  background-color: #f8f8f8;
+  border-radius: 20px;
+  height: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  transform: scale(0.9);
+  opacity: 0.8;
+  text-align: center;
+}
+
+.project-card:hover {
+  transform: scale(0.92);
+  opacity: 1;
+}
+
+.slick-center .project-card {
+  transform: scale(1.1);
+  z-index: 2;
+  opacity: 1;
+  transition: all 0.4s ease;
+}
+
+.card-content {
+  color: #333;
+  font-size: 20px;
+  font-weight: 500;
+}
+

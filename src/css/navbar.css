@@ -20,9 +20,16 @@ header{
     padding: 0 2rem;
     background-color: var(--mainColor);
     color: var(--textColor);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
 
 }
-
+.active-link a{
+    color: var(--secondaryColor);
+}
 nav a{
     margin: 0 2rem;
     color: var(--textColor);

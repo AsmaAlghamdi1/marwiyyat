@@ -3,7 +3,7 @@ import '../css/herosection.css';
 
 export const Herosection = () => {
   return (
-    <div className="hero">
+    <div id="home" className="hero">
       <div className="hero-section">
         <h2>الأحاديث كما لو تُروَ من قبل</h2>
         <p>استكشف المواقع التي ذُكرت فيها أحاديث النبي ﷺ</p>
