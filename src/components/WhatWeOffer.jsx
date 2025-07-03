@@ -24,7 +24,7 @@ export const WhatWeOffer = () => {
   ];
 
   return (
-    <section className="offer-section">
+    <section id="goals" className="offer-section">
       <div className="offer-flex-container">
         <div className="offer-content">
           <h2 className="offer-title">ماذا تقدم لك المنصة؟</h2>
