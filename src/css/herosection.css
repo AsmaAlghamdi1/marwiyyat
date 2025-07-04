@@ -36,3 +36,105 @@
     /* box-shadow: 0 10 20px rgba(54, 53, 53, 0.74); */
     /* transform: scale(1.05); */
 }
+
+
+
+
+
+@media (max-width: 575px) {
+    .hero{
+    background-image:url('../assets/smallbackground1.png');
+    background-size: cover;  
+    background-repeat: no-repeat;
+    background-position: center bottom; 
+    padding: 1rem;
+    }
+  .hero-section h2{
+     font-size: 1.5rem;
+  }
+  .hero-section p{
+     font-size: 1rem;
+  }
+  .explore-btn{
+      padding: 8px 16px;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    clip-path: polygon(20px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 25px);
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .hero-section h2{
+     font-size: 2rem;
+  }
+  .hero-section p{
+     font-size: 1.25rem;
+}
+   .explore-btn{
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    clip-path: polygon(25px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 35px);
+  }
+
+}
+
+
+@media (min-width: 768px) and (max-width: 991px) {
+ .hero-section h2{
+     font-size: 2.3rem;
+  }
+  .hero-section p{
+     font-size: 1.5rem;
+}
+   .explore-btn{
+    font-size: 1.3rem;
+    clip-path: polygon(28px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 40px);
+  }
+}
+
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .hero-section h2{
+     font-size: 2.6rem;
+  }
+  .hero-section p{
+     font-size: 1.6rem;
+}
+   .explore-btn{
+    font-size: 1.4rem;
+    clip-path: polygon(25px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 40px);
+  }
+}
+
+/* 
+@media (min-width: 1200px) {
+ .hero-section h2{
+     font-size: 2.8rem;
+  }
+  .hero-section p{
+     font-size: 1.7rem;
+}
+   .explore-btn{
+    padding: 1rem 2rem;
+    margin-top: 3rem;
+    font-size: 1.5rem;
+    clip-path: polygon(45px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 60px);
+  }
+} */
+
+/* 
+@media (min-width: 1400px) {
+ .hero-section h2{
+     font-size: 2.5rem;
+    
+  }
+  .hero-section p{
+     font-size: 1.75rem;
+}
+   .explore-btn{
+    padding: 1rem 1.9rem;
+    margin-top: 3rem;
+    font-size: 1.75rem;
+    clip-path: polygon(40px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 60px);
+  }
+} */
