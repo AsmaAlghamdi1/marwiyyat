@@ -1,4 +1,5 @@
 import {Navbar} from '../components/navbar'
+import {MainNavbar} from '../components/mainNavbar'
 import {Herosection} from '../components/herosection'
 import { WhatWeOffer } from '../components/WhatWeOffer';
 import {Footer} from '../components/footer'
@@ -11,12 +12,12 @@ import {Mobadrahsection} from '../components/mobadrahsection'
 function Homepage() {
   return (
   <div className='main-container'>
-       <Navbar/>
+       {/* <Navbar/> */}
        <section id="home">
-        <Herosection/>
+        {/* <Herosection/> */}
        </section>
        <section id='goals'>
-        <WhatWeOffer /> 
+        {/* <WhatWeOffer />  */}
        </section>
        <section id='map'>
 
@@ -24,9 +25,8 @@ function Homepage() {
        <section id='contact'>
 
        </section>
-       {/* <Whatisirth/>
-       <ProjectsSlider/>
-<Mobadrahsection/> */}
+       {<MainNavbar/>}
+       {<Mobadrahsection/> }
        <Footer/>
     </div>
   )

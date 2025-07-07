@@ -1,6 +1,6 @@
 .mobadrah {
     width: 100%;
-    height: 90vh;
+    height: 100vh;
     margin: 0 auto;
     display: flex;
     justify-content:center;
@@ -15,8 +15,7 @@
 }
 
 .mobadrah-section1 h2,
-.mobadrah-section2 h2 {
-    font-family: 'Cairo', 'Amiri', 'Noto Naskh Arabic', Arial, sans-serif;    
+.mobadrah-section2 h2 {   
     font-weight: 700;
     font-size: 43px;
     color: white;
@@ -25,9 +24,49 @@ text-shadow: 4px 4px 6px rgba(0, 0, 0, 1);
 
 .mobadrah-section1 h2 {
     text-align: right;
+    font-family: 'Lama Sans', sans-serif;
+      margin-bottom: 20px;
+
+
 }
 
 .mobadrah-section2 h2 {
     text-align: left;
     padding-top: 25%;
+    font-family: 'Lama Sans', sans-serif;
+      margin-top: 20px;
+
+
+}
+@media (max-width: 1024px) {
+  .mobadrah-section1 h2,
+  .mobadrah-section2 h2 {
+    font-size: 30px;
+  }
+  
+  .mobadrah-section2 h2 {
+    padding-top: 15%;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobadrah-section1 h2,
+  .mobadrah-section2 h2 {
+    font-size: 24px;
+  }
+  
+  .mobadrah-section2 h2 {
+    padding-top: 10%;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobadrah-section1 h2,
+  .mobadrah-section2 h2 {
+    font-size: 20px;
+  }
+  
+  .mobadrah-section2 h2 {
+    padding-top: 5%;
+  }
 }
