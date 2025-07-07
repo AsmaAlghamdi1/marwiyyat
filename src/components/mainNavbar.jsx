@@ -16,7 +16,7 @@ export const MainNavbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const threshold = window.innerHeight * 0.7;
+      const threshold = window.innerHeight * 0.9;
       const header = document.querySelector("header");
 
       if (window.scrollY > threshold) {
