@@ -1,12 +1,9 @@
 import {Navbar} from '../components/navbar'
-import {MainNavbar} from '../components/mainNavbar'
 import {Herosection} from '../components/herosection'
 import { WhatWeOffer } from '../components/WhatWeOffer';
 import {Footer} from '../components/footer'
 import '../css/homepage.css'
 import ProjectsSlider from '../components/ProjectsSlider';
-import { Whatisirth } from '../components/WhatIsIrth';
-import {Mobadrahsection} from '../components/mobadrahsection'
 
 
 function Homepage() {
@@ -25,9 +22,6 @@ function Homepage() {
        <section id='contact'>
 
        </section>
-       {<MainNavbar/>}
-       {<Mobadrahsection/> }
-       <Footer/>
     </div>
   )
 }
