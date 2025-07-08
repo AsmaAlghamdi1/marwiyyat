@@ -38,6 +38,36 @@
 }
 
 
+/* 3. Border Reveal */
+/* .explore-btn {
+  background-color: transparent;
+  color: #000000;
+  border: 2px solid #0C8F5C;
+  position: relative;
+}
+
+.explore-btn::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #0C8F5C;
+  transition: width 0.3s ease;
+  z-index: -1;
+  border-radius: 4px;
+}
+
+.explore-btn:hover::after {
+  width: 100%;
+}
+
+.explore-btn:hover {
+  color: white;
+} */
+
+
 
 
 

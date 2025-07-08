@@ -1,74 +1,137 @@
-/* src/css/whatWeOffer.css */
 .offer-section {
-  background-color: #fff;
-  padding: 80px 20px;
-  direction: rtl;
-  font-family: 'Lama Sans', sans-serif;
-}
-
-.offer-flex-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 1200px;
-  margin: auto;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-
-.offer-content {
-  flex: 1;
+  padding: 4rem 2rem;
+  background-color: #ffffff;
+  background-image: url('../assets/secondrybackground.png');
+  text-align: center;
 }
 
 .offer-title {
-  font-size: 30px;
-  font-weight: 700;
-  color: #00715d;
-  margin-bottom: 50px;
-  text-align: center;
+  font-size: 2rem;
+  /* margin-bottom: 8rem; */
+  margin-top: 3rem;
+  color: #0C8F5C;
 }
 
-.offer-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
-  justify-items: center;
+
+.card-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+.card-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh; */
+  margin-top: 8rem;
+  margin-bottom: 5rem;
+  /* background: #000; */
 }
 
-.offer-item {
-  background-color: #f8f8f8;
-  border-radius: 20px;
-  padding: 40px 25px;
-  transition: all 0.3s ease;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-  text-align: center;
+.card-content {
+  /* width: 300px;
+  height: 200px; */
+  /* background: #111; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  transition: all 0.5s ease;
 }
 
-.offer-item:hover {
+.card-content h2 {
+  color: rgb(173, 175, 175);
+  font-size: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.card-content::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    0deg, 
+    transparent, 
+    transparent 30%, 
+    rgba(255, 255, 255, 0.3)
+  );
+  transform: rotate(-45deg);
+  transition: all 0.5s ease;
+  opacity: 0;
+}
+
+.card-content:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(24, 134, 57, 0.5);
+}
+
+.card-content:hover::before {
+  opacity: 1;
+  transform: rotate(-45deg) translateY(100%);
+}
+.card-content {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 2rem;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+.card-content:hover {
+  
   transform: translateY(-5px);
+  background-color: #0C8F5C;
+}
+.card-content:hover .icon-circle{
+  background-color: #ffffff;
+  color: #0C8F5C;
+}
+.card-content:hover .main-feature,
+.card-content:hover .explain-feature{
+  color: white;
 }
 
 .icon-circle {
-  width: 100px;
-  height: 100px;
-  background-color: #00715d;
-  color: white;
-  font-size: 48px;
+  background-color: #0C8F5C; 
+  color: white;             
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 25px;
+  font-size: 1.8rem;
 }
 
-.offer-text {
-  font-size: 20px;
+
+.main-feature {
+  font-size: 1rem;
   color: #333;
-  font-weight: 500;
+  margin: 0;
+}
+
+
+.explain-feature {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0;
 }
 
 /* For medium screens */
-@media (max-width: 992px) {
+/* @media (max-width: 992px) {
   .offer-grid {
     grid-template-columns: 1fr;
     gap: 30px;
@@ -91,10 +154,10 @@
   .offer-item {
     padding: 30px 20px;
   }
-}
+} */
 
 /* For small screens */
-@media (max-width: 576px) {
+/* @media (max-width: 576px) {
   .offer-section {
     padding: 60px 15px;
   }
@@ -118,4 +181,4 @@
     padding: 25px 15px;
   }
 }
-
+ */

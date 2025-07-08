@@ -6,6 +6,8 @@ import '../css/homepage.css'
 import ProjectsSlider from '../components/ProjectsSlider';
 import { Whatisirth } from '../components/WhatIsIrth';
 import {Mobadrahsection} from '../components/mobadrahsection'
+import { Contactus } from '../components/contactus';
+import { Mapsection } from '../components/mapsection';
 
 
 function Homepage() {
@@ -19,14 +21,15 @@ function Homepage() {
         <WhatWeOffer /> 
        </section>
        <section id='map'>
-
+        <Mapsection/>
        </section>
        <section id='contact'>
-
+        <Contactus/>
        </section>
-       {/* <Whatisirth/>
-       <ProjectsSlider/>
+       <Whatisirth/>
+       {/* <ProjectsSlider/>
 <Mobadrahsection/> */}
+
        <Footer/>
     </div>
   )

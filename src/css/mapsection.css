@@ -1,0 +1,137 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.map-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  direction: rtl;
+  background-color: #fff;
+}
+
+.map-container-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.map-title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #0C8F5C;
+  text-align: center;
+}
+
+.filters {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.filters select,
+.filters input {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4rem;
+  min-width: 150px;
+  background-color: transparent;
+  color: black;
+  font-family: inherit;
+  text-align: right;
+}
+
+.main-content { 
+  display: flex;
+  justify-content: center;  
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1200px;        
+  margin: 0 auto;
+}
+
+ #map {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background-color: #f5f5f5;
+}
+
+.map-container {
+  width: 100vh;
+  height: 70vh;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid #0C8F5C;
+}
+
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+}
+
+.cards-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  max-width: 320px;
+}
+
+.location-card {
+  background-color: #fff;
+  border-radius: 12px;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  text-align: right;
+  transition: 0.3s ease;
+  border: 1px solid #eee;
+}
+
+.location-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.card-info {
+  padding: 0.8rem;
+}
+
+.card-info h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.card-info p {
+  margin-top: 0.3rem;
+  color: #777;
+  font-size: 0.9rem;
+}
+
+
+
+
+/* .main-content {
+  border: 2px dashed red;
+}
+
+.map-container {
+  border: 2px solid green;
+}
+
+.cards-container {
+  border: 2px solid blue;
+} */
