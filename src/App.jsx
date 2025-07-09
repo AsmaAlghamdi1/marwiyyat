@@ -9,13 +9,18 @@ import { useEffect } from 'react';
 import Mainpage from "./pages/mainpage";  
 
 function App() {
-  
+  useEffect(() => {
+    AOS.init({
+      duration: 1500, 
+      once: true      
+    });
+  }, []);
 
   return (
     <>
-    <Mainpage/>
+      <Mainpage />
     </>
-  )
+  );
 }
 
 export default App
