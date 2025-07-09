@@ -6,6 +6,7 @@ import 'leaflet/dist/leaflet.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
+import Mainpage from "./pages/mainpage";  
 
 function App() {
   
