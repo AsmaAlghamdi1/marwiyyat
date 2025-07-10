@@ -13,12 +13,12 @@ import { Mapsection } from '../components/mapsection';
 function Homepage() {
   return (
   <div className='main-container'>
-       {/* <Navbar/> */}
+       <Navbar/>
        <section id="home">
-        {/* <Herosection/> */}
+        <Herosection/>
        </section>
        <section id='goals'>
-        {/* <WhatWeOffer />  */}
+        <WhatWeOffer /> 
        </section>
        <section id='map'>
         <Mapsection/>
@@ -26,7 +26,7 @@ function Homepage() {
        <section id='contact'>
         <Contactus/>
        </section>
-       <Whatisirth/>
+       {/* <Whatisirth/> */}
        {/* <ProjectsSlider/>
 <Mobadrahsection/> */}
 
