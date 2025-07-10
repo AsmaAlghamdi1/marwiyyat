@@ -4,16 +4,24 @@ import {Footer} from './components/footer'
 import Homepage from './pages/homepage'
 // import Mainpage from './pages/mainpage'
 import 'leaflet/dist/leaflet.css';
-// import Mapsection from './components/mapsection';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from 'react';
+import Mainpage from "./pages/mainpage";  
 
 function App() {
-  
+  useEffect(() => {
+    AOS.init({
+      duration: 1500, 
+      once: true      
+    });
+  }, []);
 
   return (
     <>
-    <Homepage/>
+      <Mainpage />
     </>
-  )
+  );
 }
 
 export default App
