@@ -19,6 +19,7 @@
     "react-leaflet": "^5.0.0",
     "react-scrollspy": "^3.4.3",
     "react-slick": "^0.30.3",
+    "react-type-animation": "^3.2.0",
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {

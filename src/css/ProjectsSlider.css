@@ -46,6 +46,49 @@
   font-weight: 500;
 }
 
+/* أسهم السلايدر */
+.slick-prev,
+.slick-next {
+  width: 45px;
+  height: 45px;
+  z-index: 5;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  font-size: 40px;
+  color: #00715d;
+  opacity: 1;
+}
+
+.slick-prev {
+  left: 5px;
+}
+
+.slick-next {
+  right: 5px;
+}
+
+@media (max-width: 768px) {
+  .slick-prev,
+  .slick-next {
+    width: 35px;
+    height: 35px;
+  }
+
+  .slick-prev:before,
+  .slick-next:before {
+    font-size: 30px;
+  }
+
+  .slick-prev {
+    left: -35px;
+  }
+
+  .slick-next {
+    right: -35px;
+  }
+}
 
 @media (max-width: 992px) {
   .projects-title {

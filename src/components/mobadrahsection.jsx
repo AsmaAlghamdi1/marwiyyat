@@ -3,6 +3,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import '../css/mobadrahsection.css';
 
+
 export const Mobadrahsection = () => {
   useEffect(() => {
     AOS.init({ duration: 1000, once: true }); // once=true: الحركة تحدث مرة واحدة فقط

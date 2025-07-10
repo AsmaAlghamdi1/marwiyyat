@@ -12,6 +12,9 @@
     text-align: center;
     direction: rtl;
     padding: 0 2rem;
+    background-attachment: fixed;
+    
+
 }
 
 .mobadrah-section1 h2,
