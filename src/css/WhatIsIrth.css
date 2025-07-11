@@ -8,10 +8,10 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    background-image: url('../assets/mainbackground.png');
+    /* background-image: url('../assets/mainbackground.png');
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
     flex-direction: column;
     text-align: right; 
     direction: rtl;

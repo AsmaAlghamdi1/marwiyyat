@@ -8,18 +8,27 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
 import Mainpage from "./pages/mainpage";  
+import { BrowserRouter as Router,Routes,Route } from 'react-router-dom';
 
 function App() {
-  useEffect(() => {
-    AOS.init({
-      duration: 1500, 
-      once: true      
-    });
-  }, []);
+  // useEffect(() => {
+  //   AOS.init({
+  //     duration: 1500, 
+  //     once: true      
+  //   });
+  // }, []);
 
   return (
     <>
-      <Mainpage />
+
+  
+    <Router>
+      <Routes>
+        <Route path="/" element={<Mainpage />}/>
+        <Route path="/home" element={<Homepage/>}/>
+      </Routes>
+    </Router>
+   
     </>
   );
 }

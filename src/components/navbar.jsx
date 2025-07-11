@@ -13,9 +13,9 @@ export const Navbar = () => {
         navRef.current.classList.toggle("responsive_nav");
     }
     return (
-        <header>
+        <header className="navbar">
             <img src={logo} alt="DDC LOGO" width={120} height={50}/>
-            <nav ref={navRef}>
+            <nav className="nav" ref={navRef}>
                 {/* <Scrollspy items={['home','goals','map','contact']}
                 currentClassName="active-link"
                 offset={-100}

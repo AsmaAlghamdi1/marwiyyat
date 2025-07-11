@@ -8,9 +8,13 @@ import { Whatisirth } from '../components/WhatIsIrth';
 import {Mobadrahsection} from '../components/mobadrahsection'
 import { Contactus } from '../components/contactus';
 import { Mapsection } from '../components/mapsection';
+import React ,{useEffect} from 'react';
 
 
 function Homepage() {
+  useEffect(()=>{
+    window.scrollTo({top:0,behavior:'smooth'});
+  },[]);
   return (
   <div className='main-container'>
        <Navbar/>

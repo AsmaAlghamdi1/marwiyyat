@@ -12,13 +12,14 @@
     --textColor:#293041;
 }
 
-header{
+.navbar{
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 80px;
     padding: 0 2rem;
     background-color: var(--mainColor);
+    background: #ffffff;
     color: var(--textColor);
     position: fixed;
     top: 0;
@@ -29,7 +30,7 @@ header{
 }
 
 
-nav {
+.nav {
   display: flex;
   justify-content: center;
   align-items: center;

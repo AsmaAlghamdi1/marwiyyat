@@ -3,8 +3,15 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../css/ProjectsSlider.css';
+import project1 from "../assets/project1.png";
+import project2 from '../assets/project1.png';
+import project3 from '../assets/project1.png';
+import project4 from '../assets/project1.png';
+import { useNavigate } from 'react-router-dom';
+
 
 export const ProjectsSlider = () => {
+   const navigate = useNavigate();
   const settings = {
     centerMode: true,
     centerPadding: '0px',
@@ -33,10 +40,10 @@ export const ProjectsSlider = () => {
   };
 
   const projects = [
-    { id: 1, title: 'مشروع ١' },
-    { id: 2, title: 'مشروع ٢' },
-    { id: 3, title: 'مشروع ٣' },
-    { id: 4, title: 'مشروع ٤' },
+    { id: 1, image: project1, link:'/home' },
+    { id: 2, image: project2, link:'/home' },
+    { id: 3, image: project3, link:'/home' },
+    { id: 4, image: project4, link:'/home' },
   ];
 
   return (
@@ -45,8 +52,16 @@ export const ProjectsSlider = () => {
       <Slider {...settings}>
         {projects.map((project) => (
           <div key={project.id}>
-            <div className="project-card">
-              <div className="card-content">{project.title}</div>
+            <div className="project-card"
+            onClick={() => navigate(project.link)}
+            // style={{ cursor: 'pointer' }}
+            >
+              <div className='project-image-wrapper'>
+              <img src={project.image} alt={`Project ${project.id}`} className="project-image" />
+              <div className='image-overlay'>
+                <span className='view-details'> عرض المشروع</span>
+              </div>
+            </div>
             </div>
           </div>
         ))}
