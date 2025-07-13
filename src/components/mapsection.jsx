@@ -6,6 +6,7 @@ import '../css/mapsection.css';
 import { useTranslation } from "react-i18next";
 
 export const Mapsection = () => {
+  
   const [geojsonData, setGeojsonData] = useState(null);
   const [imagesData, setImagesData] = useState({});
   const [selectedPlace, setSelectedPlace] = useState(null); // الحالة الجديدة
@@ -39,6 +40,7 @@ export const Mapsection = () => {
       popupAnchor: [0, -30],
     });
   };
+  
 const {t,i18n}=useTranslation();
   return (
     <div className="App">
@@ -142,4 +144,6 @@ const {t,i18n}=useTranslation();
     
   );
 };
+
+
 

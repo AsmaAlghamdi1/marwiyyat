@@ -48,12 +48,6 @@ export const MainNavbar = ({toggleTheme,theme}) => {
        
         {/* Center links */}
         <div className="DDC-center">
-          <a href="/#">المشاريع</a>
-          <a href="/#">وصف المبادرة</a>
-          <a href="/#">الرئيسية</a> 
-          {/* <button onClick={toggleTheme}>
-          {theme ==='light'?'dark Mode':'Light Mode'}
-        </button> */}
           <a href="/#ProjectsSliderURL">المشاريع</a>
           <a href="/#MobadrahsectionURL">وصف المبادرة</a>
           <a href="/#">الرئيسية</a>
