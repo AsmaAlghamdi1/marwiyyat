@@ -32,7 +32,7 @@ function Homepage() {
         <Contactus/>
        </section>
 
-       <ChatBot/>
+<ChatBot/>
        <Footer/>
     </div>
   )
