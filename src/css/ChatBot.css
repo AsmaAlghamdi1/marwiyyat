@@ -38,7 +38,7 @@
     max-height: 455px;
     display: flex;
     flex-direction: column;
-    z-index: 300;
+    z-index: 99999;
     overflow: hidden;
     direction: rtl;
     font-family: 'Tahoma', sans-serif;

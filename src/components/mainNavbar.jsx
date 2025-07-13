@@ -47,8 +47,8 @@ export const MainNavbar = () => {
       <nav ref={navRef}>
         {/* Center links */}
         <div className="DDC-center">
-          <a href="/#">المشاريع</a>
-          <a href="/#">وصف المبادرة</a>
+          <a href="/#ProjectsSliderURL">المشاريع</a>
+          <a href="/#MobadrahsectionURL">وصف المبادرة</a>
           <a href="/#">الرئيسية</a>
         </div>
 

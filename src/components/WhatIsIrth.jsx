@@ -14,7 +14,7 @@ export const Whatisirth = () => {
   }, []);
 
   return (
-    <div className="container">
+    <div className="container" id='MobadrahsectionURL'>
       <TypeAnimation
         sequence={['ماهو إرث ؟']}
         wrapper="h3"
