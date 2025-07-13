@@ -3,8 +3,10 @@ import { MapContainer, TileLayer, Marker, Popup, Tooltip } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import '../css/mapsection.css';
+import { useTranslation } from "react-i18next";
 
 export const Mapsection = () => {
+  
   const [geojsonData, setGeojsonData] = useState(null);
   const [imagesData, setImagesData] = useState({});
   const [selectedPlace, setSelectedPlace] = useState(null);
@@ -49,14 +51,13 @@ export const Mapsection = () => {
 //   speechSynthesis.speak(utterance);
 // };
 
-
+const {t,i18n}=useTranslation();
   return (
     <div className="App">
-      <h2>الخريطة التفاعلية</h2>
-      <div className="map-wrapper">
-        <div className="map-container">
-          <div className="map-filters">
-            <select className="filter-select" onChange={(e) => console.log("المدينة:", e.target.value)}>
+      <h2>{t("mapsection.maptitle")}</h2>
+      <div className="map-container">
+        <div className="map-filters">
+          <select className="filter-select" onChange={(e) => console.log("المدينة:", e.target.value)}>
               <option value="">اختر المدينة</option>
               <option value="مكة المكرمة">مكة المكرمة</option>
               <option value="المدينة المنورة">المدينة المنورة</option>
@@ -159,7 +160,9 @@ export const Mapsection = () => {
           </div>
         )}
       </div>
-    </div>
+    
   );
 };
+
+
 

@@ -5,8 +5,11 @@ import { FaBars,FaTimes } from "react-icons/fa";
 import '../CSS/navbar.css';
 import {useRef} from 'react'
 import Scrollspy from "react-scrollspy";
+import { useTranslation } from 'react-i18next';
+
 
 export const Navbar = () => {
+    const {t,i18n} =useTranslation();
     const navRef=useRef();
 
     const showNavbar=()=>{
@@ -21,14 +24,20 @@ export const Navbar = () => {
                 offset={-100}
                 componentTag='div'
                 > */}
-                    <a href="#contact" className="hover-underline">تواصل معنا</a> 
-                    <a href="#map" className="hover-underline">الخريطة التفاعلية</a>
-                    <a href="#goals" className="hover-underline">الأهداف</a>
-                    <a href="#home" className="hover-underline">الرئيسية</a>
+                    <a href="#home" className="hover-underline">{t("navbar.home")}</a>
+                    <a href="#goals" className="hover-underline">{t("navbar.goals")}</a>
+                    <a href="#map" className="hover-underline">{t("navbar.map")}</a> 
+                    <a href="#contact" className="hover-underline">{t("navbar.contact")}</a> 
+                    
+                    
+                    
                     
                 {/* </Scrollspy> */}
                  
-                <span><img src={language} alt="language" width={20} height={20} /> English</span>
+                <span
+                    onClick={() => i18n.changeLanguage(i18n.language === 'ar' ? 'en' : 'ar')}
+                    style={{ cursor: 'pointer' }}
+                ><img src={language} alt="language" width={18} height={18} />{t("navbar.language")}</span>
                    
                 <button className="nav-btn nav-close-btn" onClick={showNavbar}>
                     <FaTimes/>
