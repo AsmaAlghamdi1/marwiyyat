@@ -47,7 +47,7 @@ export const ProjectsSlider = () => {
   ];
 
   return (
-    <div className="projects-section">
+    <div className="projects-section" id='ProjectsSliderURL'>
       <h2 className="projects-title">مشاريع المبادرة</h2>
       <Slider {...settings}>
         {projects.map((project) => (

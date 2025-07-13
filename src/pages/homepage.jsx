@@ -9,6 +9,7 @@ import {Mobadrahsection} from '../components/mobadrahsection'
 import { Contactus } from '../components/contactus';
 import { Mapsection } from '../components/mapsection';
 import React ,{useEffect} from 'react';
+import {ChatBot} from '../components/ChatBot';
 
 
 function Homepage() {
@@ -30,10 +31,8 @@ function Homepage() {
        <section id='contact'>
         <Contactus/>
        </section>
-       {/* <Whatisirth/> */}
-       {/* <ProjectsSlider/>
-<Mobadrahsection/> */}
 
+<ChatBot/>
        <Footer/>
     </div>
   )

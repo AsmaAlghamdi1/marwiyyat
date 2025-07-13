@@ -10,12 +10,17 @@ import {Footer} from '../components/footer'
 
 
 function Mainpage(){
+    
  return (
     <div>
         <MainNavbar/>
         <Mobadrahsection/>
+        <section id="MobadrahsectionURL">
         <Whatisirth/>
+        </section>
+        <section id='ProjectsSliderURL'>
         <ProjectsSlider/>
+        </section>
         <Footer/>
         
 

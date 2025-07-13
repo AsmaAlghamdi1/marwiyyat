@@ -112,3 +112,148 @@ h2 {
   min-width: 180px;
   direction: rtl; 
 }
+
+.map-wrapper {
+  display: flex;
+  flex-direction: row-reverse; /* لعرض مربع التفاصيل على اليمين */
+  height: 100%;
+  width: 100%;
+}
+
+.map-container {
+  flex: 1;
+  height: 100%;
+  position: relative;
+}
+
+/* المربع الجانبي للتفاصيل */
+.details-sidebar {
+  width: 320px;
+  background-color: #ffffff;
+  padding: 20px;
+  margin: 1rem 2rem 1rem 0;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  overflow-y: auto;
+  max-height: calc(100vh - 100px);
+  direction: rtl;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* عناصر داخل التفاصيل */
+.details-sidebar h3 {
+  font-size: 22px;
+  margin-top: 0;
+  color: #0C8F5C;
+}
+
+.details-image {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.details-description {
+  font-size: 15px;
+  color: #333;
+  line-height: 1.7;
+}
+
+.close-btn {
+  float: left;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+  color: #000;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.map-wrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  height: 100%;
+  width: 100%;
+}
+
+.details-sidebar {
+  width: 320px;
+  background-color: #ffffff;
+  padding: 20px;
+  margin: 1rem 2rem 1rem 0;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  overflow-y: auto;
+  max-height: calc(100vh - 100px);
+  direction: rtl;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.details-sidebar h3 {
+  font-size: 22px;
+  margin-top: 0;
+  color: #0C8F5C;
+}
+
+.details-image {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.details-description {
+  font-size: 15px;
+  color: #333;
+  line-height: 1.7;
+}
+
+.details-description h4 {
+  color: #0C8F5C;
+  font-size: 18px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 4px;
+}
+
+.close-btn {
+  float: left;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+  color: #000;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
