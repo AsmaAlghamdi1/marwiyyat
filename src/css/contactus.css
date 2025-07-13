@@ -70,7 +70,7 @@
    direction: rtl;
 }
 .contact form .btn{
-    margin-top: 0.5rem;
+    margin-top: 2rem;
 }
 
 .btn{
@@ -112,6 +112,7 @@
 
 
 @media (max-width: 575px) {
+
   .contact {
     padding: 2rem 1.5rem;
     text-align: center;
@@ -146,6 +147,7 @@
 }
 
 @media (min-width: 575px) and (max-width: 767px) {
+
   .contact {
     padding: 2rem;
     text-align: center;
@@ -194,7 +196,6 @@
 }
 
 @media (min-width: 767px) and (max-width: 991px) {
-
 
   .contact h2 {
     font-size: 28px;
