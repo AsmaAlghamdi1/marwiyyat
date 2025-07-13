@@ -6,10 +6,11 @@ import '../css/mapsection.css';
 import { useTranslation } from "react-i18next";
 
 export const Mapsection = () => {
-  
   const [geojsonData, setGeojsonData] = useState(null);
   const [imagesData, setImagesData] = useState({});
   const [selectedPlace, setSelectedPlace] = useState(null);
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     fetch('/places.geojson')
@@ -41,23 +42,14 @@ export const Mapsection = () => {
     });
   };
 
-// خاصية القراءة الصوتية (Text to Speech)
-// const handleSpeak = (text) => {
-//   if (speechSynthesis.speaking) {
-//     speechSynthesis.cancel();
-//   }
-//   const utterance = new SpeechSynthesisUtterance(text);
-//   utterance.lang = "ar-SA";
-//   speechSynthesis.speak(utterance);
-// };
-
-const {t,i18n}=useTranslation();
   return (
     <div className="App">
       <h2>{t("mapsection.maptitle")}</h2>
-      <div className="map-container">
-        <div className="map-filters">
-          <select className="filter-select" onChange={(e) => console.log("المدينة:", e.target.value)}>
+      
+      <div className="map-wrapper">
+        <div className="map-container">
+          <div className="map-filters">
+            <select className="filter-select" onChange={(e) => console.log("المدينة:", e.target.value)}>
               <option value="">اختر المدينة</option>
               <option value="مكة المكرمة">مكة المكرمة</option>
               <option value="المدينة المنورة">المدينة المنورة</option>
@@ -131,23 +123,15 @@ const {t,i18n}=useTranslation();
           </MapContainer>
         </div>
 
-        {/*  مربع التفاصيل الجانبي */}
         {selectedPlace && (
           <div className="details-sidebar">
             <button className="close-btn" onClick={() => setSelectedPlace(null)}>×</button>
             <h3>{selectedPlace.name}</h3>
             <img src={selectedPlace.image} alt={selectedPlace.name} className="details-image" />
-
             <div className="details-description">
               <div className="story-header">
                 <h4>القصة</h4>
-                <button
-                  className="tts-button-circle"
-                  onClick={() => handleSpeak(selectedPlace.story)}
-                  title="استمع إلى القصة"
-                >
-                  🔊
-                </button>
+                <button className="tts-button-circle" title="استمع إلى القصة">🔊</button>
               </div>
               <p>{selectedPlace.story}</p>
 
@@ -160,9 +144,10 @@ const {t,i18n}=useTranslation();
           </div>
         )}
       </div>
-    
+    </div>
   );
 };
+
 
 
 

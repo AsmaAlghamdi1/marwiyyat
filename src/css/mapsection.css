@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
-
 body {
   background-color: #fff;
   margin: 0;
@@ -9,8 +7,6 @@ body {
 .App {
   height: 100vh;
   width: 100vw;
-  margin: 0;
-  padding: 0;
   display: flex;
   flex-direction: column;
 }
@@ -21,6 +17,7 @@ h2 {
   letter-spacing: 1px;
   margin: 0;
   padding: 30px 0 20px;
+  text-align: center;
 }
 
 .map-wrapper {
@@ -28,6 +25,7 @@ h2 {
   flex-direction: row-reverse;
   height: 100%;
   width: 100%;
+  flex-grow: 1;
 }
 
 .map-container {
@@ -60,7 +58,7 @@ h2 {
   direction: rtl;
 }
 
-/* خريطة Leaflet */
+/* Leaflet customizations */
 .leaflet-popup-content-wrapper {
   background: #ffffffdd;
   color: #334e68;
@@ -86,7 +84,6 @@ h2 {
   background: #1d72b8;
 }
 
-/* أيقونات الأماكن */
 .custom-div-icon {
   width: 40px;
   height: 40px;
@@ -113,7 +110,6 @@ h2 {
   pointer-events: none;
 }
 
-/* المربع الجانبي للتفاصيل */
 .details-sidebar {
   width: 320px;
   background-color: #ffffff;
@@ -180,7 +176,6 @@ h2 {
   }
 }
 
-/* زر القراءة (text-to-speech) */
 .story-header {
   display: flex;
   align-items: center;
@@ -220,5 +215,6 @@ h2 {
 .tts-button-circle:focus {
   outline: none;
 }
+
 
 
