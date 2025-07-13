@@ -41,7 +41,27 @@
   color: #888;
 } */
 
+/* :root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --card-bg: #f8f8f8;
+  --accent-color: #00715d;
+} */
 
+/* Dark Mode */
+/* body.dark {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --card-bg: #1e1e1e;
+  --accent-color: #48cfad;
+} */
+
+/* تطبيق المتغيرات */
+/* body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+} */
 #root{
   margin: 0 auto;
   padding: 0;

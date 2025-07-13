@@ -1,6 +1,6 @@
 .projects-section {
   background-color: #fff;
-  padding: 80px 20px;
+  padding: 0 20px 80px;
   direction: rtl;
   font-family: 'Lama Sans', sans-serif;
 }
@@ -16,17 +16,20 @@
 .project-card {
   background-color: #f8f8f8;
   border-radius: 20px;
-  height: 160px;
+  height: 300px; 
+  width: 100%; 
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 10px;
+  margin: 0 20px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
   transform: scale(0.9);
   opacity: 0.8;
   text-align: center;
+  overflow: hidden;
 }
+
 
 .project-card:hover {
   transform: scale(0.92);
@@ -44,6 +47,10 @@
   color: #333;
   font-size: 20px;
   font-weight: 500;
+}
+.slick-slide{
+  padding: 0 0.7rem;
+  box-sizing: border-box;
 }
 
 /* أسهم السلايدر */
@@ -75,11 +82,12 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
+  border-radius: 20px;
 }
 
 .project-image {
   width: 100%;
-  height: 20vh;
+  height: 100%;
   display: block;
   object-fit: cover;
   border-radius: 20px;

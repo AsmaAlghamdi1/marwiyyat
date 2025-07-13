@@ -5,6 +5,7 @@ import { Tooltip } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import '../css/mapsection.css';
+import { useTranslation } from "react-i18next";
 
 export const Mapsection=()=> {
   const [geojsonData, setGeojsonData] = useState(null);
@@ -48,10 +49,10 @@ export const Mapsection=()=> {
       popupAnchor: [0, -30],
     });
   };
-
+const {t,i18n}=useTranslation();
   return (
     <div className="App">
-      <h2>الخريطة التفاعلية</h2>
+      <h2>{t("mapsection.maptitle")}</h2>
       <div className="map-container">
         <div className="map-filters">
           <select className="filter-select" onChange={(e) => console.log("المدينة:", e.target.value)}>

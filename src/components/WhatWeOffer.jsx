@@ -2,8 +2,9 @@
 import React from "react";
 import "../css/whatWeOffer.css";
 import { FaMapMarkedAlt, FaTags, FaHeadphonesAlt, FaLightbulb } from "react-icons/fa";
-
+import { useTranslation } from 'react-i18next';
 export const WhatWeOffer = () => {
+  const {t,i18n} =useTranslation();
   // const features = [
   //   {
   //     icon: <FaMapMarkedAlt />,
@@ -38,38 +39,38 @@ export const WhatWeOffer = () => {
           </div>
         </div>
       </div> */}
-      <h2 className="offer-title">ماذا تقدم لك المنصة ؟</h2>
+      <h2 className="offer-title">{t("whatweoffer.offertitle")}</h2>
       <div className="card-wrapper">
 
       <div className="card-content">
           <div className="icon-circle">
             <FaMapMarkedAlt />
           </div>
-          <h3 className="main-feature">خريطة تفاعلية للاماكن النبوية</h3>
-          <p className="explain-feature">استكشف الأماكن المرتبطة بالأحاديث من خلال تجربة بصرية مميزة</p>
+          <h3 className="main-feature">{t("whatweoffer.feature2")}</h3>
+          <p className="explain-feature">{t("whatweoffer.desfeature2")}</p>
       </div>
       <div className="card-content">
           <div className="icon-circle">
             <FaTags />
           </div>
-          <h3 className="main-feature">فلترة الأحاديث بسهولة</h3>
-          <p className="explain-feature">ابحث وركّز على الأحاديث اللي تهمك بأقل جهد وبشكل أسرع</p>
+          <h3 className="main-feature"> {t("whatweoffer.feature1")} </h3>
+          <p className="explain-feature">{t("whatweoffer.desfeature1")}</p>
       
       </div>
       <div className="card-content">
           <div className="icon-circle">
             <FaHeadphonesAlt />
           </div>
-          <h3 className="main-feature">الإستماع الى الحديث صوتيًا</h3>
-          <p className="explain-feature">استمع للأحاديث بكل وضوح وبطريقة تسهّل عليك الفهم والاستيعاب</p>
+          <h3 className="main-feature">{t("whatweoffer.feature4")}</h3>
+          <p className="explain-feature">{t("whatweoffer.desfeature4")}</p>
       
       </div>
       <div className="card-content">
           <div className="icon-circle">
             <FaLightbulb />
           </div>
-          <h3 className="main-feature">تصنيف الأحاديث تلقائيًا</h3>
-          <p className="explain-feature">تجربة منظّمة تسهّل عليك الوصول إلى الحديث المناسب بكل يسر</p>
+          <h3 className="main-feature">{t("whatweoffer.feature3")}</h3>
+          <p className="explain-feature">{t("whatweoffer.desfeature3")}</p>
       </div>
       </div>
     </section>

@@ -45,11 +45,15 @@ export const MainNavbar = () => {
       </div>
 
       <nav ref={navRef}>
+       
         {/* Center links */}
         <div className="DDC-center">
           <a href="/#">المشاريع</a>
           <a href="/#">وصف المبادرة</a>
-          <a href="/#">الرئيسية</a>
+          <a href="/#">الرئيسية</a> 
+          {/* <button onClick={toggleTheme}>
+          {theme ==='light'?'dark Mode':'Light Mode'}
+        </button> */}
         </div>
 
         {/* Right logo */}

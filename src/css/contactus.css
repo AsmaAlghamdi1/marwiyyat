@@ -94,6 +94,23 @@
     box-shadow: 0 0 50px var(--main-color);
 }
 
+.contact-form.ltr {
+  flex-direction: row;
+}
+
+.contact-form.rtl {
+  flex-direction: row;
+}
+
+/* .contact-form.ltr {
+  flex-direction: row;
+}
+
+.contact-form.rtl {
+  flex-direction: row-reverse;
+} */
+
+
 @media (max-width: 575px) {
   .contact {
     padding: 2rem 1.5rem;

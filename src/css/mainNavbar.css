@@ -23,6 +23,7 @@ header {
     grid-template-columns: auto 1fr;
     align-items: center;
     width: 100%;
+    z-index: 10000;
     transition: background 0.5s ease, color 0.5s ease;
 }
 

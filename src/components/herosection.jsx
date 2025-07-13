@@ -1,13 +1,25 @@
 import React from "react";
 import '../css/herosection.css';
-
+import { useTranslation } from 'react-i18next';
+import heroImage from '../assets/background.png'
 export const Herosection = () => {
+  const {t,i18n} =useTranslation();
+  const isArabic = i18n.language === 'ar';
   return (
     <div id="home" className="hero">
-      <div className="hero-section">
-        <h2>الأحاديث كما لو تُروَ من قبل</h2>
-        <p>استكشف المواقع التي ذُكرت فيها أحاديث النبي ﷺ</p>
-        <button className="explore-btn">استكشف</button>
+        <img
+        src={heroImage}
+        alt="background image"
+        className={`hero-background ${isArabic ? '' : 'flipped'}`}
+      />
+      <div className={`hero-section ${isArabic ? 'rtl' : 'ltr'}`}>
+        <h2>{t("herosection.herotitle")}</h2>
+        <p>{t("herosection.herodescription")}</p>
+        <button className={`explore-btn ${!isArabic ? 'flipped' : ''}`}> 
+         <span className="button-text" >
+            {t("herosection.explore")}
+          </span> 
+        </button>
       </div>
     </div>
   );

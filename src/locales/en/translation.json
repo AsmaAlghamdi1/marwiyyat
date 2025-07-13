@@ -1,0 +1,46 @@
+{
+  "navbar": {
+    "home": "Home",
+    "goals":"Goals",
+    "map": "Interactive map",
+    "contact": "Contact us",
+    "language": "العربية"
+  },
+  "herosection": {
+    "herotitle": "The hadiths as they have never been narrated before",
+    "herodescription": "Explore the locations mentioned in the sayings of the Prophet",
+    "explore" : "Explore"
+  },
+  "whatweoffer":{
+    "offertitle": "What does the platform offer you ?",
+    "feature1":"Easily filtering hadiths",
+    "desfeature1":"Search and focus on the hadiths that matter to you with the least effort and faster.",
+    "feature2":"Interactive map of the prophetic places",
+    "desfeature2":"Explore the places associated with the Hadiths through a unique visual experience.",
+    "feature3":"Automatically classifying hadiths",
+    "desfeature3":"An organized experience that makes it easy for you to access the right hadith effortlessly.",
+    "feature4":"Listening to the talk audibly",
+    "desfeature4":"Listen to the hadith clearly and in a way that makes it easier for you to understand and comprehend."
+  },
+  "mapsection":{
+    "maptitle":"Interactive map"
+  },
+  "contactsection":{
+    "contacttitle":"Help us improve the content !",
+     "name":"Name",
+    "email":"Email",
+    "phone":"Phone number",
+    "subject":"Subject",
+    "message":"Your message",
+    "send":"Send"
+  },
+  "footer": {
+    "contact": "Contact",
+    "support":"Support",
+    "faqs":"FAQs",
+    "supportcenter":"Support Center",
+    "portal":"Portal",
+    "goals":"Goals",
+    "rights":"All rights reserved for the Development Data Center 2025 ©"
+  }
+}

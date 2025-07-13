@@ -54,7 +54,6 @@ export const ProjectsSlider = () => {
           <div key={project.id}>
             <div className="project-card"
             onClick={() => navigate(project.link)}
-            // style={{ cursor: 'pointer' }}
             >
               <div className='project-image-wrapper'>
               <img src={project.image} alt={`Project ${project.id}`} className="project-image" />
