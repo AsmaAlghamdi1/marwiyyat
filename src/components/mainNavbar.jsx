@@ -6,7 +6,7 @@ import fullDark from '../assets/ddcfulllogo-removedback.png'; // شعار الي
 import { FaBars, FaTimes } from "react-icons/fa";
 import '../CSS/mainNavbar.css';
 
-export const MainNavbar = () => {
+export const MainNavbar = ({toggleTheme,theme}) => {
   const navRef = useRef();
   const [scrolled, setScrolled] = useState(false); // نتحقق هل نزل تحت ولا لا
 
@@ -45,8 +45,15 @@ export const MainNavbar = () => {
       </div>
 
       <nav ref={navRef}>
+       
         {/* Center links */}
         <div className="DDC-center">
+          <a href="/#">المشاريع</a>
+          <a href="/#">وصف المبادرة</a>
+          <a href="/#">الرئيسية</a> 
+          {/* <button onClick={toggleTheme}>
+          {theme ==='light'?'dark Mode':'Light Mode'}
+        </button> */}
           <a href="/#ProjectsSliderURL">المشاريع</a>
           <a href="/#MobadrahsectionURL">وصف المبادرة</a>
           <a href="/#">الرئيسية</a>

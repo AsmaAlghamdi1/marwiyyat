@@ -94,15 +94,21 @@
     box-shadow: 0 0 50px var(--main-color);
 }
 
-.contact .error {
-  color: red;
-  font-size: 14px;
-  margin-top: 4px;
-  display: inline-block;
-  float: right;
-  font-family: 'Lama', sans-serif;
+.contact-form.ltr {
+  flex-direction: row;
 }
 
+.contact-form.rtl {
+  flex-direction: row;
+}
+
+/* .contact-form.ltr {
+  flex-direction: row;
+}
+
+.contact-form.rtl {
+  flex-direction: row-reverse;
+} */
 
 
 @media (max-width: 575px) {
