@@ -7,7 +7,7 @@ import '../css/mapsection.css';
 export const Mapsection = () => {
   const [geojsonData, setGeojsonData] = useState(null);
   const [imagesData, setImagesData] = useState({});
-  const [selectedPlace, setSelectedPlace] = useState(null); // الحالة الجديدة
+  const [selectedPlace, setSelectedPlace] = useState(null);
 
   useEffect(() => {
     fetch('/places.geojson')
@@ -39,6 +39,17 @@ export const Mapsection = () => {
     });
   };
 
+// خاصية القراءة الصوتية (Text to Speech)
+// const handleSpeak = (text) => {
+//   if (speechSynthesis.speaking) {
+//     speechSynthesis.cancel();
+//   }
+//   const utterance = new SpeechSynthesisUtterance(text);
+//   utterance.lang = "ar-SA";
+//   speechSynthesis.speak(utterance);
+// };
+
+
   return (
     <div className="App">
       <h2>الخريطة التفاعلية</h2>
@@ -65,7 +76,7 @@ export const Mapsection = () => {
           <MapContainer center={[23, 44]} zoom={5} style={{ height: "100%", width: "100%" }}>
             <TileLayer
               url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             />
 
             {geojsonData &&
@@ -119,7 +130,7 @@ export const Mapsection = () => {
           </MapContainer>
         </div>
 
-        {/* قسم التفاصيل الجانبي */}
+        {/*  مربع التفاصيل الجانبي */}
         {selectedPlace && (
           <div className="details-sidebar">
             <button className="close-btn" onClick={() => setSelectedPlace(null)}>×</button>
@@ -127,7 +138,16 @@ export const Mapsection = () => {
             <img src={selectedPlace.image} alt={selectedPlace.name} className="details-image" />
 
             <div className="details-description">
-              <h4>القصة</h4>
+              <div className="story-header">
+                <h4>القصة</h4>
+                <button
+                  className="tts-button-circle"
+                  onClick={() => handleSpeak(selectedPlace.story)}
+                  title="استمع إلى القصة"
+                >
+                  🔊
+                </button>
+              </div>
               <p>{selectedPlace.story}</p>
 
               <h4>الموقع</h4>
