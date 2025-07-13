@@ -13,6 +13,7 @@ function Mainpage(){
  return (
     <div>
         <MainNavbar/>
+        
         <Mobadrahsection/>
         <Whatisirth/>
         <ProjectsSlider/>
