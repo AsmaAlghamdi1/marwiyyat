@@ -45,15 +45,19 @@
   flex: 1 1 400px; 
   min-width: 300px;
   max-width: 500px;
+
 }
 
 .contact form .input-group-2 textarea {
   height: 200px;
+  margin-bottom: 0rem;
 }
 .contact form .input-box{
    display:flex;
    justify-content: center;
    flex-wrap: wrap;
+     position: relative;
+
 }
 .contact form .input-box input,
 .contact form textarea{
@@ -68,9 +72,10 @@
    resize: none;
    text-align: right;
    direction: rtl;
+   
 }
 .contact form .btn{
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
 .btn{
@@ -109,6 +114,28 @@
 .contact-form.rtl {
   flex-direction: row-reverse;
 } */
+
+.contact .error {
+  color: red;
+  font-size: 16px;
+  margin-top: 2px;
+  font-family: 'Lama Sans', sans-serif;
+  width: 100%;
+  
+}
+
+/* direction based on form class */
+.contact-form.ltr .error {
+  text-align: left;
+  direction: ltr;
+}
+
+.contact-form.rtl .error {
+  text-align: right;
+  direction: rtl;
+}
+
+
 
 
 @media (max-width: 575px) {

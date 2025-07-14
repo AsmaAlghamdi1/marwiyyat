@@ -47,5 +47,25 @@
     "home":"Home",
     "mobadra-description":"Initiative description",
     "projects":"Projects"
+  },
+
+   "contactsectionV": {
+    "contacttitle": "Help Us Improve the Content!",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone Number",
+    "subject": "Subject",
+    "message": "Your Message",
+    "send": "Send",
+    "success": "Form submitted successfully!",
+    "errors": {
+      "nameRequired": "* Name is required",
+      "nameInvalid": "* Name must contain letters only",
+      "emailRequired": "* Email is required",
+      "emailInvalid": "* Invalid email format",
+      "phoneInvalid": "* Invalid phone number",
+      "subjectRequired": "* Subject is required",
+      "messageRequired": "* Message is required"
+    }
   }
 }

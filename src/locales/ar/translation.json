@@ -47,5 +47,25 @@
     "home":"الرئيسية",
     "mobadra-description":"وصف المبادرة",
     "projects":"المشاريع"
+  },
+
+  "contactsectionV": {
+    "contacttitle": "ساعدنا في تحسين المحتوى!",
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "phone": "رقم الجوال",
+    "subject": "الموضوع",
+    "message": "رسالتك",
+    "send": "إرسال",
+    "success": "تم إرسال النموذج بنجاح!",
+    "errors": {
+      "nameRequired": "* الاسم مطلوب",
+      "nameInvalid": "* يجب أن يحتوي الاسم على أحرف فقط",
+      "emailRequired": "* البريد الإلكتروني مطلوب",
+      "emailInvalid": "* صيغة البريد غير صحيحة",
+      "phoneInvalid": "* رقم الجوال غير صحيح",
+      "subjectRequired": "* الموضوع مطلوب",
+      "messageRequired": "* الرسالة مطلوبة"
+    }
   }
 }
