@@ -36,12 +36,12 @@ export const MainNavbar = ({toggleTheme,theme}) => {
     <header className="header-main">
       {/* Logo on the left */}
       <div className="DDC-left">
-        <img
-          src={scrolled ? logoDark : logoDDC}
-          alt="DDC LOGO"
-          width={105}
-          height={59}
-        />
+          <img
+            src={scrolled ? fullDark : FullLogo}
+            alt="DDC Full LOGO"
+            width={210}
+            height={80}
+          />
       </div>
 
       <nav className="nav-main" ref={navRef}>
@@ -57,12 +57,12 @@ export const MainNavbar = ({toggleTheme,theme}) => {
 
         {/* Right logo */}
         <div className="DDC-right">
-          <img
-            src={scrolled ? fullDark : FullLogo}
-            alt="DDC Full LOGO"
-            width={210}
-            height={80}
-          />
+            <img
+          src={scrolled ? logoDark : logoDDC}
+          alt="DDC LOGO"
+          width={105}
+          height={59}
+        />
         </div>
 
         {/* Close button inside nav */}
