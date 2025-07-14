@@ -35,7 +35,7 @@ export const MainNavbar = ({toggleTheme,theme}) => {
   return (
     <header className="header-main">
       {/* Logo on the left */}
-      <div className="DDC-left">
+      <div className="DDC-right">
           <img
             src={scrolled ? fullDark : FullLogo}
             alt="DDC Full LOGO"
@@ -49,15 +49,15 @@ export const MainNavbar = ({toggleTheme,theme}) => {
         {/* Center links */}
         <div className="DDC-center">
           <a href="/#">الرئيسية</a>
-          <a href="/#MobadrahsectionURL">وصف المبادرة</a>
           <a href="/#ProjectsSliderURL">المشاريع</a>
-          
+          <a href="/#MobadrahsectionURL">وصف المبادرة</a>
           
         </div>
 
         {/* Right logo */}
-        <div className="DDC-right">
-            <img
+        <div className="DDC-left">
+
+           <img
           src={scrolled ? logoDark : logoDDC}
           alt="DDC LOGO"
           width={105}

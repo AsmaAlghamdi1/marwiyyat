@@ -127,7 +127,11 @@ header .navbar-btn {
     }
 
     .DDC-right {
-        display: none;
+    }
+
+    .DDC-left{
+        direction: ltr;
+
     }
 
     .DDC-center {
