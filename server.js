@@ -1,135 +1,255 @@
-// const express = require('express');
-// const { Pool } = require('pg');
-// require('dotenv').config();
-// const cors = require('cors');
-
-// const app = express();
-// app.use(cors());
-// app.use(express.json());
-
-// // الاتصال باستخدام Connection String
-// const pool = new Pool({
-//   connectionString: process.env.DatabaseURL,
-//   ssl: {
-//     rejectUnauthorized: false, // مهم مع Supabase
-//   },
-// });
-
-// // مثال: API تعرض كل المواقع من جدول locations
-// app.get('/api/locations', async (req, res) => {
-//   try {
-//     const result = await pool.query('SELECT * FROM locations');
-//     res.json(result.rows);
-//   } catch (err) {
-//     console.error('خطأ في جلب البيانات:', err);
-//     res.status(500).json({ error: 'فشل في جلب البيانات' });
-//   }
-// });
-
-// // تشغيل السيرفر
-// app.listen(5000, () => {
-//   console.log(' السيرفر شغال على http://localhost:5000');
-// });
-
-
-
 // import express from 'express';
-// const { createClient } = require('@supabase/supabase-js');
-// require('dotenv').config();
+// import dotenv from 'dotenv';
+// import { createClient } from '@supabase/supabase-js';
+
+// // تحميل متغيرات البيئة من .env
+// dotenv.config();
 
 // const app = express();
 
+// const PORT =3000;
 
-// // Supabase client setup
-// const supabase = createClient(
-//   process.env.SUPABASE_URL,
-//   process.env.SUPABASE_KEY
-// );
+// // إعداد Supabase
+// const supabaseUrl = process.env.DatabaseURL;
+// const supabaseKey = process.env.SUPABASE_KEY;
+// const supabase = createClient(supabaseUrl, supabaseKey);
 
-// // Endpoint: Get stories only
+// // مسار تجريبي
 // app.get('/stories', async (req, res) => {
-//   const { data, error } = await supabase
-//     .from('stories')     
-//     .select('place_id,story');  
+//   const { data, error } = await supabase.from('stories').select('*');
 
 //   if (error) {
 //     console.error(error);
-//     return res.status(500).json({ error: 'Something went wrong' });
+//     return res.status(500).json({ error: 'فشل في جلب القصص' });
 //   }
 
 //   res.json(data);
 // });
 
 // app.listen(PORT, () => {
-//   console.log(` Server running on http://localhost:${PORT}`);
+//   console.log(`Server running on http://localhost:${PORT}`);
 // });
 
 
+// console.log('server.js شغال من هنا ')
+// import express from 'express';
+// import dotenv from 'dotenv';
+// import { createClient } from '@supabase/supabase-js';
+
+// dotenv.config();
+
+// const app = express();
+// const PORT = 3000;
+
+// // إعداد Supabase
+// const supabaseUrl = process.env.DatabaseURL;
+// const supabaseKey = process.env.SUPABASE_KEY;
+// const supabase = createClient(supabaseUrl, supabaseKey);
+
+// ✅ route لإرجاع بيانات المكان حسب الإحداثيات واللغة
+// app.get('/place', async (req, res) => {
+//   const { lat, lng, lang } = req.query;
+
+//   if (!lat || !lng || !lang) {
+//     return res.status(400).json({ error: 'الرجاء إرسال lat, lng, lang' });
+//   }
+
+//   try {
+//     // ⚠️ البحث عن المكان الأقرب للإحداثيات
+//     const { data: places, error } = await supabase
+//       .rpc('get_place_by_coords', { lat_input: parseFloat(lat), lng_input: parseFloat(lng) });
+
+//     if (error || !places || places.length === 0) {
+//       console.error(error || 'لم يتم العثور على مكان');
+//       return res.status(404).json({ error: 'المكان غير موجود' });
+//     }
+
+//     const place = places[0];
+
+//     // ⚠️ نجيب الصورة (جدول images)
+//     const { data: images } = await supabase
+//       .from('images')
+//       .select('image_url')
+//       .eq('place_id', place.id)
+//       .limit(1);
+
+//     const imageUrl = images?.[0]?.image_url || null;
+
+//     // ✅ نرجّع البيانات بحسب اللغة
+//     res.json({
+//       place: lang === 'ar' ? place.place_ar : place.place_en,
+//       story: lang === 'ar' ? place.story_ar : place.story_en,
+//       city: place.city,
+//       type: place.type,
+//       image_url: imageUrl,
+//     });
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ error: 'فشل في معالجة الطلب' });
+//   }
+// });
+
+// ✅ تأكدي إن هذا موجود في Supabase
+// CREATE OR REPLACE FUNCTION get_place_by_coords(lat_input double precision, lng_input double precision)
+// RETURNS SETOF places AS $$
+// BEGIN
+//   RETURN QUERY
+//   SELECT *
+//   FROM places
+//   ORDER BY coords <-> ST_SetSRID(ST_MakePoint(lng_input, lat_input), 4326)
+//   LIMIT 1;
+// END;
+// $$ LANGUAGE plpgsql;
+
+// app.get('/place', async (req, res) => {
+//   const { lat, lng, lang } = req.query;
+
+//   if (!lat || !lng || !lang) {
+//     return res.status(400).json({ error: 'الرجاء إرسال lat و lng و lang' });
+//   }
+
+//   try {
+//     // مطابقة دقيقة حسب الإحداثيات
+//     const { data: places, error } = await supabase
+//       .from('places')
+//       .select('*')
+//       .eq('coords', `SRID=4326;POINT(${lng} ${lat})`);
+
+//     if (error || !places || places.length === 0) {
+//       return res.status(404).json({ error: 'لم يتم العثور على المكان' });
+//     }
+
+//     const place = places[0];
+
+//     // جلب الصورة
+//     const { data: images } = await supabase
+//       .from('images')
+//       .select('image_url')
+//       .eq('place_id', place.id)
+//       .limit(1);
+
+//     const imageUrl = images?.[0]?.image_url || null;
+
+//     // ترجيع البيانات باللغتين
+//     res.json({
+//       place: lang === 'ar' ? place.place_ar : place.place_en,
+//       story: lang === 'ar' ? place.story_ar : place.story_en,
+//       city: place.city,
+//       type: place.type,
+//       image_url: imageUrl,
+//     });
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ error: 'حدث خطأ أثناء معالجة الطلب' });
+//   }
+// });
+
+
+// app.get('/place', async (req, res) => {
+//   const { lat, lng, lang } = req.query;
+
+//   if (!lat || !lng || !lang) {
+//     return res.status(400).json({ error: 'الرجاء إرسال lat و lng و lang' });
+//   }
+
+//   try {
+//     // 1. نحاول نجيب المكان حسب الإحداثيات
+//     const { data: places, error: placeError } = await supabase
+//       .from('places')
+//       .select('*')
+//       .eq('coords', `SRID=4326;POINT(${lng} ${lat})`);
+      
+
+//     if (placeError || !places || places.length === 0) {
+//       return res.status(404).json({ error: 'لم يتم العثور على المكان' });
+//     }
+
+//     const place = places[0];
+//     console.log(place);
+//     // 2. نجيب الصورة من جدول الصور
+//     const { data: images } = await supabase
+//       .from('images')
+//       .select('image_url')
+//       .eq('place_id', place.id)
+//       .limit(1);
+
+//     const imageUrl = images?.[0]?.image_url || null;
+
+//     // 3. نجيب القصة من جدول القصص
+//     const { data: stories } = await supabase
+//       .from('stories')
+//       .select('*')
+//       .eq('place_id', place.id)
+//       .limit(1);
+
+//     const story = stories?.[0] || null;
+
+//     res.json({
+//       place: lang === 'ar' ? place.place_ar : place.place_en,
+//       story: lang === 'ar' ? story?.story_ar : story?.story_en,
+//       city: place.city,
+//       type: place.type,
+//       image_url: imageUrl,
+//     });
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ error: 'حدث خطأ أثناء معالجة الطلب' });
+//   }
+// });
+
+
+
+
+// مسار لجلب جميع الصور
+// app.get('/images', async (req, res) => {
+//   try {
+//     const { data, error } = await supabase
+//       .from('images')
+//       .select('*');
+
+//     if (error) {
+//       console.error(error);
+//       return res.status(500).json({ error: 'فشل في جلب الصور' });
+//     }
+
+//     res.json(data);
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ error: 'حدث خطأ في السيرفر' });
+//   }
+// });
+
+
+console.log('server.js شغال من هنا ')
 import express from 'express';
 import dotenv from 'dotenv';
 import { createClient } from '@supabase/supabase-js';
 
-// تحميل متغيرات البيئة من .env
 dotenv.config();
 
 const app = express();
-
-const PORT =3000;
+const PORT = 5000;
 
 // إعداد Supabase
 const supabaseUrl = process.env.DatabaseURL;
 const supabaseKey = process.env.SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-// مسار تجريبي
-app.get('/stories', async (req, res) => {
-  const { data, error } = await supabase.from('stories').select('*');
-
-  if (error) {
-    console.error(error);
-    return res.status(500).json({ error: 'فشل في جلب القصص' });
-  }
-
+// مسار لجلب جميع الأماكن
+app.get('/places', async (req, res) => {
+    console.log("السيرفر وصل للاكاطن");
+  const { data, error } = await supabase.from('places').select('*');
+  if (error) throw error; // <<< خليه يطيح إذا فيه مشكلة حقيقية
   res.json(data);
 });
 
+app.get('/images', async (req, res) => {
+    
+    console.log("السيرفر وصل للصور");
+  const { data, error } = await supabase.from('images').select('*');
+  if (error) throw error; // <<< خليه يطيح إذا فيه مشكلة حقيقية
+  res.json(data);
+});
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
-
-
-// import express from 'express';
-// import dotenv from 'dotenv';
-// import pkg from 'pg';
-
-// const { Pool } = pkg;
-
-// dotenv.config();
-
-// const app = express();
-// const PORT = process.env.PORT || 3000;
-
-// const pool = new Pool({
-//   host: 'aws-0-eu-north-1.pooler.supabase.com',
-//   port: 6543,
-//   database: 'postgres',
-//   user: 'postgres.kvfpggxnglvyvexwovzq',
-//   password: 'Project321$',
-//   ssl: {
-//     rejectUnauthorized: false, // عشان Supabase يستخدم SSL
-//   },
-// });
-
-// app.get('/stories', async (req, res) => {
-//   try {
-//     const result = await pool.query('SELECT * FROM stories');
-//     res.json(result.rows);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: "للاسف في غلط" });
-//   }
-// });
-
-// app.listen(PORT, () => {
-//   console.log(`✅ Server is running on port ${PORT}`);
-// });

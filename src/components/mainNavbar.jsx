@@ -5,8 +5,12 @@ import logoDark from '../assets/ddclogo-removedback.png'; // شعار اليسا
 import fullDark from '../assets/ddcfulllogo-removedback.png'; // شعار اليمين بعد السكروول
 import { FaBars, FaTimes } from "react-icons/fa";
 import '../CSS/mainNavbar.css';
+import { useTranslation } from 'react-i18next'; 
+import language from '../assets/blacklanguage.png'
 
 export const MainNavbar = ({toggleTheme,theme}) => {
+  const {t,i18n} =useTranslation();
+  const isArabic = i18n.language === "ar";
   const navRef = useRef();
   const [scrolled, setScrolled] = useState(false); // نتحقق هل نزل تحت ولا لا
 
@@ -48,9 +52,13 @@ export const MainNavbar = ({toggleTheme,theme}) => {
        
         {/* Center links */}
         <div className="DDC-center">
-          <a href="/#">الرئيسية</a>
-          <a href="/#MobadrahsectionURL">وصف المبادرة</a>
-          <a href="/#ProjectsSliderURL">المشاريع</a>
+          <a href="/#">{t("mainNavbar.home")}</a>
+          <a href="/#MobadrahsectionURL">{t("mainNavbar.mobadra-description")}</a>
+          <a href="/#ProjectsSliderURL">{t("mainNavbar.projects")}</a>
+          <span
+            onClick={() => i18n.changeLanguage(i18n.language === 'ar' ? 'en' : 'ar')}
+            style={{ cursor: 'pointer' }}
+            ><img src={language} alt="language" width={18} height={18} />{t("navbar.language")}</span>
           
           
         </div>
@@ -66,12 +74,15 @@ export const MainNavbar = ({toggleTheme,theme}) => {
         </div>
 
         {/* Close button inside nav */}
-        <button className="navbar-btn navbar-close-btn" onClick={showNavbar}>
+        <button className="navbar-btn navbar-close-btn" onClick={showNavbar}
+        >
           <FaTimes />
         </button>
       </nav>
 
-      <button className="navbar-btn" onClick={showNavbar}>
+      <button className="navbar-btn" onClick={showNavbar}
+      >
+
         <FaBars />
       </button>
     </header>

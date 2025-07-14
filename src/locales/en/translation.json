@@ -42,5 +42,10 @@
     "portal":"Portal",
     "goals":"Goals",
     "rights":"All rights reserved for the Development Data Center 2025 ©"
+  },
+   "mainNavbar":{
+    "home":"Home",
+    "mobadra-description":"Initiative description",
+    "projects":"Projects"
   }
 }
