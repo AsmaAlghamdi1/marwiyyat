@@ -39,7 +39,7 @@ export const MainNavbar = ({toggleTheme,theme}) => {
   return (
     <header className="header-main">
       {/* Logo on the left */}
-      <div className="DDC-left">
+      <div className="DDC-right">
           <img
             src={scrolled ? fullDark : FullLogo}
             alt="DDC Full LOGO"
@@ -64,8 +64,9 @@ export const MainNavbar = ({toggleTheme,theme}) => {
         </div>
 
         {/* Right logo */}
-        <div className="DDC-right">
-            <img
+        <div className="DDC-left">
+
+           <img
           src={scrolled ? logoDark : logoDDC}
           alt="DDC LOGO"
           width={105}
