@@ -6,10 +6,11 @@ import '../css/mapsection.css';
 import { useTranslation } from "react-i18next";
 
 export const Mapsection = () => {
-  
   const [geojsonData, setGeojsonData] = useState(null);
   const [imagesData, setImagesData] = useState({});
-  const [selectedPlace, setSelectedPlace] = useState(null); // الحالة الجديدة
+  const [selectedPlace, setSelectedPlace] = useState(null);
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     fetch('/places.geojson')
@@ -40,14 +41,15 @@ export const Mapsection = () => {
       popupAnchor: [0, -30],
     });
   };
-  
-const {t,i18n}=useTranslation();
+
   return (
     <div className="App">
       <h2>{t("mapsection.maptitle")}</h2>
-      <div className="map-container">
-        <div className="map-filters">
-          <select className="filter-select" onChange={(e) => console.log("المدينة:", e.target.value)}>
+      
+      <div className="map-wrapper">
+        <div className="map-container">
+          <div className="map-filters">
+            <select className="filter-select" onChange={(e) => console.log("المدينة:", e.target.value)}>
               <option value="">اختر المدينة</option>
               <option value="مكة المكرمة">مكة المكرمة</option>
               <option value="المدينة المنورة">المدينة المنورة</option>
@@ -67,7 +69,7 @@ const {t,i18n}=useTranslation();
           <MapContainer center={[23, 44]} zoom={5} style={{ height: "100%", width: "100%" }}>
             <TileLayer
               url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             />
 
             {geojsonData &&
@@ -121,15 +123,16 @@ const {t,i18n}=useTranslation();
           </MapContainer>
         </div>
 
-        {/* قسم التفاصيل الجانبي */}
         {selectedPlace && (
           <div className="details-sidebar">
             <button className="close-btn" onClick={() => setSelectedPlace(null)}>×</button>
             <h3>{selectedPlace.name}</h3>
             <img src={selectedPlace.image} alt={selectedPlace.name} className="details-image" />
-
             <div className="details-description">
-              <h4>القصة</h4>
+              <div className="story-header">
+                <h4>القصة</h4>
+                <button className="tts-button-circle" title="استمع إلى القصة">🔊</button>
+              </div>
               <p>{selectedPlace.story}</p>
 
               <h4>الموقع</h4>
@@ -141,9 +144,10 @@ const {t,i18n}=useTranslation();
           </div>
         )}
       </div>
-    
+    </div>
   );
 };
+
 
 
 
