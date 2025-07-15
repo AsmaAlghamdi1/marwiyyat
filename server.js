@@ -200,56 +200,100 @@
 
 
 
-// مسار لجلب جميع الصور
+// import express from 'express';
+// import dotenv from 'dotenv';
+// import { createClient } from '@supabase/supabase-js';
+
+// dotenv.config();
+
+// const app = express();
+// const PORT = 5000;
+
+// // إعداد Supabase
+// const supabaseUrl = process.env.DatabaseURL;
+// const supabaseKey = process.env.SUPABASE_KEY;
+// const supabase = createClient(supabaseUrl, supabaseKey);
+
+// // مسار لجلب جميع الأماكن
+// app.get('/places', async (req, res) => {
+//     console.log("السيرفر وصل للاماكن");
+//   const { data, error } = await supabase.from('places').select('*');
+//   if (error) throw error; // <<< خليه يطيح إذا فيه مشكلة حقيقية
+//   res.json(data);
+// });
+
+// app.get('/stories', async (req, res) => {
+//     console.log("السيرفر وصل للقصص");
+//   const { data, error } = await supabase.from('stories').select('*');
+//   if (error) throw error; // <<< خليه يطيح إذا فيه مشكلة حقيقية
+//   res.json(data);
+// });
+
 // app.get('/images', async (req, res) => {
-//   try {
-//     const { data, error } = await supabase
-//       .from('images')
-//       .select('*');
-
-//     if (error) {
-//       console.error(error);
-//       return res.status(500).json({ error: 'فشل في جلب الصور' });
-//     }
-
-//     res.json(data);
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json({ error: 'حدث خطأ في السيرفر' });
-//   }
+    
+//     console.log("السيرفر وصل للصور");
+//   const { data, error } = await supabase.from('images').select('*');
+//   if (error) throw error; // <<< خليه يطيح إذا فيه مشكلة حقيقية
+//   res.json(data);
+// });
+// app.listen(PORT, () => {
+//   console.log(`Server running on http://localhost:${PORT}`);
 // });
 
 
-console.log('server.js شغال من هنا ')
-import express from 'express';
-import dotenv from 'dotenv';
-import { createClient } from '@supabase/supabase-js';
 
-dotenv.config();
+//هذا الكود الاخير هو الي بجربه 
 
-const app = express();
-const PORT = 5000;
+app.get('/place', async (req, res) => {
+  const { lat, lng, lang } = req.query;
 
-// إعداد Supabase
-const supabaseUrl = process.env.DatabaseURL;
-const supabaseKey = process.env.SUPABASE_KEY;
-const supabase = createClient(supabaseUrl, supabaseKey);
+  if (!lat || !lng || !lang) {
+    return res.status(400).json({ error: 'الرجاء إرسال lat و lng و lang' });
+  }
 
-// مسار لجلب جميع الأماكن
-app.get('/places', async (req, res) => {
-    console.log("السيرفر وصل للاكاطن");
-  const { data, error } = await supabase.from('places').select('*');
-  if (error) throw error; // <<< خليه يطيح إذا فيه مشكلة حقيقية
-  res.json(data);
-});
+  try {
+    // 📌 1. استدعاء الدالة الجغرافية بدل المطابقة الدقيقة
+    const { data: places, error: placeError } = await supabase
+      .rpc('get_place_by_coords', {
+        lat_input: parseFloat(lat),
+        lng_input: parseFloat(lng)
+      });
 
-app.get('/images', async (req, res) => {
-    
-    console.log("السيرفر وصل للصور");
-  const { data, error } = await supabase.from('images').select('*');
-  if (error) throw error; // <<< خليه يطيح إذا فيه مشكلة حقيقية
-  res.json(data);
-});
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+    if (placeError || !places || places.length === 0) {
+      console.error(placeError || 'لم يتم العثور على المكان');
+      return res.status(404).json({ error: 'لم يتم العثور على المكان' });
+    }
+
+    const place = places[0];
+
+    // 📷 2. نجيب الصورة
+    const { data: images } = await supabase
+      .from('images')
+      .select('image_url')
+      .eq('place_id', place.id)
+      .limit(1);
+
+    const imageUrl = images?.[0]?.image_url || null;
+
+    // 📚 3. نجيب القصة
+    const { data: stories } = await supabase
+      .from('stories')
+      .select('*')
+      .eq('place_id', place.id)
+      .limit(1);
+
+    const story = stories?.[0] || null;
+
+    res.json({
+      place: place.place, // لأنه عندك حاليًا place فقط بدون _ar/_en
+      story: lang === 'ar' ? story?.story : story?.story_en,
+      summary: lang === 'ar' ? story?.summary : story?.summary_en,
+      city: place.city,
+      //type: place.type || null, // لو ضفتي نوع المكان مستقبلاً
+      image_url: imageUrl,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'حدث خطأ أثناء معالجة الطلب' });
+  }
 });
