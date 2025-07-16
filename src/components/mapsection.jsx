@@ -432,16 +432,21 @@
 
 
 
-
-
-import { useEffect, useState } from "react";
-import { MapContainer, TileLayer, Marker, Tooltip, useMap } from "react-leaflet";
+import { useEffect, useRef, useState } from "react";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Tooltip,
+  useMap,
+  useMapEvents,
+} from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "../css/mapsection.css";
 import { useTranslation } from "react-i18next";
 
-// مكون يتحكم بتحريك الخريطة عند تغيير الإحداثيات
+// مكون لتحريك الخريطة عند تغيير الإحداثيات
 const MapMover = ({ position }) => {
   const map = useMap();
 
@@ -454,6 +459,24 @@ const MapMover = ({ position }) => {
   return null;
 };
 
+// مكون يستمع لتحركات الخريطة ويخفي التفاصيل
+const MapInteractionHandler = ({ onInteraction }) => {
+  useMapEvents({
+    movestart: onInteraction,
+    zoomstart: onInteraction,
+    dragstart: onInteraction,
+  });
+
+  return null;
+};
+
+// مكون زر "العودة للوضع الأصلي"
+const HomeButton = ({ onClick }) => (
+  <button className="home-button" onClick={onClick} title="عودة إلى الخريطة الرئيسية">
+    🏠
+  </button>
+);
+
 export const Mapsection = () => {
   const [geojsonData, setGeojsonData] = useState(null);
   const [imagesData, setImagesData] = useState({});
@@ -462,6 +485,9 @@ export const Mapsection = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [searchError, setSearchError] = useState("");
   const [mapTargetPosition, setMapTargetPosition] = useState(null);
+
+  const defaultPosition = [23, 44]; // الموقع الافتراضي
+  const mapRef = useRef(null);
 
   const { t, i18n } = useTranslation();
 
@@ -603,31 +629,12 @@ export const Mapsection = () => {
               />
 
               {suggestions.length > 0 && (
-                <ul
-                  className="suggestion-list"
-                  style={{
-                    position: "absolute",
-                    background: "#fff",
-                    zIndex: 1100,
-                    width: "100%",
-                    borderRadius: "6px",
-                    boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
-                    maxHeight: "150px",
-                    overflowY: "auto",
-                    padding: 0,
-                    marginTop: "2px",
-                  }}
-                >
+                <ul className="suggestion-list">
                   {suggestions.map((sug, idx) => (
                     <li
                       key={idx}
                       onClick={() => handleSearch(sug)}
                       className="suggestion-item"
-                      style={{
-                        cursor: "pointer",
-                        padding: "6px 12px",
-                        borderBottom: "1px solid #eee",
-                      }}
                     >
                       {sug}
                     </li>
@@ -636,40 +643,32 @@ export const Mapsection = () => {
               )}
 
               {searchError && (
-                <p
-                  className="search-error"
-                  style={{ color: "red", marginTop: "4px", fontWeight: "bold" }}
-                >
-                  {searchError}
-                </p>
+                <p className="search-error">{searchError}</p>
               )}
             </div>
           </div>
-<MapContainer
-  center={[23, 44]}
-  zoom={5}
-  style={{ height: "100%", width: "100%" }}
-  whenCreated={(mapInstance) => {
-    mapRef.current = mapInstance;
 
-    // إلغاء الظل عند بدء تحريك أو تغيير الخريطة
-    mapInstance.on("movestart", () => {
-      setSelectedPlace(null);
-      setMapTargetPosition(null);
-    });
-    mapInstance.on("zoomstart", () => {
-      setSelectedPlace(null);
-      setMapTargetPosition(null);
-    });
-  }}
->
-
+          <MapContainer
+            center={defaultPosition}
+            zoom={5}
+            style={{ height: "100%", width: "100%" }}
+            whenCreated={(mapInstance) => {
+              mapRef.current = mapInstance;
+            }}
+          >
             <TileLayer
               url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             />
 
             <MapMover position={mapTargetPosition} />
+
+            <MapInteractionHandler
+              onInteraction={() => {
+                setSelectedPlace(null);
+                setMapTargetPosition(null);
+              }}
+            />
 
             {geojsonData &&
               geojsonData.features.map((feature, index) => {
@@ -706,7 +705,15 @@ export const Mapsection = () => {
               })}
           </MapContainer>
 
-          {/* تعتيم الخريطة لما يكون فيه مكان مختار */}
+          {/* زر العودة للوضع الأصلي */}
+          <HomeButton
+            onClick={() => {
+              setMapTargetPosition(defaultPosition);
+              setSelectedPlace(null);
+            }}
+          />
+
+          {/* تعتيم الخريطة عند اختيار مكان فقط */}
           {selectedPlace && <div className="map-overlay" />}
         </div>
 
@@ -746,9 +753,3 @@ export const Mapsection = () => {
     </div>
   );
 };
-
-
-
-
-
-

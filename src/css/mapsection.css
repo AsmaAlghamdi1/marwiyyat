@@ -255,6 +255,27 @@ h2 {
   );
 }
 
+.home-button {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  z-index: 1000;
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 50%;
+  border: none;
+  background-color: white;
+  color: #0C8F5C;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.home-button:hover {
+  background-color: #0C8F5C;
+  color: white;
+}
+
 .custom-div-icon.active-marker {
   transform: scale(1.6);
   z-index: 1001 !important;
