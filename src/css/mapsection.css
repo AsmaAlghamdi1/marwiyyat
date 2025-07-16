@@ -38,7 +38,6 @@ h2 {
   overflow: hidden;
 }
 
-
 .map-filters {
   position: absolute;
   top: 20px;
@@ -49,6 +48,7 @@ h2 {
   gap: 10px;
 }
 
+/* select */
 .filter-select {
   background-color: white;
   border: 1px solid #ccc;
@@ -61,7 +61,63 @@ h2 {
   direction: rtl;
 }
 
-/* Leaflet customizations */
+/* input */
+.search-input {
+  background-color: white;
+  border: 1px solid #ccc;
+  color: #334e68;
+  padding: 8px 12px;
+  border-radius: 0.5rem;
+  font-size: 14px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  min-width: 200px;
+  direction: rtl;
+}
+
+/* suggestion dropdown */
+.suggestion-list {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 999;
+}
+
+.suggestion-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  text-align: right;
+  transition: background-color 0.2s ease;
+}
+
+.suggestion-item:hover {
+  background-color: #f0f0f0;
+}
+
+.search-error {
+  margin-top: 5px;
+  color: #d32f2f;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: right;
+  background-color: #ffebee;
+  padding: 6px 10px;
+  border-radius: 5px;
+  border: 1px solid #f44336;
+  max-width: 300px;
+}
+
+
+/* Leaflet */
 .leaflet-popup-content-wrapper {
   background: #ffffffdd;
   color: #334e68;
@@ -75,9 +131,9 @@ h2 {
 }
 
 .leaflet-tooltip.my-tooltip {
-  white-space: nowrap; /* عشان ما ينزل النص سطرين */
-  left: 50% !important; /* خليه مركز فوق الأيقونة */
-  transform: translateX(-50%); /* رجّعه نص عرضه عشان يكون وسط */
+  white-space: nowrap;
+  left: 50% !important;
+  transform: translateX(-50%);
   text-align: center;
   font-weight: bold;
   background: #ffffffdd;
@@ -86,7 +142,6 @@ h2 {
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
-
 
 .leaflet-container a {
   color: #1d72b8;
@@ -127,6 +182,7 @@ h2 {
   pointer-events: none;
 }
 
+/* Sidebar */
 .details-sidebar {
   width: 320px;
   background-color: #ffffff;
@@ -182,6 +238,33 @@ h2 {
   color: #000;
 }
 
+.map-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 800;
+
+  /* نستخدم radial-gradient لصنع نافذة ضوء دائرية شفافة */
+  background: radial-gradient(
+    circle 55px at var(--overlay-x, 55.5%) var(--overlay-y, 48%),
+    rgba(0,0,0,0) 70%,         /* مركز الضوء شفاف */
+    rgba(0, 0, 0, 0.484) 90%       /* الظل يبدا بعد 80% من الدائرة */
+  );
+}
+
+.custom-div-icon.active-marker {
+  transform: scale(1.6);
+  z-index: 1001 !important;
+  border-color: #0C8F5C !important;
+  box-shadow: 0 0 15px #0C8F5C !important;
+  transition: transform 0.3s ease;
+}
+
+
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -232,6 +315,5 @@ h2 {
 .tts-button-circle:focus {
   outline: none;
 }
-
 
 
