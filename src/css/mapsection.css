@@ -29,12 +29,15 @@ h2 {
 }
 
 .map-container {
-  flex: 1;
-  padding: 0 5rem;
-  height: 100%;
+  width: 90%;
+  max-width: 1200px;
+  height: 75vh;
+  margin: 0 auto;
   position: relative;
+  border-radius: 20px;
   overflow: hidden;
 }
+
 
 .map-filters {
   position: absolute;
@@ -70,6 +73,20 @@ h2 {
 .leaflet-popup-tip {
   background: #ffffffdd;
 }
+
+.leaflet-tooltip.my-tooltip {
+  white-space: nowrap; /* عشان ما ينزل النص سطرين */
+  left: 50% !important; /* خليه مركز فوق الأيقونة */
+  transform: translateX(-50%); /* رجّعه نص عرضه عشان يكون وسط */
+  text-align: center;
+  font-weight: bold;
+  background: #ffffffdd;
+  color: #334e68;
+  padding: 5px 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
 
 .leaflet-container a {
   color: #1d72b8;

@@ -277,7 +277,15 @@ export const Mapsection = () => {
                       },
                     }}
                   >
-                    <Tooltip>{placeName}</Tooltip>
+<Tooltip
+  direction="top"
+  offset={[10, -35]} // الإزاحة للأعلى فقط
+  opacity={1}
+  permanent={false}
+  className="my-tooltip"
+>
+  {placeName}
+</Tooltip>
                   </Marker>
                 );
               })}
