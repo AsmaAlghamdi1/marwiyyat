@@ -23,7 +23,10 @@
     "desfeature4":"Listen to the hadith clearly and in a way that makes it easier for you to understand and comprehend."
   },
   "mapsection":{
-    "maptitle":"Interactive map"
+    "maptitle":"Interactive map",
+    "story":"Story",
+    "city":"City",
+    "summary":"Summary"
   },
   "contactsection":{
     "contacttitle":"Help us improve the content !",

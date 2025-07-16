@@ -244,6 +244,23 @@
 
 //هذا الكود الاخير هو الي بجربه 
 
+import express from 'express';
+import dotenv from 'dotenv';
+import { createClient } from '@supabase/supabase-js';
+import cors from 'cors';
+
+
+dotenv.config();
+
+const app = express();
+const PORT = 4000;
+app.use(cors());
+
+// إعداد Supabase
+const supabaseUrl = process.env.DatabaseURL;
+const supabaseKey = process.env.SUPABASE_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
+
 app.get('/place', async (req, res) => {
   const { lat, lng, lang } = req.query;
 
@@ -252,9 +269,9 @@ app.get('/place', async (req, res) => {
   }
 
   try {
-    // 📌 1. استدعاء الدالة الجغرافية بدل المطابقة الدقيقة
+    //  1. استدعاء الدالة الجغرافية بدل المطابقة الدقيقة
     const { data: places, error: placeError } = await supabase
-      .rpc('get_place_by_coords', {
+      .rpc('get_nearest_place', {
         lat_input: parseFloat(lat),
         lng_input: parseFloat(lng)
       });
@@ -266,7 +283,7 @@ app.get('/place', async (req, res) => {
 
     const place = places[0];
 
-    // 📷 2. نجيب الصورة
+    //  2. نجيب الصورة
     const { data: images } = await supabase
       .from('images')
       .select('image_url')
@@ -275,7 +292,7 @@ app.get('/place', async (req, res) => {
 
     const imageUrl = images?.[0]?.image_url || null;
 
-    // 📚 3. نجيب القصة
+    //  3. نجيب القصة
     const { data: stories } = await supabase
       .from('stories')
       .select('*')
@@ -285,10 +302,12 @@ app.get('/place', async (req, res) => {
     const story = stories?.[0] || null;
 
     res.json({
-      place: place.place, // لأنه عندك حاليًا place فقط بدون _ar/_en
+      //place: place.place, // لأنه عندك حاليًا place فقط بدون _ar/_en
+      place:lang === 'ar' ? place?.place_name : place?.place_name_en,
+      city: lang === 'ar' ? place?.city_name : place?.city_name_en,
       story: lang === 'ar' ? story?.story : story?.story_en,
       summary: lang === 'ar' ? story?.summary : story?.summary_en,
-      city: place.city,
+      
       //type: place.type || null, // لو ضفتي نوع المكان مستقبلاً
       image_url: imageUrl,
     });
@@ -296,4 +315,8 @@ app.get('/place', async (req, res) => {
     console.error(err);
     res.status(500).json({ error: 'حدث خطأ أثناء معالجة الطلب' });
   }
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });

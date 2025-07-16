@@ -260,7 +260,7 @@ export const Mapsection = () => {
                         try {
                           const language = i18n.language || "ar";
                           const response = await fetch(
-                            `/place?lat=${latlng[0]}&lng=${latlng[1]}&lang=${language}`
+                            `http://localhost:4000/place?lat=${latlng[0]}&lng=${latlng[1]}&lang=${language}`
                           );
                           const data = await response.json();
 
@@ -268,8 +268,8 @@ export const Mapsection = () => {
                             name: data.place,
                             image: data.image_url,
                             story: data.story,
-                            location: data.city,
-                            classification: data.type,
+                            city: data.city,
+                            summary: data.summary,
                           });
                         } catch (error) {
                           console.error("فشل في جلب بيانات المكان:", error);
@@ -291,16 +291,16 @@ export const Mapsection = () => {
             <img src={selectedPlace.image} alt={selectedPlace.name} className="details-image" />
             <div className="details-description">
               <div className="story-header">
-                <h4>القصة</h4>
+                <h4>{t("mapsection.story")}</h4>
                 <button className="tts-button-circle" title="استمع إلى القصة">🔊</button>
               </div>
               <p>{selectedPlace.story}</p>
 
-              <h4>الموقع</h4>
-              <p>{selectedPlace.location}</p>
+              <h4>{t("mapsection.city")}</h4>
+              <p>{selectedPlace.city}</p>
 
-              <h4>التصنيف</h4>
-              <p>{selectedPlace.classification}</p>
+              <h4>{t("mapsection.summary")}</h4>
+              <p>{selectedPlace.summary}</p>
             </div>
           </div>
         )}
