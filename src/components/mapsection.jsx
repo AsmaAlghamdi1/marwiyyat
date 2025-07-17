@@ -432,7 +432,7 @@
 
 
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react"; 
 import {
   MapContainer,
   TileLayer,
@@ -448,7 +448,7 @@ import { useTranslation } from "react-i18next";
 import { CiPlay1 } from "react-icons/ci";
 import { FaPlay, FaPause, FaSpinner } from "react-icons/fa";
 
-// مكون لتحريك الخريطة عند تغيير الإحداثيات
+// مكون لتحريك الخريطة إلى موقع محدد عند التحديد
 const MapMover = ({ position }) => {
   const map = useMap();
   useEffect(() => {
@@ -460,7 +460,7 @@ const MapMover = ({ position }) => {
   return null;
 };
 
-// مكون يستمع لتحركات الخريطة ويخفي التفاصيل
+// مكون لمراقبة تفاعل المستخدم مع الخريطة
 const MapInteractionHandler = ({ onInteraction }) => {
   useMapEvents({
     movestart: onInteraction,
@@ -471,7 +471,6 @@ const MapInteractionHandler = ({ onInteraction }) => {
   return null;
 };
 
-// مكون زر "العودة للوضع الأصلي"
 const HomeButton = ({ onClick }) => (
   <button className="home-button" onClick={onClick} title="عودة إلى الخريطة الرئيسية">
     🏠
@@ -498,9 +497,8 @@ export const Mapsection = () => {
   }
   },[selectedPlace]);
 
-  const defaultPosition = [23, 44]; // الموقع الافتراضي
+  const defaultPosition = [23, 44];
   const mapRef = useRef(null);
-
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
@@ -525,9 +523,7 @@ export const Mapsection = () => {
 
   const createDivIcon = (imgUrl, isActive = false) => {
     return L.divIcon({
-      html: `<div class="custom-div-icon ${isActive ? "active-marker" : ""}">
-               <img src="${imgUrl}" alt="" />
-             </div>`,
+      html: `<div class="custom-div-icon ${isActive ? "active-marker" : ""}"><img src="${imgUrl}" alt="" /></div>`,
       className: "",
       iconSize: [60, 60],
       iconAnchor: [30, 30],
@@ -593,6 +589,87 @@ export const Mapsection = () => {
     }
   };
 
+  const normalized = (str) => (str || "").trim().toLowerCase().replace(/\s+/g, "");
+
+  // خريطة الأسماء البديلة لكل مدينة - تستخدم للفلترة
+  const cityMap = {
+    "الأحساء": ["الأحساء"],
+    "الأردن": ["الأردن"],
+    "البحرين": ["البحرين"],
+    "الجزيرة العربية": ["الجزيرة"],
+    "الرياض": ["الرياض", "نجد"],
+   "جنوب المملكة العربية السعودية": ["جنوب المملكة", "أطراف اليمن"],
+    "الصمان": ["الصمان"],
+    "القسطنطينية": ["القسطنطينية"],
+    "القنفذة": ["القنفذة"],
+    "الكويت": ["الكويت"],
+    "المغرب": ["المغرب"],
+    "الموصل": ["الموصل"],
+    "الليث": ["الليث"],
+    "اليمن": ["اليمن", "صنعاء", "مأرب"],
+    "إيران": ["إيران", "قزوين"],
+    "اثيوبيا": ["اثيوبيا"],
+    "العراق": ["العراق", "بغداد", "البصرة", "الكوفة"],
+    "العلا": ["العلا"],
+    "الطائف": ["الطائف"],
+    "بين مكة و المدينة": ["بين مكة و المدينة", "بين مكة والمدينة", "بين مكة والطائف", "مكة المدينة"],
+    "تبالة": ["تبالة"],
+    "تركيا": ["تركيا", "أنطاكية"],
+    "تبوك": ["تبوك"],
+    "سوريا": ["سوريا", "حمص"],
+    "شرق اسيا": ["شرق اسيا"],
+    "غرب السعودية": ["غرب السعودية"],
+    "فلسطين": ["فلسطين", "القدس"],
+    "مدين": ["مدين"],
+    "مجمع البحرين": ["مجمع البحرين"],
+    "مصر": ["مصر"],
+    "مكة المكرمة": ["مكة", "منى", "مزدلفة", "عرفة", "جبل مطل على منى", "ميقات اهل العراق"],
+    "منطقة عسير": ["عسير", "نجران"],
+    "المدينة المنورة": ["المدينة", "طيبة", "شمال المدينة", "خيبر", "ينبع"],
+    "الحجر": ["الحجر", "مدائن صالح"],
+    "بلاد الشام": ["بلاد الشام"],
+    "بلاد الجوف": ["بلاد الجوف"],
+    "ينبع": ["ينبع"],
+    "خيبر": ["خيبر"],
+    "حائل": ["حائل"],
+    "عسفان": ["عسفان"],
+    "حمص": ["حمص"]
+  };
+
+  // فلترة الأماكن المعروضة حسب المدينة المحددة مع استثناءات خاصة
+  const filteredFeatures = geojsonData?.features.filter((feature) => {
+    const rawCity = feature.properties.city || feature.properties.place || "";
+    const normalizedCity = normalized(rawCity);
+    const normalizedSelected = normalized(selectedCity);
+    const placeName = feature.properties.place || "";
+
+    if (!normalizedSelected || normalizedSelected === "الكل") return true;
+
+    // استثناء خاص: لا تعرض "ذات عرق" عند اختيار "العراق"
+    if (selectedCity === "العراق" && placeName.includes("ذات عرق")) return false;
+
+    // استثناء خاص: لا تعرض "الصخرة" عند اختيار "البحرين"
+    if (selectedCity === "البحرين" && placeName.includes("الصخرة")) return false;
+
+    const aliases = cityMap[selectedCity] || [];
+    return aliases.some((alias) => normalizedCity.includes(normalized(alias)));
+  }) || [];
+
+  useEffect(() => {
+    if (filteredFeatures.length > 0 && mapRef.current && !mapTargetPosition) {
+      const bounds = L.latLngBounds(
+        filteredFeatures.map((f) => [
+          f.geometry.coordinates[1],
+          f.geometry.coordinates[0],
+        ])
+      );
+      mapRef.current.fitBounds(bounds, { padding: [50, 50] });
+    }
+  }, [filteredFeatures, mapTargetPosition]);
+
+  // إنشاء قائمة المدن مرتبة أبجدياً
+  const cityList = Object.keys(cityMap).sort();
+
   return (
     <div className="App">
       <h2>{t("mapsection.maptitle")}</h2>
@@ -602,13 +679,20 @@ export const Mapsection = () => {
           <div className="map-filters">
             <select
               className="filter-select"
-              onChange={(e) => console.log("المدينة:", e.target.value)}
+              value={selectedCity}
+              onChange={(e) => {
+                setSelectedCity(e.target.value);
+                setSelectedPlace(null);
+                setMapTargetPosition(null);
+              }}
             >
               <option value="">اختر المدينة</option>
-              <option value="مكة المكرمة">مكة المكرمة</option>
-              <option value="المدينة المنورة">المدينة المنورة</option>
-              <option value="بلاد الروم">بلاد الروم</option>
               <option value="الكل">الكل</option>
+              {cityList.map((city, i) => (
+                <option key={i} value={city}>
+                  {city}
+                </option>
+              ))}
             </select>
             <div style={{ position: "relative", width: "100%" }}>
               <input
@@ -654,9 +738,7 @@ export const Mapsection = () => {
                 </ul>
               )}
 
-              {searchError && (
-                <p className="search-error">{searchError}</p>
-              )}
+              {searchError && <p className="search-error">{searchError}</p>}
             </div>
           </div>
 
@@ -682,50 +764,48 @@ export const Mapsection = () => {
               }}
             />
 
-            {geojsonData &&
-              geojsonData.features.map((feature, index) => {
-                const coords = feature.geometry.coordinates;
-                const latlng = [coords[1], coords[0]];
-                const placeName = feature.properties.place;
-                const imgUrl = imagesData[placeName];
-                if (!imgUrl) return null;
+            {filteredFeatures.map((feature, index) => {
+              const coords = feature.geometry.coordinates;
+              const latlng = [coords[1], coords[0]];
+              const placeName = feature.properties.place;
+              const imgUrl = imagesData[placeName];
+              if (!imgUrl) return null;
 
-                const isActive = selectedPlace?.name === placeName;
-                const icon = createDivIcon(imgUrl, isActive);
+              const isActive = selectedPlace?.name === placeName;
+              const icon = createDivIcon(imgUrl, isActive);
 
-                return (
-                  <Marker
-                    key={index}
-                    position={latlng}
-                    icon={icon}
-                    eventHandlers={{
-                      click: () =>
-                        fetchPlaceDetails(latlng[0], latlng[1], placeName),
-                    }}
+              return (
+                <Marker
+                  key={index}
+                  position={latlng}
+                  icon={icon}
+                  eventHandlers={{
+                    click: () =>
+                      fetchPlaceDetails(latlng[0], latlng[1], placeName),
+                  }}
+                >
+                  <Tooltip
+                    direction="top"
+                    offset={[10, -35]}
+                    opacity={1}
+                    permanent={false}
+                    className="my-tooltip"
                   >
-                    <Tooltip
-                      direction="top"
-                      offset={[10, -35]}
-                      opacity={1}
-                      permanent={false}
-                      className="my-tooltip"
-                    >
-                      {placeName}
-                    </Tooltip>
-                  </Marker>
-                );
-              })}
+                    {placeName}
+                  </Tooltip>
+                </Marker>
+              );
+            })}
           </MapContainer>
 
-          {/* زر العودة للوضع الأصلي */}
           <HomeButton
             onClick={() => {
               setMapTargetPosition(defaultPosition);
               setSelectedPlace(null);
+              setSelectedCity("");
             }}
           />
 
-          {/* تعتيم الخريطة عند اختيار مكان فقط */}
           {selectedPlace && <div className="map-overlay" />}
         </div>
 
