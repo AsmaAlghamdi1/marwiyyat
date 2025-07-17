@@ -311,25 +311,23 @@ h2 {
   color: #0C8F5C;
   margin: 0;
 }
-
 .tts-button-circle {
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  border: 2px solid #0C8F5C;
-  background-color: white;
-  font-size: 16px;
-  color: #0C8F5C;
+  border: none;
+  background-color: #0C8F5C;
+  color: white;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .tts-button-circle:hover {
-  background-color: #0C8F5C;
-  color: white;
+  background-color: #0aa96c;
   transform: scale(1.1);
 }
 
@@ -337,4 +335,98 @@ h2 {
   outline: none;
 }
 
+.icon {
+  font-size: 18px;
+  color: white;
+}
 
+.icon.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.details-section {
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 8px 12px;
+  background-color: #f8f8f8;
+}
+
+.summary-header {
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.summary-header:hover {
+  color: #007bff;
+}
+
+.tts-button-circle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 8px;
+  color: #333;
+}
+
+.tts-button-circle .icon {
+  font-size: 1rem;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.details-sidebar {
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 8px 12px;
+  background-color: #f8f8f8;
+}
+
+.summary-header {
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.summary-header:hover {
+  color: #007bff;
+}
+
+.tts-button-circle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 8px;
+  color: #333;
+}
+
+.tts-button-circle .icon {
+  font-size: 1rem;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -253,7 +253,7 @@ import cors from 'cors';
 dotenv.config();
 
 const app = express();
-const PORT = 4000;
+const PORT = 3000;
 app.use(cors());
 
 // إعداد Supabase
@@ -290,7 +290,7 @@ app.get('/place', async (req, res) => {
       .eq('place_id', place.id)
       .limit(1);
 
-    const imageUrl = images?.[0]?.image_url || null;
+    const imageUrl = images?.[0]?.image_url ||null;
 
     //  3. نجيب القصة
     const { data: stories } = await supabase
@@ -301,14 +301,15 @@ app.get('/place', async (req, res) => {
 
     const story = stories?.[0] || null;
 
+    // const {data:audio}=await supabase
+    // .from('stories')
+
     res.json({
-      //place: place.place, // لأنه عندك حاليًا place فقط بدون _ar/_en
       place:lang === 'ar' ? place?.place_name : place?.place_name_en,
       city: lang === 'ar' ? place?.city_name : place?.city_name_en,
       story: lang === 'ar' ? story?.story : story?.story_en,
       summary: lang === 'ar' ? story?.summary : story?.summary_en,
-      
-      //type: place.type || null, // لو ضفتي نوع المكان مستقبلاً
+      audio: lang === 'ar' ? story?.audio_url_ar : story?.audio_url_en,
       image_url: imageUrl,
     });
   } catch (err) {

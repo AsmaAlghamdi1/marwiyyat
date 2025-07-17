@@ -445,11 +445,12 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "../css/mapsection.css";
 import { useTranslation } from "react-i18next";
+import { CiPlay1 } from "react-icons/ci";
+import { FaPlay, FaPause, FaSpinner } from "react-icons/fa";
 
 // مكون لتحريك الخريطة عند تغيير الإحداثيات
 const MapMover = ({ position }) => {
   const map = useMap();
-
   useEffect(() => {
     if (position) {
       map.flyTo(position, 15, { duration: 1.2 });
@@ -485,6 +486,17 @@ export const Mapsection = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [searchError, setSearchError] = useState("");
   const [mapTargetPosition, setMapTargetPosition] = useState(null);
+  const audioRef = useRef(null);
+  const [isLoading,setIsLoading]=useState(false);
+  const[isPlaying, setIsPlaying]= useState(false);
+  const [showDetails, setShowDetails] = useState(false);
+  useEffect(()=>{
+      if (audioRef.current) {
+    audioRef.current.pause();
+    audioRef.current.currentTime = 0;
+    setIsPlaying(false);
+  }
+  },[selectedPlace]);
 
   const defaultPosition = [23, 44]; // الموقع الافتراضي
   const mapRef = useRef(null);
@@ -527,7 +539,7 @@ export const Mapsection = () => {
     try {
       const language = i18n.language || "ar";
       const response = await fetch(
-        `http://localhost:4000/place?lat=${lat}&lng=${lng}&lang=${language}`
+        `http://localhost:3000/place?lat=${lat}&lng=${lng}&lang=${language}`
       );
       const data = await response.json();
 
@@ -537,6 +549,7 @@ export const Mapsection = () => {
         story: data.story || "",
         city: data.city || "",
         summary: data.summary || "",
+        audio:data.audio,
       });
 
       setMapTargetPosition([lat, lng]);
@@ -597,7 +610,6 @@ export const Mapsection = () => {
               <option value="بلاد الروم">بلاد الروم</option>
               <option value="الكل">الكل</option>
             </select>
-
             <div style={{ position: "relative", width: "100%" }}>
               <input
                 type="text"
@@ -717,39 +729,103 @@ export const Mapsection = () => {
           {selectedPlace && <div className="map-overlay" />}
         </div>
 
-        {selectedPlace && (
-          <div className="details-sidebar">
-            <button
-              className="close-btn"
-              onClick={() => setSelectedPlace(null)}
-              title="إغلاق"
-            >
-              ×
-            </button>
-            <h3>{selectedPlace.name}</h3>
-            <img
-              src={selectedPlace.image}
-              alt={selectedPlace.name}
-              className="details-image"
-            />
-            <div className="details-description">
-              <div className="story-header">
-                <h4>{t("mapsection.story")}</h4>
-                <button className="tts-button-circle" title="استمع إلى القصة">
-                  🔊
-                </button>
-              </div>
-              <p>{selectedPlace.story}</p>
+{selectedPlace && (
+  <div className="details-sidebar">
+    <button
+      className="close-btn"
+      onClick={() => setSelectedPlace(null)}
+      title="إغلاق"
+    >
+      ×
+    </button>
 
-              <h4>{t("mapsection.city")}</h4>
-              <p>{selectedPlace.city}</p>
+    <h3 className="place-title">{selectedPlace.name}</h3>
 
-              <h4>{t("mapsection.summary")}</h4>
-              <p>{selectedPlace.summary}</p>
-            </div>
-          </div>
-        )}
+    <img
+      src={selectedPlace.image}
+      alt={selectedPlace.name}
+      className="details-image"
+    />
+
+    <div className="details-description">
+      {/* القصة */}
+      <details className="details-section">
+        <summary className="summary-header">
+          {t("mapsection.story")}
+          <button
+            className="tts-button-circle"
+            title={isPlaying ? "إيقاف الصوت" : "استمع إلى القصة"}
+            onClick={(e) => {
+              e.stopPropagation();
+
+              if (!selectedPlace.audio) {
+                alert("لا يوجد ملف صوتي متاح لهذا المكان.");
+                return;
+              }
+
+              if (isPlaying) {
+                audioRef.current?.pause();
+                audioRef.current.currentTime = 0;
+                setIsPlaying(false);
+                return;
+              }
+
+              if (audioRef.current) {
+                audioRef.current.pause();
+                audioRef.current = null;
+              }
+
+              const audio = new Audio(selectedPlace.audio);
+              audioRef.current = audio;
+
+              audio.onended = () => setIsPlaying(false);
+
+              setIsLoading(true);
+              audio
+                .play()
+                .then(() => {
+                  setIsPlaying(true);
+                  setIsLoading(false);
+                })
+                .catch((err) => {
+                  console.error("فشل تشغيل الصوت", err);
+                  setIsPlaying(false);
+                  setIsLoading(false);
+                });
+            }}
+          >
+            <span className="audio-btn">
+              {isLoading ? (
+                <FaSpinner className="icon spinner" />
+              ) : isPlaying ? (
+                <FaPause className="icon" />
+              ) : (
+                <FaPlay className="icon" />
+              )}
+            </span>
+          </button>
+        </summary>
+        <p>{selectedPlace.story}</p>
+      </details>
+
+      {/* المدينة */}
+      <details className="details-section">
+        <summary className="summary-header">{t("mapsection.city")}</summary>
+        <p>{selectedPlace.city}</p>
+      </details>
+
+      {/* الملخص */}
+      <details className="details-section">
+        <summary className="summary-header">{t("mapsection.summary")}</summary>
+        <p>{selectedPlace.summary}</p>
+      </details>
+    </div>
+  </div>
+)}
+
       </div>
     </div>
+    
   );
+  
 };
