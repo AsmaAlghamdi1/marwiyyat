@@ -445,9 +445,8 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "../css/mapsection.css";
 import { useTranslation } from "react-i18next";
-import { CiPlay1 } from "react-icons/ci";
 import { FaPlay, FaPause, FaSpinner } from "react-icons/fa";
-
+import { MdOutlineReplay10, MdOutlineForward10 } from "react-icons/md";
 // مكون لتحريك الخريطة إلى موقع محدد عند التحديد
 const MapMover = ({ position }) => {
   const map = useMap();
@@ -489,13 +488,66 @@ export const Mapsection = () => {
   const [isLoading,setIsLoading]=useState(false);
   const[isPlaying, setIsPlaying]= useState(false);
   const [showDetails, setShowDetails] = useState(false);
+  const [selectedCity, setSelectedCity] = useState("");
+
   useEffect(()=>{
       if (audioRef.current) {
     audioRef.current.pause();
-    audioRef.current.currentTime = 0;
+    // audioRef.current.currentTime = 0;
+      audioRef.current = null;
     setIsPlaying(false);
   }
   },[selectedPlace]);
+  const handleAudioToggle = () => {
+    if (!selectedPlace.audio) {
+      alert("لا يوجد ملف صوتي متاح لهذا المكان.");
+      return;
+    }
+
+    if (isPlaying) {
+      audioRef.current?.pause();
+      setIsPlaying(false);
+      return;
+    }
+
+    if (audioRef.current) {
+      audioRef.current
+        .play()
+        .then(() => {
+          setIsPlaying(true);
+        })
+        .catch((err) => {
+          console.error("فشل استئناف الصوت", err);
+          setIsPlaying(false);
+        });
+      return;
+    }
+
+    const audio = new Audio(selectedPlace.audio);
+    audioRef.current = audio;
+
+    audio.onended = () => setIsPlaying(false);
+
+    setIsLoading(true);
+    audio
+      .play()
+      .then(() => {
+        setIsPlaying(true);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.error("فشل تشغيل الصوت", err);
+        setIsPlaying(false);
+        setIsLoading(false);
+      });
+  };
+
+  const handleSeek = (seconds) => {
+    if (audioRef.current) {
+      audioRef.current.currentTime += seconds;
+    }
+  };
+
 
   const defaultPosition = [23, 44];
   const mapRef = useRef(null);
@@ -808,101 +860,80 @@ export const Mapsection = () => {
 
           {selectedPlace && <div className="map-overlay" />}
         </div>
-
-{selectedPlace && (
-  <div className="details-sidebar">
-    <button
-      className="close-btn"
-      onClick={() => setSelectedPlace(null)}
-      title="إغلاق"
-    >
-      ×
-    </button>
-
-    <h3 className="place-title">{selectedPlace.name}</h3>
-
-    <img
-      src={selectedPlace.image}
-      alt={selectedPlace.name}
-      className="details-image"
-    />
-
-    <div className="details-description">
-      {/* القصة */}
-      <details className="details-section">
-        <summary className="summary-header">
-          {t("mapsection.story")}
+ {selectedPlace && (
+        <div className="details-sidebar">
           <button
-            className="tts-button-circle"
-            title={isPlaying ? "إيقاف الصوت" : "استمع إلى القصة"}
-            onClick={(e) => {
-              e.stopPropagation();
-
-              if (!selectedPlace.audio) {
-                alert("لا يوجد ملف صوتي متاح لهذا المكان.");
-                return;
-              }
-
-              if (isPlaying) {
-                audioRef.current?.pause();
-                audioRef.current.currentTime = 0;
-                setIsPlaying(false);
-                return;
-              }
-
-              if (audioRef.current) {
-                audioRef.current.pause();
-                audioRef.current = null;
-              }
-
-              const audio = new Audio(selectedPlace.audio);
-              audioRef.current = audio;
-
-              audio.onended = () => setIsPlaying(false);
-
-              setIsLoading(true);
-              audio
-                .play()
-                .then(() => {
-                  setIsPlaying(true);
-                  setIsLoading(false);
-                })
-                .catch((err) => {
-                  console.error("فشل تشغيل الصوت", err);
-                  setIsPlaying(false);
-                  setIsLoading(false);
-                });
-            }}
+            className="close-btn"
+            onClick={() => setSelectedPlace(null)}
+            title="إغلاق"
           >
-            <span className="audio-btn">
-              {isLoading ? (
-                <FaSpinner className="icon spinner" />
-              ) : isPlaying ? (
-                <FaPause className="icon" />
-              ) : (
-                <FaPlay className="icon" />
-              )}
-            </span>
+            ×
           </button>
-        </summary>
-        <p>{selectedPlace.story}</p>
-      </details>
 
-      {/* المدينة */}
-      <details className="details-section">
-        <summary className="summary-header">{t("mapsection.city")}</summary>
-        <p>{selectedPlace.city}</p>
-      </details>
+          <h3 className="place-title">{selectedPlace.name}</h3>
 
-      {/* الملخص */}
-      <details className="details-section">
-        <summary className="summary-header">{t("mapsection.summary")}</summary>
-        <p>{selectedPlace.summary}</p>
-      </details>
-    </div>
-  </div>
-)}
+          <div style={{ position: "relative" }}>
+            <img
+              src={selectedPlace.image}
+              alt={selectedPlace.name}
+              className="details-image"
+            />
 
+            <div className="audio-controls-overlay">
+              <button
+                className="audio-control-btn"
+                onClick={() => handleSeek(10)}
+                title="تقديم 10 ثواني"
+              >
+                <MdOutlineForward10 size={30} />
+              </button>
+              <button
+                className="audio-control-btn"
+                onClick={handleAudioToggle}
+                title={isPlaying ? "إيقاف الصوت" : "تشغيل الصوت"}
+              >
+                {isLoading ? (
+                  <FaSpinner className="icon spinner" />
+                ) : isPlaying ? (
+                  <FaPause size={30} />
+                ) : (
+                  <FaPlay size={30} />
+                )}
+              </button>
+              <button
+                className="audio-control-btn"
+                onClick={() => handleSeek(-10)}
+                title="رجوع 10 ثواني"
+              >
+                <MdOutlineReplay10 size={30} />
+              </button>
+            </div>
+          </div>
+
+          <div className="details-description">
+            <details className="details-section">
+              <summary className="summary-header">
+                {t("mapsection.story")}
+              </summary>
+              <p>{selectedPlace.story}</p>
+            </details>
+
+            <details className="details-section">
+              <summary className="summary-header">
+                {t("mapsection.city")}
+              </summary>
+              <p>{selectedPlace.city}</p>
+            </details>
+
+            <details className="details-section">
+              <summary className="summary-header">
+                {t("mapsection.summary")}
+              </summary>
+              <p>{selectedPlace.summary}</p>
+            </details>
+          </div>
+        </div>
+      )}
       </div>
     </div>
     
