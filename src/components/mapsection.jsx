@@ -489,6 +489,7 @@ export const Mapsection = () => {
   const [isLoading,setIsLoading]=useState(false);
   const[isPlaying, setIsPlaying]= useState(false);
   const [showDetails, setShowDetails] = useState(false);
+  const [selectedCity, setSelectedCity] = useState("");
   useEffect(()=>{
       if (audioRef.current) {
     audioRef.current.pause();
