@@ -447,6 +447,11 @@ import "../css/mapsection.css";
 import { useTranslation } from "react-i18next";
 import { FaPlay, FaPause, FaSpinner } from "react-icons/fa";
 import { MdOutlineReplay10, MdOutlineForward10 } from "react-icons/md";
+import { FaMapMarkerAlt } from "react-icons/fa";
+import { IoMdShare } from "react-icons/io";
+import { FaEye } from "react-icons/fa6";
+import { IoMdSpeedometer } from "react-icons/io";
+import { MdReplay } from "react-icons/md";
 // مكون لتحريك الخريطة إلى موقع محدد عند التحديد
 const MapMover = ({ position }) => {
   const map = useMap();
@@ -476,6 +481,11 @@ const HomeButton = ({ onClick }) => (
   </button>
 );
 
+const formatTime = (timeInSeconds) => {
+  const minutes = Math.floor(timeInSeconds / 60);
+  const seconds = Math.floor(timeInSeconds % 60);
+  return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+};
 export const Mapsection = () => {
   const [geojsonData, setGeojsonData] = useState(null);
   const [imagesData, setImagesData] = useState({});
@@ -489,6 +499,11 @@ export const Mapsection = () => {
   const[isPlaying, setIsPlaying]= useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [selectedCity, setSelectedCity] = useState("");
+
+  /* التغييرات الجديدة*/
+  const [progress, setProgress] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [elapsedTime, setElapsedTime] = useState(0);
 
   useEffect(()=>{
       if (audioRef.current) {
@@ -525,6 +540,25 @@ export const Mapsection = () => {
 
     const audio = new Audio(selectedPlace.audio);
     audioRef.current = audio;
+
+    /*تعديل جديد */
+    audio.onloadedmetadata = () => {
+  setDuration(audio.duration);
+};
+
+audio.ontimeupdate = () => {
+  if (audio.duration) {
+    setElapsedTime(audio.currentTime);
+    setProgress((audio.currentTime / audio.duration) * 100);
+  }
+};
+
+audio.onended = () => {
+  setIsPlaying(false);
+  setProgress(100);
+  setElapsedTime(duration); 
+};
+/** نهاية التعديل الجديد*/
 
     audio.onended = () => setIsPlaying(false);
 
@@ -598,6 +632,9 @@ export const Mapsection = () => {
         city: data.city || "",
         summary: data.summary || "",
         audio:data.audio,
+        lat: lat,
+        lng: lng,
+        views : data.views !==undefined ? data.views : 0,
       });
 
       setMapTargetPosition([lat, lng]);
@@ -880,6 +917,21 @@ export const Mapsection = () => {
             />
 
             <div className="audio-controls-overlay">
+             {/* هنا تعديل جديد  */}
+              <div className="progress-container">
+  <span className="time-text">{formatTime(elapsedTime)}</span>
+
+  <div className="progress-bar">
+    <div className="progress-fill" style={{ width: `${progress}%` }}/>
+      
+  </div>
+
+  <span className="time-text">{formatTime(duration - elapsedTime)}</span>
+</div>
+{/* نهاية التعديل الجديد */}
+              <div className="audio-control-btn-group">
+
+              
               <button
                 className="audio-control-btn"
                 onClick={() => handleSeek(10)}
@@ -887,7 +939,8 @@ export const Mapsection = () => {
               >
                 <MdOutlineForward10 size={30} />
               </button>
-              <button
+
+              {/* <button
                 className="audio-control-btn"
                 onClick={handleAudioToggle}
                 title={isPlaying ? "إيقاف الصوت" : "تشغيل الصوت"}
@@ -899,7 +952,37 @@ export const Mapsection = () => {
                 ) : (
                   <FaPlay size={30} />
                 )}
-              </button>
+              </button> */}
+
+{/* برضو تعديل جديد  */}
+                {!isPlaying && duration > 0 && elapsedTime>= duration ? (
+                  <button
+                   className="audio-control-btn"
+                  onClick={() => {
+                  audioRef.current.currentTime = 0;
+                  audioRef.current.play();
+                  setIsPlaying(true);
+                  }}
+                  title="إعادة التشغيل"
+                  >
+              <MdReplay size={30} />
+                </button>
+                ) : (
+               <button
+                 className="audio-control-btn"
+                onClick={handleAudioToggle}
+                title={isPlaying ? "إيقاف الصوت" : "تشغيل الصوت"}
+                >
+                 {isLoading ? (
+                <FaSpinner className="icon spinner" />
+                 ) : isPlaying ? (
+                     <FaPause size={30} />
+                 ) : (
+                    <FaPlay size={30} />
+                 )}
+                </button>
+)}    
+
               <button
                 className="audio-control-btn"
                 onClick={() => handleSeek(-10)}
@@ -907,7 +990,11 @@ export const Mapsection = () => {
               >
                 <MdOutlineReplay10 size={30} />
               </button>
+              </div>
             </div>
+
+
+
           </div>
 
           <div className="details-description">
@@ -932,6 +1019,57 @@ export const Mapsection = () => {
               <p>{selectedPlace.summary}</p>
             </details>
           </div>
+
+          
+
+
+
+
+          <div className="share-views-map">
+            <div
+               onClick={()=>{
+                if(selectedPlace.lat&&selectedPlace.lng){
+                   window.open(`https://www.google.com/maps?q=${selectedPlace.lat},${selectedPlace.lng}`,
+                    "_blank"
+                   );
+                }
+               
+              }}
+              className="circle-icon-button"
+            >
+             <FaMapMarkerAlt className="icon"/>
+            </div>
+            <div
+               onClick={()=>{
+                const storyUrl= `http://localhost:5175/story/${selectedPlace.placeID}`;
+                const shareData ={
+                    title:"",
+                    text:"",
+                    url: storyUrl
+                };
+                if(navigator.share){
+                  navigator.share(shareData).catch((err)=>{
+                    console.error("فشل في المشاركة",err)
+                  })
+                } else{
+                  navigator.clipboard.writeText(storyUrl).then(()=>{
+                    alert("تم نسخ رابط القصة")
+                  })
+                }
+               
+              }}
+              className="circle-icon-button"
+            >
+             <IoMdShare className="icon" />
+            </div>
+            <div className="view-container">  
+              <div className="circle-icon-button">
+                <FaEye className="icon"/>  
+              </div>                        
+              <span className="views-text" >{selectedPlace.views??0}</span>
+            </div>           
+          </div>
+
         </div>
       )}
       </div>

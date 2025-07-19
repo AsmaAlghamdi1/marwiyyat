@@ -300,17 +300,21 @@ app.get('/place', async (req, res) => {
       .limit(1);
 
     const story = stories?.[0] || null;
-
-    // const {data:audio}=await supabase
-    // .from('stories')
-
+    if(story?.id){
+      await supabase
+      .from('stories')
+      .update({views:(story.views||0)+1})
+      .eq('id',story.id);
+    }
     res.json({
       place:lang === 'ar' ? place?.place_name : place?.place_name_en,
+      placeID:place?.id,
       city: lang === 'ar' ? place?.city_name : place?.city_name_en,
       story: lang === 'ar' ? story?.story : story?.story_en,
       summary: lang === 'ar' ? story?.summary : story?.summary_en,
       audio: lang === 'ar' ? story?.audio_url_ar : story?.audio_url_en,
       image_url: imageUrl,
+      views: story?.views ? story.views + 1 : 1,
     });
   } catch (err) {
     console.error(err);
