@@ -450,8 +450,9 @@ import { MdOutlineReplay10, MdOutlineForward10 } from "react-icons/md";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { IoMdShare } from "react-icons/io";
 import { FaEye } from "react-icons/fa6";
-import { IoMdSpeedometer } from "react-icons/io";
+// import { IoMdSpeedometer } from "react-icons/io";
 import { MdReplay } from "react-icons/md";
+import { IoIosSpeedometer } from "react-icons/io";
 // مكون لتحريك الخريطة إلى موقع محدد عند التحديد
 const MapMover = ({ position }) => {
   const map = useMap();
@@ -499,6 +500,8 @@ export const Mapsection = () => {
   const[isPlaying, setIsPlaying]= useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [selectedCity, setSelectedCity] = useState("");
+  const [playbackRate, setPlaybackRate] = useState(1);
+  const [showSpeedMenu, setShowSpeedMenu] = useState(false);
 
   /* التغييرات الجديدة*/
   const [progress, setProgress] = useState(0);
@@ -526,13 +529,15 @@ export const Mapsection = () => {
     }
 
     if (audioRef.current) {
+      audioRef.current.playbackRate = playbackRate;
       audioRef.current
+      
         .play()
         .then(() => {
           setIsPlaying(true);
         })
         .catch((err) => {
-          console.error("{t(mapsection.ResumeAudio)}", err);
+          console.error(t("mapsection.ResumeAudio"), err);
           setIsPlaying(false);
         });
       return;
@@ -540,6 +545,7 @@ export const Mapsection = () => {
 
     const audio = new Audio(selectedPlace.audio);
     audioRef.current = audio;
+    audio.playbackRate = playbackRate;
 
     /*تعديل جديد */
     audio.onloadedmetadata = () => {
@@ -581,6 +587,13 @@ audio.onended = () => {
       audioRef.current.currentTime += seconds;
     }
   };
+const changePlaybackRate = (rate) => {
+  setPlaybackRate(rate);
+  if (audioRef.current) {
+    audioRef.current.playbackRate = rate;
+  }
+  setShowSpeedMenu(false);
+};
 
 
   const defaultPosition = [23, 44];
@@ -937,29 +950,8 @@ audio.onended = () => {
                 onClick={() => handleSeek(10)}
                 title={t("mapsection.forward")}
               >
-                <MdOutlineReplay10 size={30} />
+                <MdOutlineReplay10 size={24} />
               </button>
-              {/* <button
-                className="audio-control-btn"
-                onClick={() => handleSeek(10)}
-                title="تقديم 10 ثواني"
-              >
-                <MdOutlineForward10 size={30} />
-              </button> */}
-
-              {/* <button
-                className="audio-control-btn"
-                onClick={handleAudioToggle}
-                title={isPlaying ? "إيقاف الصوت" : "تشغيل الصوت"}
-              >
-                {isLoading ? (
-                  <FaSpinner className="icon spinner" />
-                ) : isPlaying ? (
-                  <FaPause size={30} />
-                ) : (
-                  <FaPlay size={30} />
-                )}
-              </button> */}
 
 {/* برضو تعديل جديد  */}
                 {!isPlaying && duration > 0 && elapsedTime>= duration ? (
@@ -972,39 +964,59 @@ audio.onended = () => {
                   }}
                   title="إعادة التشغيل"
                   >
-              <MdReplay size={30} />
+              <MdReplay size={24} />
                 </button>
                 ) : (
                <button
                  className="audio-control-btn"
                 onClick={handleAudioToggle}
-                title={isPlaying ? "{t(mapsection.TurnOffAudio)}" : "{t(mapsection.TurnOnAudio)}"}
+                title={isPlaying ? t("mapsection.TurnOffAudio") : t("mapsection.TurnOnAudio")}
                 >
                  {isLoading ? (
                 <FaSpinner className="icon spinner" />
                  ) : isPlaying ? (
-                     <FaPause size={30} />
+                     <FaPause size={24} />
                  ) : (
-                    <FaPlay size={30} />
+                    <FaPlay size={24} />
                  )}
                 </button>
 )}    
-
-              {/* <button
-                className="audio-control-btn"
-                onClick={() => handleSeek(-10)}
-                title="رجوع 10 ثواني"
-              >
-                <MdOutlineReplay10 size={30} />
-              </button> */}
                <button
                 className="audio-control-btn"
                 onClick={() => handleSeek(-10)}
                 title={t("mapsection.skip")}
               >
-                <MdOutlineForward10 size={30} />
+                <MdOutlineForward10 size={24} />
               </button>
-              </div>
+
+              
+              
+             
+                {/* زر التحكم بالسرعة */}
+  <div className="speed-control-wrapper">
+    <button
+      className="audio-control-btn"
+      onClick={() => setShowSpeedMenu((prev) => !prev)}
+      title="السرعة"
+    >
+      <IoIosSpeedometer size={24} />
+    </button>
+
+    {showSpeedMenu && (
+      <div className="speed-menu">
+        {[1, 1.5, 2, 2.5].map((rate) => (
+          <div
+            key={rate}
+            className={`speed-option ${playbackRate === rate ? "active" : ""}`}
+            onClick={() => changePlaybackRate(rate)}
+          >
+            {rate}x {playbackRate === rate && "✓"}
+          </div>
+        ))}
+      </div>
+    )}
+  </div> 
+  </div>
             </div>
 
 
