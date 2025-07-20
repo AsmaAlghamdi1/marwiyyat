@@ -249,7 +249,7 @@ h2 {
 
   /* نستخدم radial-gradient لصنع نافذة ضوء دائرية شفافة */
   background: radial-gradient(
-    circle 75px at var(--overlay-x, 58%) var(--overlay-y, 48%),
+    circle 70px at var(--overlay-x, 58%) var(--overlay-y, 48%),
     rgba(0,0,0,0) 80%,         /* مركز الضوء شفاف */
     rgba(0, 0, 0, 0.484) 90%       /* الظل من الدائرة */
   );

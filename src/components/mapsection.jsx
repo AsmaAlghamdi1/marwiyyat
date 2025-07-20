@@ -431,6 +431,7 @@
 // };
 
 
+
 import { useEffect, useRef, useState } from "react"; 
 import {
   MapContainer,
@@ -449,17 +450,17 @@ import { MdOutlineReplay10, MdOutlineForward10 } from "react-icons/md";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { IoMdShare } from "react-icons/io";
 import { FaEye } from "react-icons/fa6";
+// import { IoMdSpeedometer } from "react-icons/io";
 import { MdReplay } from "react-icons/md";
 import { IoIosSpeedometer } from "react-icons/io";
-
-// مكون لتحريك الخريطة إلى موقع وزوم محددين
-const MapMover = ({ position, zoom }) => {
+// مكون لتحريك الخريطة إلى موقع محدد عند التحديد
+const MapMover = ({ position }) => {
   const map = useMap();
   useEffect(() => {
     if (position) {
-      map.flyTo(position, zoom || 10, { duration: 1.2 });
+      map.flyTo(position, 15, { duration: 1.2 });
     }
-  }, [position, zoom, map]);
+  }, [position, map]);
 
   return null;
 };
@@ -486,7 +487,6 @@ const formatTime = (timeInSeconds) => {
   const seconds = Math.floor(timeInSeconds % 60);
   return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 };
-
 export const Mapsection = () => {
   const [geojsonData, setGeojsonData] = useState(null);
   const [imagesData, setImagesData] = useState({});
@@ -495,7 +495,6 @@ export const Mapsection = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [searchError, setSearchError] = useState("");
   const [mapTargetPosition, setMapTargetPosition] = useState(null);
-  const [mapTargetZoom, setMapTargetZoom] = useState(5); // حالة الزوم
   const audioRef = useRef(null);
   const [isLoading,setIsLoading]=useState(false);
   const[isPlaying, setIsPlaying]= useState(false);
@@ -510,13 +509,13 @@ export const Mapsection = () => {
   const [elapsedTime, setElapsedTime] = useState(0);
 
   useEffect(()=>{
-    if (audioRef.current) {
-      audioRef.current.pause();
+      if (audioRef.current) {
+    audioRef.current.pause();
+    // audioRef.current.currentTime = 0;
       audioRef.current = null;
-      setIsPlaying(false);
-    }
+    setIsPlaying(false);
+  }
   },[selectedPlace]);
-
   const handleAudioToggle = () => {
     if (!selectedPlace.audio) {
       alert("{t(mapsection.AudioValid)}");
@@ -532,6 +531,7 @@ export const Mapsection = () => {
     if (audioRef.current) {
       audioRef.current.playbackRate = playbackRate;
       audioRef.current
+      
         .play()
         .then(() => {
           setIsPlaying(true);
@@ -547,22 +547,26 @@ export const Mapsection = () => {
     audioRef.current = audio;
     audio.playbackRate = playbackRate;
 
+    /*تعديل جديد */
     audio.onloadedmetadata = () => {
-      setDuration(audio.duration);
-    };
+  setDuration(audio.duration);
+};
 
-    audio.ontimeupdate = () => {
-      if (audio.duration) {
-        setElapsedTime(audio.currentTime);
-        setProgress((audio.currentTime / audio.duration) * 100);
-      }
-    };
+audio.ontimeupdate = () => {
+  if (audio.duration) {
+    setElapsedTime(audio.currentTime);
+    setProgress((audio.currentTime / audio.duration) * 100);
+  }
+};
 
-    audio.onended = () => {
-      setIsPlaying(false);
-      setProgress(100);
-      setElapsedTime(duration); 
-    };
+audio.onended = () => {
+  setIsPlaying(false);
+  setProgress(100);
+  setElapsedTime(duration); 
+};
+/** نهاية التعديل الجديد*/
+
+    audio.onended = () => setIsPlaying(false);
 
     setIsLoading(true);
     audio
@@ -583,14 +587,14 @@ export const Mapsection = () => {
       audioRef.current.currentTime += seconds;
     }
   };
+const changePlaybackRate = (rate) => {
+  setPlaybackRate(rate);
+  if (audioRef.current) {
+    audioRef.current.playbackRate = rate;
+  }
+  setShowSpeedMenu(false);
+};
 
-  const changePlaybackRate = (rate) => {
-    setPlaybackRate(rate);
-    if (audioRef.current) {
-      audioRef.current.playbackRate = rate;
-    }
-    setShowSpeedMenu(false);
-  };
 
   const defaultPosition = [23, 44];
   const mapRef = useRef(null);
@@ -647,7 +651,6 @@ export const Mapsection = () => {
       });
 
       setMapTargetPosition([lat, lng]);
-      setMapTargetZoom(10); // ممكن تعديل الزوم حسب التفاصيل
     } catch (error) {
       console.error("فشل في جلب بيانات المكان:", error);
       setSelectedPlace(null);
@@ -854,13 +857,12 @@ export const Mapsection = () => {
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             />
 
-            <MapMover position={mapTargetPosition} zoom={mapTargetZoom} />
+            <MapMover position={mapTargetPosition} />
 
             <MapInteractionHandler
               onInteraction={() => {
                 setSelectedPlace(null);
                 setMapTargetPosition(null);
-                setMapTargetZoom(5); // تعيد الزوم الافتراضي عند التفاعل
               }}
             />
 
@@ -901,7 +903,6 @@ export const Mapsection = () => {
           <HomeButton
             onClick={() => {
               setMapTargetPosition(defaultPosition);
-              setMapTargetZoom(5);
               setSelectedPlace(null);
               setSelectedCity("");
             }}
@@ -909,125 +910,197 @@ export const Mapsection = () => {
 
           {selectedPlace && <div className="map-overlay" />}
         </div>
+ {selectedPlace && (
+        <div className="details-sidebar">
+          <button
+            className="close-btn"
+            onClick={() => setSelectedPlace(null)}
+            title="إغلاق"
+          >
+            ×
+          </button>
 
-        {selectedPlace && (
-          <div className="details-sidebar">
-            <button
-              className="close-btn"
-              onClick={() => setSelectedPlace(null)}
-              title="إغلاق"
-            >
-              ×
-            </button>
+          <h3 className="place-title">{selectedPlace.name}</h3>
 
-            <h3 className="place-title">{selectedPlace.name}</h3>
+          <div style={{ position: "relative" }}>
+            <img
+              src={selectedPlace.image}
+              alt={selectedPlace.name}
+              className="details-image"
+            />
 
-            <div style={{ position: "relative" }}>
-              <img
-                src={selectedPlace.image}
-                alt={selectedPlace.name}
-                className="details-image"
-              />
+            <div className="audio-controls-overlay">
+             {/* هنا تعديل جديد  */}
+              <div className="progress-container">
+  <span className="time-text">{formatTime(elapsedTime)}</span>
 
-              <div className="audio-controls-overlay">
-                {/* هنا تعديل جديد  */}
-                <div className="progress-container">
-                  <span className="time-text">{formatTime(elapsedTime)}</span>
+  <div className="progress-bar">
+    <div className="progress-fill" style={{ width: `${progress}%` }}/>
+      
+  </div>
 
-                  <div className="progress-bar">
-                    <div className="progress-fill" style={{ width: `${progress}%` }} />
-                  </div>
+  <span className="time-text">{formatTime(duration - elapsedTime)}</span>
+</div>
+{/* نهاية التعديل الجديد */}
+              <div className="audio-control-btn-group">
 
-                  <span className="time-text">{formatTime(duration - elapsedTime)}</span>
-                </div>
-                {/* نهاية التعديل الجديد */}
-                <div className="audio-control-btn-group">
+              
+                <button
+                className="audio-control-btn"
+                onClick={() => handleSeek(10)}
+                title={t("mapsection.forward")}
+              >
+                <MdOutlineReplay10 size={24} />
+              </button>
 
+{/* برضو تعديل جديد  */}
+                {!isPlaying && duration > 0 && elapsedTime>= duration ? (
                   <button
-                    className="audio-control-btn"
-                    onClick={() => handleSeek(10)}
-                    title={t("mapsection.forward")}
+                   className="audio-control-btn"
+                  onClick={() => {
+                  audioRef.current.currentTime = 0;
+                  audioRef.current.play();
+                  setIsPlaying(true);
+                  }}
+                  title="إعادة التشغيل"
                   >
-                    <MdOutlineReplay10 size={24} />
-                  </button>
+              <MdReplay size={24} />
+                </button>
+                ) : (
+               <button
+                 className="audio-control-btn"
+                onClick={handleAudioToggle}
+                title={isPlaying ? t("mapsection.TurnOffAudio") : t("mapsection.TurnOnAudio")}
+                >
+                 {isLoading ? (
+                <FaSpinner className="icon spinner" />
+                 ) : isPlaying ? (
+                     <FaPause size={24} />
+                 ) : (
+                    <FaPlay size={24} />
+                 )}
+                </button>
+)}    
+               <button
+                className="audio-control-btn"
+                onClick={() => handleSeek(-10)}
+                title={t("mapsection.skip")}
+              >
+                <MdOutlineForward10 size={24} />
+              </button>
 
-                  {/* برضو تعديل جديد  */}
-                  {!isPlaying && duration > 0 && elapsedTime >= duration ? (
-                    <button
-                      className="audio-control-btn"
-                      onClick={() => {
-                        audioRef.current.currentTime = 0;
-                        audioRef.current.play();
-                        setIsPlaying(true);
-                      }}
-                      title="إعادة التشغيل"
-                    >
-                      <MdReplay size={24} />
-                    </button>
-                  ) : (
-                    <button
-                      className="audio-control-btn"
-                      onClick={handleAudioToggle}
-                      title={isPlaying ? t("mapsection.TurnOffAudio") : t("mapsection.TurnOnAudio")}
-                    >
-                      {isLoading ? (
-                        <FaSpinner className="spin" size={24} />
-                      ) : isPlaying ? (
-                        <FaPause size={24} />
-                      ) : (
-                        <FaPlay size={24} />
-                      )}
-                    </button>
-                  )}
+              
+              
+             
+                {/* زر التحكم بالسرعة */}
+  <div className="speed-control-wrapper">
+    <button
+      className="audio-control-btn"
+      onClick={() => setShowSpeedMenu((prev) => !prev)}
+      title="السرعة"
+    >
+      <IoIosSpeedometer size={24} />
+    </button>
 
-                  <button
-                    className="audio-control-btn"
-                    onClick={() => handleSeek(-10)}
-                    title={t("mapsection.back")}
-                  >
-                    <MdOutlineForward10 size={24} />
-                  </button>
-
-                  <button
-                    className="audio-control-btn"
-                    onClick={() => setShowSpeedMenu(!showSpeedMenu)}
-                    title={t("mapsection.Speed")}
-                  >
-                    <IoIosSpeedometer size={24} />
-                  </button>
-
-                  {showSpeedMenu && (
-                    <div className="speed-menu">
-                      {[0.5, 1, 1.5, 2].map((rate) => (
-                        <button
-                          key={rate}
-                          className={`speed-menu-item ${playbackRate === rate ? "active" : ""}`}
-                          onClick={() => changePlaybackRate(rate)}
-                        >
-                          {rate}x
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-
-            <p>{selectedPlace.story}</p>
-
-            <div>
-              <h4>{t("mapsection.Timeline")}</h4>
-              <ul>
-                {/* يمكن إضافة أحداث هنا إن وجدت */}
-              </ul>
-            </div>
-
-            <div className="views-count">
-              <FaEye /> {selectedPlace.views}
-            </div>
+    {showSpeedMenu && (
+      <div className="speed-menu">
+        {[1, 1.5, 2, 2.5].map((rate) => (
+          <div
+            key={rate}
+            className={`speed-option ${playbackRate === rate ? "active" : ""}`}
+            onClick={() => changePlaybackRate(rate)}
+          >
+            {rate}x {playbackRate === rate && "✓"}
           </div>
-        )}
+        ))}
+      </div>
+    )}
+  </div> 
+  </div>
+            </div>
+
+
+
+          </div>
+
+          <div className="details-description">
+            <details className="details-section">
+              <summary className="summary-header">
+                {t("mapsection.story")}
+              </summary>
+              <p>{selectedPlace.story}</p>
+            </details>
+
+            <details className="details-section">
+              <summary className="summary-header">
+                {t("mapsection.city")}
+              </summary>
+              <p>{selectedPlace.city}</p>
+            </details>
+
+            <details className="details-section">
+              <summary className="summary-header">
+                {t("mapsection.summary")}
+              </summary>
+              <p>{selectedPlace.summary}</p>
+            </details>
+          </div>
+
+          
+
+
+
+
+          <div className="share-views-map">
+            <div
+               onClick={()=>{
+                if(selectedPlace.lat&&selectedPlace.lng){
+                   window.open(`https://www.google.com/maps?q=${selectedPlace.lat},${selectedPlace.lng}`,
+                    "_blank"
+                   );
+                }
+               
+              }}
+              className="circle-icon-button"
+            >
+             <FaMapMarkerAlt className="icon"/>
+            </div>
+            <div
+               onClick={()=>{
+                const storyUrl= `http://localhost:5175/story/${selectedPlace.placeID}`;
+                const shareData ={
+                    title:"",
+                    text:"",
+                    url: storyUrl
+                };
+                if(navigator.share){
+                  navigator.share(shareData).catch((err)=>{
+                    console.error("{t(mapsection.share)}",err)
+                  })
+                } else{
+                  navigator.clipboard.writeText(storyUrl).then(()=>{
+                    alert("{t(mapsection.copy)}")
+                  })
+                }
+               
+              }}
+              className="circle-icon-button"
+            >
+             <IoMdShare className="icon" />
+            </div>
+            <div className="view-container">  
+              <div className="circle-icon-button">
+                <FaEye className="icon"/>  
+              </div>                        
+              <span className="views-text" >{selectedPlace.views??0}</span>
+            </div>           
+          </div>
+
+        </div>
+      )}
       </div>
     </div>
+    
   );
+  
 };
