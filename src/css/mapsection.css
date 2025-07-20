@@ -477,6 +477,7 @@ h2 {
 
 .icon.spinner {
   animation: spin 1s linear infinite;
+  color: #000;
 }
 
 @keyframes spin {
@@ -660,4 +661,61 @@ h2 {
   display: flex;
   justify-content: center;
   gap: 20px;
+}
+
+
+
+
+
+
+
+.speed-control-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.speed-control-wrapper button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333;
+  padding: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.speed-control-wrapper button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.speed-menu {
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  left: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  min-width: 80px;
+  padding: 4px 0;
+}
+
+.speed-option {
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.speed-option:hover {
+  background-color: #f0f0f0;
+}
+
+.speed-option.active {
+  background-color: #e6f7e6;
+  font-weight: bold;
 }
