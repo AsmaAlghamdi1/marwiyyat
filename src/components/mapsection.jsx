@@ -515,7 +515,7 @@ export const Mapsection = () => {
   },[selectedPlace]);
   const handleAudioToggle = () => {
     if (!selectedPlace.audio) {
-      alert("لا يوجد ملف صوتي متاح لهذا المكان.");
+      alert("{t(mapsection.AudioValid)}");
       return;
     }
 
@@ -532,7 +532,7 @@ export const Mapsection = () => {
           setIsPlaying(true);
         })
         .catch((err) => {
-          console.error("فشل استئناف الصوت", err);
+          console.error("{t(mapsection.ResumeAudio)}", err);
           setIsPlaying(false);
         });
       return;
@@ -621,7 +621,7 @@ audio.onended = () => {
     try {
       const language = i18n.language || "ar";
       const response = await fetch(
-        `http://localhost:3000/place?lat=${lat}&lng=${lng}&lang=${language}`
+        `http://localhost:7000/place?lat=${lat}&lng=${lng}&lang=${language}`
       );
       const data = await response.json();
 
@@ -783,7 +783,7 @@ audio.onended = () => {
                 </option>
               ))}
             </select>
-            <div style={{ position: "relative", width: "100%" }}>
+            <div style={{ position: "relative", width: "100%",color:"black" }}>
               <input
                 type="text"
                 placeholder="ابحث عن مكان..."
@@ -932,13 +932,20 @@ audio.onended = () => {
               <div className="audio-control-btn-group">
 
               
-              <button
+                <button
+                className="audio-control-btn"
+                onClick={() => handleSeek(10)}
+                title={t("mapsection.forward")}
+              >
+                <MdOutlineReplay10 size={30} />
+              </button>
+              {/* <button
                 className="audio-control-btn"
                 onClick={() => handleSeek(10)}
                 title="تقديم 10 ثواني"
               >
                 <MdOutlineForward10 size={30} />
-              </button>
+              </button> */}
 
               {/* <button
                 className="audio-control-btn"
@@ -971,7 +978,7 @@ audio.onended = () => {
                <button
                  className="audio-control-btn"
                 onClick={handleAudioToggle}
-                title={isPlaying ? "إيقاف الصوت" : "تشغيل الصوت"}
+                title={isPlaying ? "{t(mapsection.TurnOffAudio)}" : "{t(mapsection.TurnOnAudio)}"}
                 >
                  {isLoading ? (
                 <FaSpinner className="icon spinner" />
@@ -983,12 +990,19 @@ audio.onended = () => {
                 </button>
 )}    
 
-              <button
+              {/* <button
                 className="audio-control-btn"
                 onClick={() => handleSeek(-10)}
                 title="رجوع 10 ثواني"
               >
                 <MdOutlineReplay10 size={30} />
+              </button> */}
+               <button
+                className="audio-control-btn"
+                onClick={() => handleSeek(-10)}
+                title={t("mapsection.skip")}
+              >
+                <MdOutlineForward10 size={30} />
               </button>
               </div>
             </div>
@@ -1049,11 +1063,11 @@ audio.onended = () => {
                 };
                 if(navigator.share){
                   navigator.share(shareData).catch((err)=>{
-                    console.error("فشل في المشاركة",err)
+                    console.error("{t(mapsection.share)}",err)
                   })
                 } else{
                   navigator.clipboard.writeText(storyUrl).then(()=>{
-                    alert("تم نسخ رابط القصة")
+                    alert("{t(mapsection.copy)}")
                   })
                 }
                

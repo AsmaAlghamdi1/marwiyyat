@@ -253,7 +253,7 @@ import cors from 'cors';
 dotenv.config();
 
 const app = express();
-const PORT = 3000;
+const PORT = 2000;
 app.use(cors());
 
 // إعداد Supabase
@@ -303,7 +303,7 @@ app.get('/place', async (req, res) => {
     if(story?.id){
       await supabase
       .from('stories')
-      .update({views:(story.views||0)+1})
+      .update({views:(story.views)+1})
       .eq('id',story.id);
     }
     res.json({

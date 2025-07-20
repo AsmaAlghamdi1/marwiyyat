@@ -477,6 +477,7 @@ h2 {
 
 .icon.spinner {
   animation: spin 1s linear infinite;
+  color: #000;
 }
 
 @keyframes spin {

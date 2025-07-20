@@ -26,7 +26,15 @@
     "maptitle":"Interactive map",
     "story":"Story",
     "city":"City",
-    "summary":"Storry Summary"
+    "summary":"Story Summary",
+    "forward":"Skip Forward 10 Secons",
+    "skip":"Skip Back 10 Seconds",
+    "TurnOffAudio": "Turn Off The Audio",
+    "TurnOnAudio":"Turn On The Audio",
+    "share":"Faild To Share",
+    "copy":"The Story Link Has Been Copied",
+    "AudioValid":"No Audio File Available For This Location",
+    "ResumeAudio":"Audio Resume Failed"
   },
   "contactsection":{
     "contacttitle":"Help us improve the content !",
