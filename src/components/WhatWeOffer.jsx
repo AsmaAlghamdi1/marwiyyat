@@ -3,6 +3,7 @@ import React from "react";
 import "../css/whatWeOffer.css";
 import { FaMapMarkedAlt, FaTags, FaHeadphonesAlt, FaLightbulb } from "react-icons/fa";
 import { useTranslation } from 'react-i18next';
+import { GrLanguage } from "react-icons/gr";
 export const WhatWeOffer = () => {
   const {t,i18n} =useTranslation();
   // const features = [
@@ -67,7 +68,8 @@ export const WhatWeOffer = () => {
       </div>
       <div className="card-content">
           <div className="icon-circle">
-            <FaLightbulb />
+            {/* <FaLightbulb /> */}
+            <GrLanguage />
           </div>
           <h3 className="main-feature">{t("whatweoffer.feature3")}</h3>
           <p className="explain-feature">{t("whatweoffer.desfeature3")}</p>

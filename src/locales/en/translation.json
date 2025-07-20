@@ -13,14 +13,18 @@
   },
   "whatweoffer":{
     "offertitle": "What does the platform offer you ?",
-    "feature1":"Easily filtering hadiths",
-    "desfeature1":"Search and focus on the hadiths that matter to you with the least effort and faster.",
-    "feature2":"Interactive map of the prophetic places",
-    "desfeature2":"Explore the places associated with the Hadiths through a unique visual experience.",
-    "feature3":"Automatically classifying hadiths",
-    "desfeature3":"An organized experience that makes it easy for you to access the right hadith effortlessly.",
-    "feature4":"Listening to the talk audibly",
-    "desfeature4":"Listen to the hadith clearly and in a way that makes it easier for you to understand and comprehend."
+    "feature1": "Easily Filter Story Locations",
+"desfeature1": "Search and focus on the story locations that interest you with minimal effort and faster results",
+
+"feature2": "Interactive Map of Prophetic Locations",
+"desfeature2": "Explore locations related to the stories through a rich visual experience",
+
+"feature3": "Support for Arabic and English",
+"desfeature3": "An organized interface that allows you to browse content in your preferred language with ease",
+
+"feature4": "Listen to Stories in Audio",
+"desfeature4": "Enjoy clear and easy-to-understand audio narration of the stories"
+
   },
   "mapsection":{
     "maptitle":"Interactive map",
