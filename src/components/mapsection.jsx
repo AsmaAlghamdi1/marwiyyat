@@ -453,6 +453,9 @@ import { FaEye } from "react-icons/fa6";
 // import { IoMdSpeedometer } from "react-icons/io";
 import { MdReplay } from "react-icons/md";
 import { IoIosSpeedometer } from "react-icons/io";
+import { PiBookOpenText } from "react-icons/pi";
+import {Tooltip as HTMLTooltip} from "react-tooltip"
+import "react-tooltip/dist/react-tooltip.css";
 // مكون لتحريك الخريطة إلى موقع محدد عند التحديد
 const MapMover = ({ position }) => {
   const map = useMap();
@@ -502,6 +505,8 @@ export const Mapsection = () => {
   const [selectedCity, setSelectedCity] = useState("");
   const [playbackRate, setPlaybackRate] = useState(1);
   const [showSpeedMenu, setShowSpeedMenu] = useState(false);
+  //const [showSource,setShowSource] = useState(false);
+  const [showUserBox, setShowUserBox] = useState(false);
 
   /* التغييرات الجديدة*/
   const [progress, setProgress] = useState(0);
@@ -634,7 +639,7 @@ const changePlaybackRate = (rate) => {
     try {
       const language = i18n.language || "ar";
       const response = await fetch(
-        `http://localhost:2000/place?lat=${lat}&lng=${lng}&lang=${language}`
+        `http://localhost:8000/place?lat=${lat}&lng=${lng}&lang=${language}`
       );
       const data = await response.json();
 
@@ -648,6 +653,7 @@ const changePlaybackRate = (rate) => {
         lat: lat,
         lng: lng,
         views : data.views !==undefined ? data.views : 0,
+        source : data.source,
       });
 
       setMapTargetPosition([lat, lng]);
@@ -1052,6 +1058,20 @@ const changePlaybackRate = (rate) => {
 
 
           <div className="share-views-map">
+<div style={{ position: "relative" }}>
+  <div
+    className="circle-icon-button"
+    onClick={() => setShowUserBox(!showUserBox)}
+  >
+    <PiBookOpenText className="icon" />
+  </div>
+
+  {showUserBox && (
+    <div className="user-popup-box">
+      <p style={{color:"black"}}>{selectedPlace.source}</p>
+    </div>
+  )}
+</div>
             <div
                onClick={()=>{
                 if(selectedPlace.lat&&selectedPlace.lng){
@@ -1093,7 +1113,9 @@ const changePlaybackRate = (rate) => {
                 <FaEye className="icon"/>  
               </div>                        
               <span className="views-text" >{selectedPlace.views??0}</span>
-            </div>           
+            </div>  
+
+            {/* <Tooltip id="storySource" place="top" style={{ zIndex: 9999 }} />          */}
           </div>
 
         </div>

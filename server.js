@@ -253,7 +253,7 @@ import cors from 'cors';
 dotenv.config();
 
 const app = express();
-const PORT = 2000;
+const PORT = 8000;
 app.use(cors());
 
 // إعداد Supabase
@@ -311,6 +311,7 @@ app.get('/place', async (req, res) => {
       placeID:place?.id,
       city: lang === 'ar' ? place?.city_name : place?.city_name_en,
       story: lang === 'ar' ? story?.story : story?.story_en,
+      source: lang === 'ar' ? story?.source : story?.source_en,
       summary: lang === 'ar' ? story?.summary : story?.summary_en,
       audio: lang === 'ar' ? story?.audio_url_ar : story?.audio_url_en,
       image_url: imageUrl,
