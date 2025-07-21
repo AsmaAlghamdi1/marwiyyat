@@ -78,5 +78,50 @@
       "subjectRequired": "* الموضوع مطلوب",
       "messageRequired": "* الرسالة مطلوبة"
     }
-  }
+  },
+
+"FilterByCity": {
+  "Al Ahsa": "الأحساء",
+  "Jordan": "الأردن",
+  "Bahrain": "البحرين",
+  "Arabian Peninsula": "الجزيرة العربية",
+  "Riyadh": "الرياض",
+  "Southern Saudi Arabia": "جنوب المملكة العربية السعودية",
+  "As Saman": "الصمان",
+  "Constantinople": "القسطنطينية",
+  "Al Qunfudhah": "القنفذة",
+  "Kuwait": "الكويت",
+  "Morocco": "المغرب",
+  "Mosul": "الموصل",
+  "Al Lith": "الليث",
+  "Yemen": "اليمن",
+  "Iran": "إيران",
+  "Ethiopia": "اثيوبيا",
+  "Iraq": "العراق",
+  "Al Ula": "العلا",
+  "Taif": "الطائف",
+  "Between Mecca and Medina": "بين مكة و المدينة",
+  "Tabalah": "تبالة",
+  "Turkey": "تركيا",
+  "Tabuk": "تبوك",
+  "Syria": "سوريا",
+  "East Asia": "شرق اسيا",
+  "Western Saudi Arabia": "غرب السعودية",
+  "Palestine": "فلسطين",
+  "Medain": "مدين",
+  "Bahrain Complex": "مجمع البحرين",
+  "Egypt": "مصر",
+  "Mecca": "مكة المكرمة",
+  "Asir Region": "منطقة عسير",
+  "Medina": "المدينة المنورة",
+  "Al Hijr": "الحجر",
+  "Levant": "بلاد الشام",
+  "Al Jawf": "بلاد الجوف",
+  "Yanbu": "ينبع",
+  "Khaybar": "خيبر",
+  "Hail": "حائل",
+  "Asfan": "عسفان",
+  "Homs": "حمص"
+}
+
 }
