@@ -81,6 +81,8 @@
   },
 
 "FilterByCity": {
+  "Choose country/City": "اختر البلد/المدينه",
+  "All":"الكل",
   "Al Ahsa": "الأحساء",
   "Jordan": "الأردن",
   "Bahrain": "البحرين",
@@ -109,7 +111,7 @@
   "Western Saudi Arabia": "غرب السعودية",
   "Palestine": "فلسطين",
   "Medain": "مدين",
-  "Bahrain Complex": "مجمع البحرين",
+  "Majmaa albahrain": "مجمع البحرين",
   "Egypt": "مصر",
   "Mecca": "مكة المكرمة",
   "Asir Region": "منطقة عسير",

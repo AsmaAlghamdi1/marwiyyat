@@ -1,7 +1,7 @@
 {
   "navbar": {
     "home": "Home",
-    "goals":"Goals",
+    "goals": "Goals",
     "map": "Interactive map",
     "contact": "Contact us",
     "language": "العربية"
@@ -9,62 +9,57 @@
   "herosection": {
     "herotitle": "The hadiths as they have never been narrated before",
     "herodescription": "Explore the locations mentioned in the sayings of the Prophet",
-    "explore" : "Explore"
+    "explore": "Explore"
   },
-  "whatweoffer":{
+  "whatweoffer": {
     "offertitle": "What does the platform offer you ?",
     "feature1": "Easily Filter Story Locations",
-"desfeature1": "Search and focus on the story locations that interest you with minimal effort and faster results",
-
-"feature2": "Interactive Map of Prophetic Locations",
-"desfeature2": "Explore locations related to the stories through a rich visual experience",
-
-"feature3": "Support for Arabic and English",
-"desfeature3": "An organized interface that allows you to browse content in your preferred language with ease",
-
-"feature4": "Listen to Stories in Audio",
-"desfeature4": "Enjoy clear and easy-to-understand audio narration of the stories"
-
+    "desfeature1": "Search and focus on the story locations that interest you with minimal effort and faster results",
+    "feature2": "Interactive Map of Prophetic Locations",
+    "desfeature2": "Explore locations related to the stories through a rich visual experience",
+    "feature3": "Support for Arabic and English",
+    "desfeature3": "An organized interface that allows you to browse content in your preferred language with ease",
+    "feature4": "Listen to Stories in Audio",
+    "desfeature4": "Enjoy clear and easy-to-understand audio narration of the stories"
   },
-  "mapsection":{
-    "maptitle":"Interactive map",
-    "story":"Story",
-    "city":"City",
-    "summary":"Story Summary",
-    "forward":"Skip Forward 10 Secons",
-    "skip":"Skip Back 10 Seconds",
+  "mapsection": {
+    "maptitle": "Interactive map",
+    "story": "Story",
+    "city": "City",
+    "summary": "Story Summary",
+    "forward": "Skip Forward 10 Secons",
+    "skip": "Skip Back 10 Seconds",
     "TurnOffAudio": "Turn Off The Audio",
-    "TurnOnAudio":"Turn On The Audio",
-    "share":"Faild To Share",
-    "copy":"The Story Link Has Been Copied",
-    "AudioValid":"No Audio File Available For This Location",
-    "ResumeAudio":"Audio Resume Failed"
+    "TurnOnAudio": "Turn On The Audio",
+    "share": "Faild To Share",
+    "copy": "The Story Link Has Been Copied",
+    "AudioValid": "No Audio File Available For This Location",
+    "ResumeAudio": "Audio Resume Failed"
   },
-  "contactsection":{
-    "contacttitle":"Help us improve the content !",
-     "name":"Name",
-    "email":"Email",
-    "phone":"Phone number",
-    "subject":"Subject",
-    "message":"Your message",
-    "send":"Send"
+  "contactsection": {
+    "contacttitle": "Help us improve the content !",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone number",
+    "subject": "Subject",
+    "message": "Your message",
+    "send": "Send"
   },
   "footer": {
     "contact": "Contact",
-    "support":"Support",
-    "faqs":"FAQs",
-    "supportcenter":"Support Center",
-    "portal":"Portal",
-    "goals":"Goals",
-    "rights":"All rights reserved for the Development Data Center 2025 ©"
+    "support": "Support",
+    "faqs": "FAQs",
+    "supportcenter": "Support Center",
+    "portal": "Portal",
+    "goals": "Goals",
+    "rights": "All rights reserved for the Development Data Center 2025 ©"
   },
-   "mainNavbar":{
-    "home":"Home",
-    "mobadra-description":"Initiative description",
-    "projects":"Projects"
+  "mainNavbar": {
+    "home": "Home",
+    "mobadra-description": "Initiative description",
+    "projects": "Projects"
   },
-
-   "contactsectionV": {
+  "contactsectionV": {
     "contacttitle": "Help Us Improve the Content!",
     "name": "Name",
     "email": "Email",
@@ -84,46 +79,48 @@
     }
   },
   "FilterByCity": {
-  "Al Ahsa": "Al Ahsa",
-  "Jordan": "Jordan",
-  "Bahrain": "Bahrain",
-  "Arabian Peninsula": "Arabian Peninsula",
-  "Riyadh": "Riyadh",
-  "Southern Saudi Arabia": "Southern Saudi Arabia",
-  "As Saman": "As Saman",
-  "Constantinople": "Constantinople",
-  "Al Qunfudhah": "Al Qunfudhah",
-  "Kuwait": "Kuwait",
-  "Morocco": "Morocco",
-  "Mosul": "Mosul",
-  "Al Lith": "Al Lith",
-  "Yemen": "Yemen",
-  "Iran": "Iran",
-  "Ethiopia": "Ethiopia",
-  "Iraq": "Iraq",
-  "Al Ula": "Al Ula",
-  "Taif": "Taif",
-  "Between Mecca and Medina": "Between Mecca and Medina",
-  "Tabalah": "Tabalah",
-  "Turkey": "Turkey",
-  "Tabuk": "Tabuk",
-  "Syria": "Syria",
-  "East Asia": "East Asia",
-  "Western Saudi Arabia": "Western Saudi Arabia",
-  "Palestine": "Palestine",
-  "Medain": "Medain",
-  "Bahrain Complex": "Bahrain Complex",
-  "Egypt": "Egypt",
-  "Mecca": "Mecca",
-  "Asir Region": "Asir Region",
-  "Medina": "Medina",
-  "Al Hijr": "Al Hijr",
-  "Levant": "Levant",
-  "Al Jawf": "Al Jawf",
-  "Yanbu": "Yanbu",
-  "Khaybar": "Khaybar",
-  "Hail": "Hail",
-  "Asfan": "Asfan",
-  "Homs": "Homs"
-}
+    "Choose country/City":"Choose country/City",
+    "All": "All",
+    "Al Ahsa": "Al Ahsa",
+    "Jordan": "Jordan",
+    "Bahrain": "Bahrain",
+    "Arabian Peninsula": "Arabian Peninsula",
+    "Riyadh": "Riyadh",
+    "Southern Saudi Arabia": "Southern Saudi Arabia",
+    "As Saman": "As Saman",
+    "Constantinople": "Constantinople",
+    "Al Qunfudhah": "Al Qunfudhah",
+    "Kuwait": "Kuwait",
+    "Morocco": "Morocco",
+    "Mosul": "Mosul",
+    "Al Lith": "Al Lith",
+    "Yemen": "Yemen",
+    "Iran": "Iran",
+    "Ethiopia": "Ethiopia",
+    "Iraq": "Iraq",
+    "Al Ula": "Al Ula",
+    "Taif": "Taif",
+    "Between Mecca and Medina": "Between Mecca and Medina",
+    "Tabalah": "Tabalah",
+    "Turkey": "Turkey",
+    "Tabuk": "Tabuk",
+    "Syria": "Syria",
+    "East Asia": "East Asia",
+    "Western Saudi Arabia": "Western Saudi Arabia",
+    "Palestine": "Palestine",
+    "Medain": "Medain",
+    "Majmaa albahrain":"Majmaa albahrain",
+    "Egypt": "Egypt",
+    "Mecca": "Mecca",
+    "Asir Region": "Asir Region",
+    "Medina": "Medina",
+    "Al Hijr": "Al Hijr",
+    "Levant": "Levant",
+    "Al Jawf": "Al Jawf",
+    "Yanbu": "Yanbu",
+    "Khaybar": "Khaybar",
+    "Hail": "Hail",
+    "Asfan": "Asfan",
+    "Homs": "Homs"
+  }
 }
