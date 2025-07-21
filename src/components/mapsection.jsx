@@ -460,7 +460,7 @@ const MapMover = ({ position, zoom }) => {
   const map = useMap();
   useEffect(() => {
     if (position) {
-      map.flyTo(position, zoom, { duration: 0.2,easeLinearity: 0.35,});
+      map.flyTo(position, zoom, { duration: 0.2,easeLinearity: 0.2,});
     }
   }, [position, zoom, map]);
 
