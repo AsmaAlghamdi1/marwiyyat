@@ -357,6 +357,8 @@ svg {
 
   .contact h2 {
     font-size: 20px;
+    margin-top: 15%;
+
   }
 
   .contact-form {
@@ -392,6 +394,7 @@ svg {
 
   .contact h2 {
     font-size: 24px;
+     margin-top: 15%;
   }
 
   .contact-form {
@@ -475,4 +478,5 @@ svg {
   .contact-form textarea {
     font-size: 1.3rem;
   }
+  
 }
