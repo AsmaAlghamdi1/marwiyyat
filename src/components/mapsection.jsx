@@ -454,8 +454,7 @@ import { FaEye } from "react-icons/fa6";
 import { MdReplay } from "react-icons/md";
 import { IoIosSpeedometer } from "react-icons/io";
 import { PiBookOpenText } from "react-icons/pi";
-import {Tooltip as HTMLTooltip} from "react-tooltip"
-import "react-tooltip/dist/react-tooltip.css";
+
 // مكون لتحريك الخريطة إلى موقع محدد عند التحديد
 const MapMover = ({ position, zoom }) => {
   const map = useMap();
