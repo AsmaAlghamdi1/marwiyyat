@@ -149,157 +149,6 @@ body {
 }
 @import url("https://rsms.me/inter/inter.css");
 
-/* * {
-	box-sizing: border-box;
-} */
-
-/* body {
-	margin: 0;
-	display: flex;
-	background: #e0e5ec;
-	justify-content: center;
-	align-items: center;
-	min-height: 100vh;
-	font-family: 'Inter var', Inter, sans-serif;
-} */
-
-/* .btn {
-	position: relative;
-	display: flex;
-	align-items: center;
-	color: #353535;
-	background: transparent;
-	border: none;
-	font-family: inherit;
-	padding: 0;
-	border-radius: 3rem;
-	font-size: 2rem;
-	font-variation-settings: 'wght' 500;
-	cursor: pointer;
-	transition: transform 0.4s ease-out;
-	&:hover {
-		.icon svg {
-			transform: translate(-5px, 5px);
-		}
-	}
-	box-shadow: 9px 9px 16px 0px #a3b1c6, -9px -9px 16px 0px rgba(#fff, 0.6);
-}
-.text {
-	height: 4.5rem;
-padding: 1rem 1rem 1rem 2rem;
-	}
-
-.icon {
-	display: block;
-	padding: 1rem;
-	box-shadow: 9px 9px 16px 0px #a3b1c6, -9px -9px 16px 0px rgba(#fff, 0.6);
-	border-radius: 50%;
-	width: 4.5rem;
-	height: 4.5rem;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-svg {
-	fill: currentColor;
-	width: 2rem;
-	height: 2rem;
-	transition: transform 0.4s ease-out;
-} */
-
-
-
-/* .btn {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #e0e5ec;
-  border-radius: 50px;
-  border: none;
-  padding: 12px 20px;
-  width: 160px;
-  box-shadow: 8px 8px 15px #babecc, -8px -8px 15px #ffffff;
-  cursor: pointer;
-  position: relative;
-  overflow: visible;
-}
-
-.btn .text {
-  font-size: 16px;
-  color: #333;
-  font-weight: 500;
-}
-
-.btn .icon {
-  background: #e0e5ec;
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: inset 6px 6px 10px #babecc, inset -6px -6px 10px #ffffff;
-}
-
-.btn .icon svg {
-  width: 18px;
-  height: 18px;
-  transition: transform 0.3s ease;
-  fill: #333;
-} */
-
-/* .btn {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #e0e5ec;
-  border-radius: 50px;
-  border: none;
-  padding: 12px 20px;
-  width: 160px;
-  box-shadow: 8px 8px 15px #babecc, -8px -8px 15px #ffffff;
-  cursor: pointer;
-  position: relative;
-  overflow: visible; 
-} */
-/* 
-.icon {
-  background: #e0e5ec;
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: inset 6px 6px 10px #babecc, inset -6px -6px 10px #ffffff;
-  overflow: visible; 
-  position: relative;
-} */
-
-/* .icon svg {
-  width: 18px;
-  height: 18px;
-  fill: #333;
-  transition: transform 0.3s ease;
-  position: relative;
-}
-
-.icon svg.fly {
-  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.3));
-  animation: trail-glow 0.5s ease-in-out infinite alternate;
-}
-
-@keyframes trail-glow {
-  0% {
-    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.1));
-  }
-  100% {
-    filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.4));
-  }
-} */
-
-
 .btn {
   display: flex;
   align-items: center;
@@ -315,10 +164,6 @@ svg {
   overflow: visible;
   transition: background 0.3s ease;
 }
-
-/* .btn:hover {
-  background: #45a049; 
-} */
 
 .btn .text {
   font-size: 16px;
@@ -344,8 +189,6 @@ svg {
   fill: rgb(0, 0, 0); /* السهم لونه أبيض */
   transition: transform 0.3s ease;
 }
-
-
 
 
 @media (max-width: 575px) {
