@@ -26,7 +26,33 @@ h2 {
   height: 100%;
   width: 100%;
   flex-grow: 1;
+  justify-content: center; /* عشان تركز الخريطة لما السايدبار يختفي */
 }
+
+/* لما السايدبار موجود */
+.map-wrapper:has(.details-sidebar) .map-container {
+  width: 65%;      /* الخريطة تصغر */
+  max-width: 1200px;
+  height: 75vh;
+  margin: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: width 0.3s ease;
+  padding-left: 25px;
+}
+
+/* لما السايدبار غير موجود */
+.map-wrapper:not(:has(.details-sidebar)) .map-container {
+  width: 90%;      /* تكبر الخريطة */
+  max-width: 1200px;
+  height: 75vh;
+  margin: 0 auto;  /* تركز في النص */
+  border-radius: 20px;
+  overflow: hidden;
+  transition: width 0.3s ease;
+  padding-left: 0;
+}
+
 
 .map-container {
   width: 90%;
@@ -249,7 +275,7 @@ h2 {
 
   /* نستخدم radial-gradient لصنع نافذة ضوء دائرية شفافة */
   background: radial-gradient(
-    circle 70px at var(--overlay-x, 58%) var(--overlay-y, 48%),
+    circle 70px at var(--overlay-x, 69%) var(--overlay-y, 48%),
     rgba(0,0,0,0) 80%,         /* مركز الضوء شفاف */
     rgba(0, 0, 0, 0.484) 90%       /* الظل من الدائرة */
   );
@@ -283,8 +309,6 @@ h2 {
   box-shadow: 0 0 15px #0C8F5C !important;
   transition: transform 0.3s ease;
 }
-
-
 
 @keyframes fadeIn {
   from {
@@ -328,7 +352,6 @@ h2 {
 
 .tts-button-circle:hover {
   background-color: #0C8F5C;
-  /* transform: scale(1.1); */
 }
 
 .tts-button-circle:focus {
@@ -450,30 +473,12 @@ h2 {
   }
 }
 
-/* .audio-controls-overlay {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-} */
-
 .audio-control-btn {
   background-color: white;
   border: none;
-  /* border-radius: 50%; */
   padding: 8px;
-  /* box-shadow: 0 0 5px rgba(0,0,0,0.2); */
   cursor: pointer;
 }
-
-/* .audio-control-btn:hover {
-  background-color: #f0f0f0;
-} */
 
 .icon.spinner {
   animation: spin 1s linear infinite;
@@ -485,10 +490,7 @@ h2 {
 }
 
 .audio-controls-overlay {
-  /* position: absolute; */
-  /* top: 3rem;  */
-  /* left: 50%; */
-  /* transform: translateX(-50%); */
+
   display: flex;
   gap: 2rem;
   margin: 0;
@@ -514,25 +516,7 @@ h2 {
   box-shadow: none;
 }
 
-/* .map-button {
-  padding:.5rem .7rem;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 1.5rem;
-}
-.map-button:hover {
-  background-color: #45a049;
-} */
-/* .share-views-map{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1.5rem;
-} */
+
 .share-views-map {
   display: flex;
   align-items: center;
@@ -664,12 +648,6 @@ h2 {
   margin-right: 2.4rem;
 }
 
-
-
-
-
-
-
 .speed-control-wrapper {
   position: relative;
   display: inline-block;
@@ -735,3 +713,6 @@ h2 {
   z-index: 100;
   white-space: nowrap;
 }
+
+
+
