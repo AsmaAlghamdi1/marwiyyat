@@ -457,13 +457,13 @@ import { PiBookOpenText } from "react-icons/pi";
 import {Tooltip as HTMLTooltip} from "react-tooltip"
 import "react-tooltip/dist/react-tooltip.css";
 // مكون لتحريك الخريطة إلى موقع محدد عند التحديد
-const MapMover = ({ position }) => {
+const MapMover = ({ position, zoom }) => {
   const map = useMap();
   useEffect(() => {
     if (position) {
-      map.flyTo(position, 15, { duration: 1.2 });
+      map.flyTo(position, zoom, { duration: 1.2 });
     }
-  }, [position, map]);
+  }, [position, zoom, map]);
 
   return null;
 };
@@ -498,6 +498,7 @@ export const Mapsection = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [searchError, setSearchError] = useState("");
   const [mapTargetPosition, setMapTargetPosition] = useState(null);
+  const [mapZoom, setMapZoom] = useState(5);
   const audioRef = useRef(null);
   const [isLoading,setIsLoading]=useState(false);
   const[isPlaying, setIsPlaying]= useState(false);
@@ -771,9 +772,11 @@ const changePlaybackRate = (rate) => {
           f.geometry.coordinates[0],
         ])
       );
-      mapRef.current.fitBounds(bounds, { padding: [50, 50] });
+     mapRef.current.fitBounds(bounds, { padding: [50, 50] });
+      setMapZoom(mapRef.current.getZoom()); // تعيين الزووم الحالي بعد fitBounds
     }
   }, [filteredFeatures, mapTargetPosition]);
+
 
   // إنشاء قائمة المدن مرتبة أبجدياً
   const cityList = Object.keys(cityMap).sort();
