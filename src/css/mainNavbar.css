@@ -15,8 +15,8 @@
     position: fixed;
     height: 80px;
     padding: 0 2rem;
-    background: linear-gradient(rgba(0, 0, 0, 0.829),
-            rgba(0, 0, 0, 0.274));
+    background: linear-gradient(rgba(0, 0, 0, 0.507),
+            rgba(0, 0, 0, 0.03));
     /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7); */
     color: var(--textColor);
     display: grid;
@@ -30,9 +30,9 @@
 
 /*  اللون الفاتح لما تنزل الصفحة */
 header.navbar-light {
-    background: rgba(255, 255, 255, 0.626);
+    background: rgba(255, 255, 255, 0.929);
     color: var(--textColor);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.039);
 }
 
 /* navbar-light */
