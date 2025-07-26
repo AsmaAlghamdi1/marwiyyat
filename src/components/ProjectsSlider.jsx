@@ -4,7 +4,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../css/ProjectsSlider.css';
 import project1 from "../assets/project1.png";
-import project2 from '../assets/project1.png';
+import lahjatna from '../assets/lahjatna.jpg';
 import project3 from '../assets/project1.png';
 import project4 from '../assets/project1.png';
 import { useNavigate } from 'react-router-dom';
@@ -41,7 +41,7 @@ export const ProjectsSlider = () => {
 
   const projects = [
     { id: 1, image: project1, link:'/home' },
-    { id: 2, image: project2, link:'/home' },
+    { id: 2, image: lahjatna, link:'' },
     { id: 3, image: project3, link:'/home' },
     { id: 4, image: project4, link:'/home' },
   ];
