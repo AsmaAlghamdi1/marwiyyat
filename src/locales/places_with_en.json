@@ -1,0 +1,1162 @@
+[
+  {
+    "place_ar": "الأبواء",
+    "place_en": "alabwa",
+    "latitude": 23.11048, "longitude": 39.094
+  },
+  {
+    "place_ar": "أحد",
+    "place_en": "ahd",
+    "latitude": 24.52274, "longitude": 39.62578
+  },
+  {
+    "place_ar": "الأخشبان",
+    "place_en": "alakhshban",
+    "latitude": 21.38591, "longitude": 39.92859
+  },
+  {
+    "place_ar": "أرض ثمود",
+    "place_en": "ard-thmwd",
+    "latitude": 26.8167, "longitude": 37.8833
+  },
+  {
+    "place_ar": "الأرض المقدسة",
+    "place_en": "alard-almqdsh",
+    "latitude": 31.7767, "longitude": 35.2345
+  },
+  {
+    "place_ar": "إرم ذات العماد",
+    "place_en": "irm-dhat-alamad",
+    "latitude": 13.18296, "longitude": 45.01716
+  },
+  {
+    "place_ar": "أريحا",
+    "place_en": "aryha",
+    "latitude": 31.8568, "longitude": 35.46306
+  },
+  {
+    "place_ar": "آطام المدينة",
+    "place_en": "aatam-almdynh",
+    "latitude": 24.49647, "longitude": 39.62403
+  },
+  {
+    "place_ar": "آطم بني مغالة",
+    "place_en": "aatm-bny-mghalh",
+    "latitude": 24.49647, "longitude": 39.62403
+  },
+  {
+    "place_ar": "أعلى مكة",
+    "place_en": "aala-mkh",
+    "latitude": 21.48, "longitude": 39.83
+  },
+  {
+    "place_ar": "أوطاس",
+    "place_en": "awtas",
+    "latitude": 21.441, "longitude": 40.34897
+  },
+  {
+    "place_ar": "الأهواز",
+    "place_en": "alahwaz",
+    "latitude": 31.3238, "longitude": 48.66576
+  },
+  {
+    "place_ar": "الأيكة",
+    "place_en": "alaykh",
+    "latitude": 28.51448, "longitude": 34.99725
+  },
+  {
+    "place_ar": "أيلة",
+    "place_en": "aylh",
+    "latitude": 29.57066, "longitude": 34.98695
+  },
+  {
+    "place_ar": "إيلياء",
+    "place_en": "iylya",
+    "latitude": 31.77791, "longitude": 35.21827
+  },
+  {
+    "place_ar": "بئر أريس",
+    "place_en": "byr-arys",
+    "latitude": 24.43931, "longitude": 39.6167
+  },
+  {
+    "place_ar": "بئر جمل",
+    "place_en": "byr-jml",
+    "latitude": 24.49647, "longitude": 39.62403
+  },
+  {
+    "place_ar": "بئر ذروان",
+    "place_en": "byr-dhrwan",
+    "latitude": 24.49647, "longitude": 39.62403
+  },
+  {
+    "place_ar": "بئر رومة",
+    "place_en": "byr-rwmh",
+    "latitude": 24.49355, "longitude": 39.5773
+  },
+  {
+    "place_ar": "بئر معونة",
+    "place_en": "byr-mawnh",
+    "latitude": 24.49647, "longitude": 39.62403
+  },
+  {
+    "place_ar": "بابل",
+    "place_en": "babl",
+    "latitude": 32.54319, "longitude": 44.42128
+  },
+  {
+    "place_ar": "البحرين",
+    "place_en": "albhryn",
+    "latitude": 26.04803, "longitude": 50.55502
+  },
+  {
+    "place_ar": "بدر",
+    "place_en": "bdr",
+    "latitude": 23.83631, "longitude": 38.78179
+  },
+  {
+    "place_ar": "برك الغماد",
+    "place_en": "brk-alghmad",
+    "latitude": 19.10237, "longitude": 42.87978
+  },
+  {
+    "place_ar": "بصرى",
+    "place_en": "bsra",
+    "latitude": 32.51698, "longitude": 36.48075
+  },
+  {
+    "place_ar": "البصرة",
+    "place_en": "albsrh",
+    "latitude": 30.52831, "longitude": 47.77327
+  },
+  {
+    "place_ar": "البطحاء",
+    "place_en": "albtha",
+    "latitude": 21.42123, "longitude": 39.81773
+  },
+  {
+    "place_ar": "بطحان",
+    "place_en": "bthan",
+    "latitude": 24.49647, "longitude": 39.62403
+  },
+  {
+    "place_ar": "بطن مكة",
+    "place_en": "btn-mkh",
+    "latitude": 21.4225, "longitude": 39.8262
+  },
+  {
+    "place_ar": "بطن الوادي",
+    "place_en": "btn-alwady",
+    "latitude": 21.41951, "longitude": 39.88773
+  },
+  {
+    "place_ar": "بعاث",
+    "place_en": "baath",
+    "latitude": 24.45461, "longitude": 39.64255
+  },
+  {
+    "place_ar": "البقيع",
+    "place_en": "albqya",
+    "latitude": 24.46661, "longitude": 39.61696
+  },
+  {
+    "place_ar": "بقيع بطحان",
+    "place_en": "bqya-bthan",
+    "latitude": 24.44018, "longitude": 39.61547
+  },
+  {
+    "place_ar": "بقيع الغرقد",
+    "place_en": "bqya-alghrqd",
+    "latitude": 24.46734, "longitude": 39.62049
+  },
+  {
+    "place_ar": "بلدح",
+    "place_en": "bldh",
+    "latitude": 21.4051, "longitude": 39.71399
+  },
+  {
+    "place_ar": "البويرة",
+    "place_en": "albwyrh",
+    "latitude": 24.42017, "longitude": 39.66001
+  },
+  {
+    "place_ar": "بيت المقدس",
+    "place_en": "byt-almqds",
+    "latitude": 31.77694, "longitude": 35.23451
+  },
+  {
+    "place_ar": "البيداء",
+    "place_en": "albyda",
+    "latitude": 24.61489, "longitude": 39.54345
+  },
+  {
+    "place_ar": "بيرحاء",
+    "place_en": "byrha",
+    "latitude": 24.45491, "longitude": 39.60548
+  },
+  {
+    "place_ar": "تبوك",
+    "place_en": "tbwk",
+    "latitude": 28.38327, "longitude": 36.56483
+  },
+  {
+    "place_ar": "غزوة تبوك",
+    "place_en": "ghzwh-tbwk",
+    "latitude": 28.38395, "longitude": 36.555
+  },
+  {
+    "place_ar": "تعهن",
+    "place_en": "tahn",
+    "latitude": 24.41218, "longitude": 39.61998
+  },
+  {
+    "place_ar": "التنعيم",
+    "place_en": "altnaym",
+    "latitude": 21.4829, "longitude": 39.80507
+  },
+  {
+    "place_ar": "تهامة",
+    "place_en": "thamh",
+    "latitude": 19.12549, "longitude": 41.07827
+  },
+  {
+    "place_ar": "تيماء",
+    "place_en": "tyma",
+    "latitude": 27.61365, "longitude": 38.54678
+  },
+  {
+    "place_ar": "ثبير",
+    "place_en": "thbyr",
+    "latitude": 21.44326, "longitude": 39.86527
+  },
+  {
+    "place_ar": "الثنيتان",
+    "place_en": "althnytan",
+    "latitude": 21.43946, "longitude": 39.81673
+  },
+  {
+    "place_ar": "الثنية السفلى",
+    "place_en": "althnyh-alsfla",
+    "latitude": 21.45543, "longitude": 39.79514
+  },
+  {
+    "place_ar": "الثنية العليا",
+    "place_en": "althnyh-alalya",
+    "latitude": 21.42538, "longitude": 39.85352
+  },
+  {
+    "place_ar": "ثنية الوداع",
+    "place_en": "thnyh-alwdaa",
+    "latitude": 24.47496, "longitude": 39.59279
+  },
+  {
+    "place_ar": "ثور",
+    "place_en": "thwr",
+    "latitude": 24.55654, "longitude": 39.60468
+  },
+  {
+    "place_ar": "الثور",
+    "place_en": "althwr",
+    "latitude": 26.84606, "longitude": 47.39996
+  },
+  {
+    "place_ar": "جبل طيء",
+    "place_en": "jbl-ty",
+    "latitude": 27.09795, "longitude": 42.1239
+  },
+  {
+    "place_ar": "الجحفة",
+    "place_en": "aljhfh",
+    "latitude": 23.01198, "longitude": 39.21966
+  },
+  {
+    "place_ar": "الجوف",
+    "place_en": "aljwf",
+     "latitude": 24.51164, "longitude": 39.59841
+  },
+  {
+    "place_ar": "الجزيرة",
+    "place_en": "aljzyrh",
+    "latitude": 35.95017, "longitude": 39.01666
+  },
+  {
+    "place_ar": "جزيرة العرب",
+    "place_en": "jzyrh-alarb",
+    "latitude": 23.88594, "longitude": 45.07916
+  },
+  {
+    "place_ar": "الجعرانة",
+    "place_en": "aljaranh",
+    "latitude": 21.54997, "longitude": 39.95041
+  },
+  {
+    "place_ar": "الجمرة",
+    "place_en": "aljmrh",
+    "latitude": 21.41463, "longitude": 39.89478
+  },
+  {
+    "place_ar": "جمع",
+    "place_en": "jma",
+    "latitude": 21.38804, "longitude": 39.91521
+  },
+  {
+    "place_ar": "جواثا",
+    "place_en": "jwatha",
+    "latitude": 25.44097, "longitude": 49.6692
+  },
+  {
+    "place_ar": "الجودي",
+    "place_en": "aljwdy",
+    "latitude": 37.37375, "longitude": 42.48583
+  },
+  {
+    "place_ar": "الجوف",
+    "place_en": "aljwf",
+    "latitude": 16.71667, "longitude": 44.63333
+  },
+  {
+    "place_ar": "جوف آل عمر",
+    "place_en": "jwf-aal-amr",
+    "latitude": 17.65143, "longitude": 43.53383
+  },
+  {
+    "place_ar": "جوف مراد",
+    "place_en": "jwf-mrad",
+    "latitude": 17.59901, "longitude": 44.16183
+  },
+  {
+    "place_ar": "الجوف في ارض بني سعد",
+    "place_en": "aljwf-fy-ard-bny-sad",
+    "latitude": 21.0677, "longitude": 40.4399
+  },
+  {
+    "place_ar": "الجوف في بلاد قحطان",
+    "place_en": "aljwf-fy-blad-qhtan",
+    "latitude": 18.18333, "longitude": 43.03333
+  },
+  {
+    "place_ar": "الحبشة",
+    "place_en": "alhbshh",
+    "latitude": 9.035829, "longitude": 38.75241
+  },
+  {
+    "place_ar": "الحجاز",
+    "place_en": "alhjaz",
+    "latitude": 21.38917, "longitude": 39.85793
+  },
+  {
+    "place_ar": "الحجر(ديار ثمود)",
+    "place_en": "alhjr-dyar-thmwd",
+    "latitude": 26.8033, "longitude": 37.95326
+  },
+  {
+    "place_ar": "الحجر",
+    "place_en": "alhjr",
+    "latitude": 24.29142, "longitude": 43.58803
+  },
+  {
+    "place_ar": "حجُر(حجر اليمامة)",
+    "place_en": "hj-r-hjr-alymamh",
+    "latitude": 24.6335, "longitude": 46.71667
+  },
+  {
+    "place_ar": "الحجر(وادي)",
+    "place_en": "alhjr-wady",
+    "latitude": 25.609, "longitude": 38.617
+  },
+  {
+    "place_ar": "الحجر(جبل)",
+    "place_en": "alhjr-jbl",
+    "latitude": 26.60332, "longitude": 37.92855
+  },
+  {
+    "place_ar": "الحجر",
+    "place_en": "alhjr",
+    "latitude": 24.08902, "longitude": 38.06871
+  },
+  {
+    "place_ar": "حجر",
+    "place_en": "hjr",
+    "latitude": 25.68734, "longitude": 39.29314
+  },
+  {
+    "place_ar": "الحجون",
+    "place_en": "alhjwn",
+     "latitude": 21.43579, "longitude": 39.82873
+  },
+  {
+    "place_ar": "الحديبية",
+    "place_en": "alhdybyh",
+    "latitude": 21.4328, "longitude": 39.64631
+  },
+  {
+    "place_ar": "حراء",
+    "place_en": "hra",
+    "latitude": 21.45795, "longitude": 39.85951
+  },
+  {
+    "place_ar": "الحرة(الغربية)",
+    "place_en": "alhrh-alghrbyh",
+    "latitude": 24.47596, "longitude": 39.58605
+  },
+  {
+    "place_ar": "الحضبة(المحصب)",
+    "place_en": "alhdbh-almhsb",
+    "latitude": 21.43779, "longitude": 39.84167
+  },
+  {
+    "place_ar": "حضرموت",
+    "place_en": "hdrmwt",
+    "latitude": 16.93942, "longitude": 47.92572
+  },
+  {
+    "place_ar": "الحفياء",
+    "place_en": "alhfya",
+    "latitude": 24.55208, "longitude": 39.55352
+  },
+  {
+    "place_ar": "حمص",
+    "place_en": "hms",
+    "latitude": 34.73171, "longitude": 36.71485
+  },
+  {
+    "place_ar": "حنين",
+    "place_en": "hnyn",
+    "latitude": 21.52254, "longitude": 40.0549
+  },
+  {
+    "place_ar": "الحيرة",
+    "place_en": "alhyrh",
+    "latitude": 31.88993, "longitude": 44.48675
+  },
+  {
+    "place_ar": "خراسان",
+    "place_en": "khrasan",
+    "latitude": 35.7131, "longitude": 47.2656
+  },
+  {
+    "place_ar": "خرب المدينة",
+    "place_en": "khrb-almdynh",
+    "latitude": 24.47115, "longitude": 39.61112
+  },
+  {
+    "place_ar": "خطم الخيل",
+    "place_en": "khtm-alkhyl",
+    "latitude": 21.55015, "longitude": 39.84995
+  },
+  {
+    "place_ar": "الخندق",
+    "place_en": "alkhndq",
+    "latitude": 24.48297, "longitude": 39.60035
+  },
+  {
+    "place_ar": "خندق سابور",
+    "place_en": "khndq-sabwr",
+    "latitude": 30.52664, "longitude": 47.7743
+  },
+  {
+    "place_ar": "خيبر",
+    "place_en": "khybr",
+    "latitude": 25.68672, "longitude": 39.29228
+  },
+  {
+    "place_ar": "خيف بني كنانة",
+    "place_en": "khyf-bny-knanh",
+    "latitude": 21.41553, "longitude": 39.87855
+  },
+  {
+    "place_ar": "خيف سلام",
+    "place_en": "khyf-slam",
+    "latitude": 21.92245, "longitude": 39.35357
+  },
+  {
+    "place_ar": "خيف السلام",
+    "place_en": "khyf-alslam",
+    "latitude": 22.94491, "longitude": 39.87161
+  },
+  {
+    "place_ar": "خيف الحميراء",
+    "place_en": "khyf-alhmyra",
+    "latitude": 21.39917, "longitude": 39.85793
+  },
+  {
+    "place_ar": "خيف النعم",
+    "place_en": "khyf-alnam",
+    "latitude": 21.92245, "longitude": 39.35357
+  },
+  {
+    "place_ar": "خيف ابي الخز",
+    "place_en": "khyf-aby-alkhz",
+    "latitude": 22.94491, "longitude": 39.87161
+  },
+  {
+    "place_ar": "خيف نوح",
+    "place_en": "khyf-nwh",
+    "latitude": 24.02388, "longitude": 38.93199
+  },
+  {
+    "place_ar": "الخيف",
+    "place_en": "alkhyf",
+    "latitude": 21.38917, "longitude": 39.85793
+  },
+  {
+    "place_ar": "دار القضاء",
+    "place_en": "dar-alqda",
+    "latitude": 24.46758, "longitude": 39.61024
+  },
+  {
+    "place_ar": "دسكرة",
+    "place_en": "dskrh",
+    "latitude": 34.75018, "longitude": 36.71676
+  },
+  {
+    "place_ar": "دمشق",
+    "place_en": "dmshq",
+    "latitude": 33.51381, "longitude": 36.2765
+  },
+  {
+    "place_ar": "دومة الجندل",
+    "place_en": "dwmh-aljndl",
+    "latitude": 29.81107, "longitude": 39.88908
+  },
+  {
+    "place_ar": "ذات الجيش(مفرحات حاليا)",
+    "place_en": "dhat-aljysh-mfrhat-halya",
+    "latitude": 24.34691, "longitude": 39.40694
+  },
+  {
+    "place_ar": "ذات السلال",
+    "place_en": "dhat-alslal",
+    "latitude": 24.49647, "longitude": 39.62403
+  },
+  {
+    "place_ar": "ذات عرق",
+    "place_en": "dhat-arq",
+    "latitude": 21.9308, "longitude": 40.42591
+  },
+  {
+    "place_ar": "ذو الحليفة",
+    "place_en": "dhw-alhlyfh",
+    "latitude": 24.43215, "longitude": 39.5678
+  },
+  {
+    "place_ar": "الخلصة",
+    "place_en": "alkhlsh",
+    "latitude": 19.99797, "longitude": 42.22957
+  },
+  {
+    "place_ar": "ذو طوى",
+    "place_en": "dhw-twa",
+    "latitude": 21.43194, "longitude": 39.81671
+  },
+  {
+    "place_ar": "ذو قرد(القرد)",
+    "place_en": "dhw-qrd-alqrd",
+    "latitude": 24.56079, "longitude": 39.60262
+  },
+  {
+    "place_ar": "ذو المجاز",
+    "place_en": "dhw-almjaz",
+    "latitude": 21.40456, "longitude": 39.87254
+  },
+  {
+    "place_ar": "الربذة",
+    "place_en": "alrbdhh",
+    "latitude": 24.46744, "longitude": 39.60247
+  },
+  {
+    "place_ar": "الرجيع",
+    "place_en": "alrjya",
+    "latitude": 21.89231, "longitude": 39.44218
+  },
+  {
+    "place_ar": "الروحاء",
+    "place_en": "alrwha",
+    "latitude": 14.23799, "longitude": 43.6345
+  },
+  {
+    "place_ar": "روضة خاخ",
+    "place_en": "rwdh-khakh",
+    "latitude": 24.31934, "longitude": 39.56235
+  },
+  {
+    "place_ar": "رومية",
+    "place_en": "rwmyh",
+    "latitude": 33.88336, "longitude": 35.61672
+  },
+  {
+    "place_ar": "رومة",
+    "place_en": "rwmh",
+    "latitude": 41.90281, "longitude": 12.4964
+  },
+  {
+    "place_ar": "الرويثة",
+    "place_en": "alrwythh",
+    "latitude": 23.62107, "longitude": 39.60002
+  },
+  {
+    "place_ar": "الزاوية",
+    "place_en": "alzawyh",
+    "latitude": 30.50812, "longitude": 47.7835
+  },
+  {
+    "place_ar": "الزوراء",
+    "place_en": "alzwra",
+    "latitude": 24.46724, "longitude": 39.60257
+  },
+  {
+    "place_ar": "الساحل(سيف البحر)",
+    "place_en": "alsahl-syf-albhr",
+    "latitude": 25.06015, "longitude": 38.11602
+  },
+  {
+    "place_ar": "سجستان",
+    "place_en": "sjstan",
+    "latitude": 30.95961, "longitude": 61.8604
+  },
+  {
+    "place_ar": "سد الروحاء",
+    "place_en": "sd-alrwha",
+    "latitude": 24.07825, "longitude": 39.1616
+  },
+  {
+    "place_ar": "سرف",
+    "place_en": "srf",
+    "latitude": 21.55001, "longitude": 39.8
+  },
+  {
+    "place_ar": "السقيا",
+    "place_en": "alsqya",
+    "latitude": 23.4305, "longitude": 39.22842
+  },
+  {
+    "place_ar": "سقيا الجزل",
+    "place_en": "sqya-aljzl",
+    "latitude": 26.31013, "longitude": 37.80884
+  },
+  {
+    "place_ar": "سلع",
+    "place_en": "sla",
+     "latitude": 24.47594, "longitude": 39.59927
+  },
+  {
+    "place_ar": "السنح",
+    "place_en": "alsnh",
+    "latitude": 21.21099, "longitude": 40.28966
+  },
+  {
+    "place_ar": "الشام",
+    "place_en": "alsham",
+    "latitude": 33.5133, "longitude": 36.27621
+  },
+  {
+    "place_ar": "شامة",
+    "place_en": "shamh",
+    "latitude": 20.72506, "longitude": 39.64879
+  },
+  {
+    "place_ar": "شرف الروحاء",
+    "place_en": "shrf-alrwha",
+    "latitude": 24.07708, "longitude": 39.2075
+  },
+  {
+    "place_ar": "الشرف",
+    "place_en": "alshrf",
+    "latitude": 25.24885, "longitude": 42.66654
+  },
+  {
+    "place_ar": "شرف البياض",
+    "place_en": "shrf-albyad",
+    "latitude": 15.68277, "longitude": 43.45571
+  },
+  {
+    "place_ar": "شرف الارطى",
+    "place_en": "shrf-alarta",
+    "latitude": 26.10022, "longitude": 45.4
+  },
+  {
+    "place_ar": "الشعب",
+    "place_en": "alshab",
+    "latitude": 21.37022, "longitude": 39.92998
+  },
+  {
+    "place_ar": "الصخرة",
+    "place_en": "alskhrh",
+    "latitude": 27.90019, "longitude": 34.32299
+  },
+  {
+    "place_ar": "صرار",
+    "place_en": "srar",
+    "latitude": 24.48671, "longitude": 39.64524
+  },
+  {
+    "place_ar": "الصفراوات",
+    "place_en": "alsfrawat",
+    "latitude": 23.19642, "longitude": 39.35085
+  },
+  {
+    "place_ar": "صفين",
+    "place_en": "sfyn",
+    "latitude": 33.25309, "longitude": 43.66961
+  },
+  {
+    "place_ar": "صنعاء",
+    "place_en": "snaa",
+    "latitude": 15.35187, "longitude": 44.20718
+  },
+  {
+    "place_ar": "الصهباء",
+    "place_en": "alshba",
+    "latitude": 25.68519, "longitude": 39.29239
+  },
+  {
+    "place_ar": "ضجنان",
+    "place_en": "djnan",
+    "latitude": 21.789, "longitude": 39.50334
+  },
+  {
+    "place_ar": "الطائف",
+    "place_en": "altayf",
+    "latitude": 21.27028, "longitude": 40.41583
+  },
+  {
+    "place_ar": "طابة(طيبة)",
+    "place_en": "tabh-tybh",
+    "latitude": 24.47115, "longitude": 39.61112
+  },
+  {
+    "place_ar": "طريق النبي صلى الله عليه وسلم",
+    "place_en": "tryq-alnby-sla-allh-alyh-wslm",
+    "latitude": 23.19642, "longitude": 39.35085
+  },
+  {
+    "place_ar": "طفيل",
+    "place_en": "tfyl",
+    "latitude": 20.72044, "longitude": 39.68904
+  },
+  {
+    "place_ar": "الطور",
+    "place_en": "altwr",
+    "latitude": 28.53965, "longitude": 33.97501
+  },
+  {
+    "place_ar": "طوى",
+    "place_en": "twa",
+    "latitude": 28.47492, "longitude": 33.52411
+  },
+  {
+    "place_ar": "ظفار(اظفار)",
+    "place_en": "zfar-azfar",
+    "latitude": 14.21144, "longitude": 44.4033
+  },
+  {
+    "place_ar": "العراق",
+    "place_en": "alaraq",
+    "latitude": 33.09051, "longitude": 42.94028
+  },
+  {
+    "place_ar": "العرج",
+    "place_en": "alarj",
+    "latitude": 23.20399, "longitude": 39.50003
+  },
+  {
+    "place_ar": "العرصة",
+    "place_en": "alarsh",
+    "latitude": 24.46953, "longitude": 39.60857
+  },
+  {
+    "place_ar": "عرفات(عرفة)",
+    "place_en": "arfat-arfh",
+    "latitude": 21.34858, "longitude": 39.98796
+  },
+  {
+    "place_ar": "العرم(السد)",
+    "place_en": "alarm-alsd",
+    "latitude": 15.39681, "longitude": 45.24596
+  },
+  {
+    "place_ar": "عسفان",
+    "place_en": "asfan",
+    "latitude": 21.92246, "longitude": 39.35356
+  },
+  {
+    "place_ar": "العقبة",
+    "place_en": "alaqbh",
+    "latitude": 21.42289, "longitude": 39.87319
+  },
+  {
+    "place_ar": "عكاظ",
+    "place_en": "akaz",
+    "latitude": 21.47506, "longitude": 40.66158
+  },
+  {
+    "place_ar": "العوالي(العالية)",
+    "place_en": "alawaly-alaalyh",
+    "latitude": 24.46072, "longitude": 39.66589
+  },
+  {
+    "place_ar": "عير(عائر)",
+    "place_en": "ayr-aayr",
+    "latitude": 24.38934, "longitude": 39.57436
+  },
+  {
+    "place_ar": "عين التمر",
+    "place_en": "ayn-altmr",
+    "latitude": 32.56721, "longitude": 43.48483
+  },
+  {
+    "place_ar": "عينين",
+    "place_en": "aynyn",
+     "latitude": 24.52697, "longitude": 39.61331
+  },
+  {
+    "place_ar": "الغابة",
+    "place_en": "alghabh",
+    "latitude": 24.56126, "longitude": 39.603
+  },
+  {
+    "place_ar": "غار ثور",
+    "place_en": "ghar-thwr",
+    "latitude": 21.37712, "longitude": 39.84982
+  },
+  {
+    "place_ar": "غار حراء",
+    "place_en": "ghar-hra",
+    "latitude": 21.45993, "longitude": 39.87028
+  },
+  {
+    "place_ar": "غدير الاشطاط",
+    "place_en": "ghdyr-alashtat",
+    "latitude": 21.92219, "longitude": 39.33944
+  },
+  {
+    "place_ar": "الغميم",
+    "place_en": "alghmym",
+    "latitude": 21.43654, "longitude": 39.62064
+  },
+  {
+    "place_ar": "غيقة",
+    "place_en": "ghyqh",
+    "latitude": 23.68127, "longitude": 38.95233
+  },
+  {
+    "place_ar": "فدفد",
+    "place_en": "fdfd",
+    "latitude": 20.56957, "longitude": 40.86187
+  },
+  {
+    "place_ar": "فدك",
+    "place_en": "fdk",
+     "latitude": 25.97585, "longitude": 40.47639
+  },
+  {
+    "place_ar": "القاحة",
+    "place_en": "alqahh",
+    "latitude": 23.6443, "longitude": 39.29216
+  },
+  {
+    "place_ar": "القادسية",
+    "place_en": "alqadsyh",
+    "latitude": 31.70185, "longitude": 44.4757
+  },
+  {
+    "place_ar": "قباء",
+    "place_en": "qba",
+    "latitude": 24.4442, "longitude": 39.615
+  },
+  {
+    "place_ar": "القدوم",
+    "place_en": "alqdwm",
+    "latitude": 34.00064, "longitude": 35.99996
+  },
+  {
+    "place_ar": "قدوم ضان",
+    "place_en": "qdwm-dan",
+    "latitude": 20.23191, "longitude": 41.21651
+  },
+  {
+    "place_ar": "قديد",
+    "place_en": "qdyd",
+    "latitude": 22.34278, "longitude": 39.3227
+  },
+  {
+    "place_ar": "قرن الثعالب",
+    "place_en": "qrn-althaalb",
+    "latitude": 21.41462, "longitude": 39.89456
+  },
+  {
+    "place_ar": "قرن(قرن المنازل)",
+    "place_en": "qrn-qrn-almnazl",
+    "latitude": 21.63262, "longitude": 40.42818
+  },
+  {
+    "place_ar": "قصر بني خلف",
+    "place_en": "qsr-bny-khlf",
+    "latitude": 30.52024, "longitude": 47.7749
+  },
+  {
+    "place_ar": "قطر",
+    "place_en": "qtr",
+    "latitude": 25.41843, "longitude": 51.50017
+  },
+  {
+    "place_ar": "قعيقعان",
+    "place_en": "qayqaan",
+    "latitude": 21.42596, "longitude": 39.82725
+  },
+  {
+    "place_ar": "قناة(الشظاة)",
+    "place_en": "qnah-alshzah",
+    "latitude": 24.49335, "longitude": 39.65573
+  },
+  {
+    "place_ar": "كَداء",
+    "place_en": "k-da",
+    "latitude": 21.43439, "longitude": 39.83615
+  },
+  {
+    "place_ar": "كُداء",
+    "place_en": "k-da",
+    "latitude": 21.43344, "longitude": 39.8362
+  },
+  {
+    "place_ar": "كديد",
+    "place_en": "kdyd",
+    "latitude": 23.6071, "longitude": 38.55812
+  },
+  {
+    "place_ar": "كراع هرش",
+    "place_en": "kraa-hrsh",
+    "latitude": 23.01846, "longitude": 39.14837
+  },
+  {
+    "place_ar": "كرمان",
+    "place_en": "krman",
+    "latitude": 30.28394, "longitude": 57.08337
+  },
+  {
+    "place_ar": "الكوفة",
+    "place_en": "alkwfh",
+    "latitude": 32.03444, "longitude": 44.40311
+  },
+  {
+    "place_ar": "لابتاها",
+    "place_en": "labtaha",
+    "latitude": 24.45921, "longitude": 39.773
+  },
+  {
+    "place_ar": "لحي جمل",
+    "place_en": "lhy-jml",
+    "latitude": 23.71617, "longitude": 39.28142
+  },
+  {
+    "place_ar": "مجنَّة",
+    "place_en": "mjn-h",
+    "latitude": 21.79386, "longitude": 40.03404
+  },
+  {
+    "place_ar": "مجمع البحرين",
+    "place_en": "mjma-albhryn",
+    "latitude": 36.27801, "longitude": 50.00393
+  },
+  {
+    "place_ar": "المحصب(الحصبة)",
+    "place_en": "almhsb-alhsbh",
+    "latitude": 21.42514, "longitude": 39.82693
+  },
+  {
+    "place_ar": "مدين",
+    "place_en": "mdyn",
+    "latitude": 28.48875, "longitude": 35.00377
+  },
+  {
+    "place_ar": "مدينة قيصر",
+    "place_en": "mdynh-qysr",
+    "latitude": 41.01305, "longitude": 28.97996
+  },
+  {
+    "place_ar": "المدينة",
+    "place_en": "almdynh",
+    "latitude": 24.46776, "longitude": 39.60004
+  },
+  {
+    "place_ar": "مربد الغنم",
+    "place_en": "mrbd-alghnm",
+    "latitude": 24.44199, "longitude": 39.62925
+  },
+  {
+    "place_ar": "مر الظهران",
+    "place_en": "mr-alzhran",
+    "latitude": 21.78877, "longitude": 39.99411
+  },
+  {
+    "place_ar": "مريسيع",
+    "place_en": "mrysya",
+    "latitude": 22.56784, "longitude": 39.66193
+  },
+  {
+    "place_ar": "مزدلفة",
+    "place_en": "mzdlfh",
+    "latitude": 21.39421, "longitude": 39.90782
+  },
+  {
+    "place_ar": "مسجد بني زريق",
+    "place_en": "msjd-bny-zryq",
+    "latitude": 24.46481, "longitude": 39.60843
+  },
+  {
+    "place_ar": "مسجد ذي الحليفة",
+    "place_en": "msjd-dhy-alhlyfh",
+    "latitude": 24.41468, "longitude": 39.54778
+  },
+  {
+    "place_ar": "المسجد الكبير(مسجد ميقات ذو الحليفة)",
+    "place_en": "almsjd-alkbyr-msjd-myqat-dhw-alhlyfh",
+    "latitude": 24.41428, "longitude": 39.54299
+  },
+  {
+    "place_ar": "مسجد المعرس",
+    "place_en": "msjd-almars",
+    "latitude": 24.41198, "longitude": 39.54257
+  },
+  {
+    "place_ar": "المشلل",
+    "place_en": "almshll",
+    "latitude": 22.45403, "longitude": 39.31512
+  },
+  {
+    "place_ar": "مصر",
+    "place_en": "msr",
+    "latitude": 26.95465, "longitude": 29.65898
+  },
+  {
+    "place_ar": "المصيصة",
+    "place_en": "almsysh",
+    "latitude": 36.98616, "longitude": 35.62791
+  },
+  {
+    "place_ar": "مكة",
+    "place_en": "mkh",
+    "latitude": 21.42616, "longitude": 39.8663
+  },
+  {
+    "place_ar": "المناصع",
+    "place_en": "almnasa",
+    "latitude": 24.49155, "longitude": 39.57483
+  },
+  {
+    "place_ar": "منى",
+    "place_en": "mna",
+    "latitude": 21.41275, "longitude": 39.90208
+  },
+  {
+    "place_ar": "منصرف الروحاء",
+    "place_en": "mnsrf-alrwha",
+    "latitude": 24.07944, "longitude": 39.16153
+  },
+  {
+    "place_ar": "مهيعة(الجحفة)",
+    "place_en": "mhyah-aljhfh",
+    "latitude": 22.70331, "longitude": 39.14603
+  },
+  {
+    "place_ar": "نجد",
+    "place_en": "njd",
+    "latitude": 23.23165, "longitude": 45.22189
+  },
+  {
+    "place_ar": "نجران",
+    "place_en": "njran",
+    "latitude": 18.31943, "longitude": 46.43092
+  },
+  {
+    "place_ar": "نخل (الحناكية)",
+    "place_en": "nkhl-alhnakyh",
+    "latitude": 24.93265, "longitude": 40.51517
+  },
+  {
+    "place_ar": "نخلة",
+    "place_en": "nkhlh",
+    "latitude": 22.4997, "longitude": 39.89695
+  },
+  {
+    "place_ar": "نصيبين",
+    "place_en": "nsybyn",
+    "latitude": 37.08254, "longitude": 41.21211
+  },
+  {
+    "place_ar": "النقيع",
+    "place_en": "alnqya",
+    "latitude": 24.49155, "longitude": 39.57483
+  },
+  {
+    "place_ar": "الواد(وادي ثمود",
+    "place_en": "alwad-wady-thmwd",
+    "latitude": 26.82284, "longitude": 37.9846
+  },
+  {
+    "place_ar": "وادي القرى)",
+    "place_en": "wady-alqra",
+    "latitude": 26.82284, "longitude": 37.9846
+  },
+  {
+    "place_ar": "وادي العقيق",
+    "place_en": "wady-alaqyq",
+    "latitude": 24.4214, "longitude": 39.5476
+  },
+  {
+    "place_ar": "الوادي(وادي القرى",
+    "place_en": "alwady-wady-alqra",
+    "latitude": 26.87509, "longitude": 37.99526
+  },
+  {
+    "place_ar": "وادي العلا)",
+    "place_en": "wady-alala",
+    "latitude": 26.87509, "longitude": 37.99526
+  },
+  {
+    "place_ar": "ودان",
+    "place_en": "wdan",
+    "latitude": 23.49603, "longitude": 39.09203
+  },
+  {
+    "place_ar": "هجر",
+    "place_en": "hjr",
+    "latitude": 25.30848, "longitude": 49.6017
+  },
+  {
+    "place_ar": "الهدأة(هدا الشام)",
+    "place_en": "alhdah-hda-alsham",
+    "latitude": 21.80018, "longitude": 39.717
+  },
+  {
+    "place_ar": "هرشى",
+    "place_en": "hrsha",
+    "latitude": 23.18603, "longitude": 39.25788
+  },
+  {
+    "place_ar": "يثرب",
+    "place_en": "ythrb",
+     "latitude": 24.49155, "longitude": 39.57483
+  },
+  {
+    "place_ar": "نهر اليرموك",
+    "place_en": "nhr-alyrmwk",
+    "latitude": 32.76234, "longitude": 35.71824
+  },
+  {
+    "place_ar": "يلملم",
+    "place_en": "ylmlm",
+    "latitude": 20.83983, "longitude": 40.13909
+  },
+  {
+    "place_ar": "اليمامة",
+    "place_en": "alymamh",
+    "latitude": 24.59368, "longitude": 46.71678
+  },
+  {
+    "place_ar": "اليمن",
+    "place_en": "alymn",
+     "latitude": 15.79195, "longitude": 45.96905
+  }
+]

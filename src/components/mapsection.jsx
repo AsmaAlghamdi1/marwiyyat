@@ -13,6 +13,7 @@ import { MdReplay } from "react-icons/md";
 import { IoIosSpeedometer } from "react-icons/io";
 import { PiBookOpenText } from "react-icons/pi";
 import "@maptiler/leaflet-maptilersdk";
+import englishPlacesData from '../locales/places_with_en.json';
 
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: null,
@@ -25,14 +26,13 @@ const MapMover = ({ position, zoom }) => {
   const map = useMap();
   useEffect(() => {
     if (position) {
-      map.flyTo(position, zoom, { duration: 0.2, easeLinearity: 0.2, });
+      map.flyTo(position, zoom, { duration: 0.2, easeLinearity: 0.2 });
     }
   }, [position, zoom, map]);
 
   return null;
 };
 
-// مكون لمراقبة تفاعل المستخدم مع الخريطة
 const MapInteractionHandler = ({ onInteraction }) => {
   useMapEvents({
     movestart: onInteraction,
@@ -49,13 +49,12 @@ const HomeButton = ({ onClick }) => (
   </button>
 );
 
-
-
 const formatTime = (timeInSeconds) => {
   const minutes = Math.floor(timeInSeconds / 60);
   const seconds = Math.floor(timeInSeconds % 60);
   return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 };
+
 export const Mapsection = () => {
   const [geojsonData, setGeojsonData] = useState(null);
   const [imagesData, setImagesData] = useState({});
@@ -73,24 +72,28 @@ export const Mapsection = () => {
   const [playbackRate, setPlaybackRate] = useState(1);
   const [showSpeedMenu, setShowSpeedMenu] = useState(false);
   const [showUserBox, setShowUserBox] = useState(false);
-  /* التغييرات الجديدة*/
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
   const [elapsedTime, setElapsedTime] = useState(0);
   const [geoData, setGeoData] = useState(null);
-  const progressBarRef = useRef(null); 
+  const progressBarRef = useRef(null);
+  const [englishPlaces, setEnglishPlaces] = useState([]);
+
+  useEffect(() => {
+    setEnglishPlaces(englishPlacesData);
+  }, []);
 
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.pause();
-      // audioRef.current.currentTime = 0;
       audioRef.current = null;
       setIsPlaying(false);
     }
   }, [selectedPlace]);
+
   const handleAudioToggle = () => {
     if (!selectedPlace.audio) {
-      alert("{t(mapsection.AudioValid)}");
+      alert("الصوت غير متوفر لهذا المكان");
       return;
     }
 
@@ -102,14 +105,12 @@ export const Mapsection = () => {
 
     if (audioRef.current) {
       audioRef.current.playbackRate = playbackRate;
-      audioRef.current
-
-        .play()
+      audioRef.current.play()
         .then(() => {
           setIsPlaying(true);
         })
         .catch((err) => {
-          console.error(t("mapsection.ResumeAudio"), err);
+          console.error("فشل في استئناف الصوت", err);
           setIsPlaying(false);
         });
       return;
@@ -119,7 +120,6 @@ export const Mapsection = () => {
     audioRef.current = audio;
     audio.playbackRate = playbackRate;
 
-    /*تعديل جديد */
     audio.onloadedmetadata = () => {
       setDuration(audio.duration);
     };
@@ -136,13 +136,9 @@ export const Mapsection = () => {
       setProgress(100);
       setElapsedTime(duration);
     };
-    /** نهاية التعديل الجديد*/
-
-    audio.onended = () => setIsPlaying(false);
 
     setIsLoading(true);
-    audio
-      .play()
+    audio.play()
       .then(() => {
         setIsPlaying(true);
         setIsLoading(false);
@@ -159,6 +155,7 @@ export const Mapsection = () => {
       audioRef.current.currentTime += seconds;
     }
   };
+
   const changePlaybackRate = (rate) => {
     setPlaybackRate(rate);
     if (audioRef.current) {
@@ -166,7 +163,6 @@ export const Mapsection = () => {
     }
     setShowSpeedMenu(false);
   };
-
 
   const defaultPosition = [23, 44];
   const mapRef = useRef(null);
@@ -190,17 +186,16 @@ export const Mapsection = () => {
         setImagesData(imagesMap);
       })
       .catch((err) => console.error("Error loading images JSON:", err));
-  }, []);
 
-  useEffect(() => {
     fetch('/Geo.json')
       .then(res => res.json())
       .then(data => setGeoData(data));
   }, []);
+
   const createDivIcon = (imgUrl, isActive = false) => {
     return L.divIcon({
       html: `<div class="custom-div-icon ${isActive ? "active-marker" : ""}">
-      <img src="${imgUrl}" alt="" />
+        <img src="${imgUrl}" alt="" />
       </div>`,
       className: "",
       iconSize: [60, 60],
@@ -246,55 +241,60 @@ export const Mapsection = () => {
       return;
     }
 
-    if (!geojsonData) {
+    if (!geojsonData || !englishPlaces.length) {
       setSearchError("بيانات الأماكن غير محملة بعد.");
       setSuggestions([]);
       return;
     }
 
-    const matched = geojsonData.features.find((feature) =>
-      feature.properties.place.toLowerCase().startsWith(searchValue)
+    // البحث بالعربية
+    const directMatch = geojsonData.features.find((feature) =>
+      feature.properties.place?.toLowerCase().includes(searchValue)
     );
 
-    if (matched) {
+    if (directMatch) {
+      const coords = directMatch.geometry.coordinates;
+      const latlng = [coords[1], coords[0]];
+      fetchPlaceDetails(latlng[0], latlng[1], directMatch.properties.place);
       setSearchError("");
       setSuggestions([]);
       setSearchTerm("");
+      return;
+    }
 
-      const coords = matched.geometry.coordinates;
-      const latlng = [coords[1], coords[0]];
+    // البحث بالإنجليزية
+    const enMatch = englishPlaces.find((item) =>
+      item.place_en?.toLowerCase().includes(searchValue)
+    );
 
-      fetchPlaceDetails(latlng[0], latlng[1], matched.properties.place);
+    if (enMatch) {
+      const latlng = [enMatch.latitude, enMatch.longitude];
+      fetchPlaceDetails(latlng[0], latlng[1], enMatch.place_ar);
+      setSearchError("");
+      setSuggestions([]);
+      setSearchTerm("");
     } else {
       setSearchError("المكان غير موجود، تأكد من الاسم.");
       setSuggestions([]);
     }
   };
-//   const handleProgressBarClick = (event) => {
-//   const rect = progressBarRef.current.getBoundingClientRect();
-//   const clickX = event.clientX - rect.left;
-//   const width = rect.width;
-//   const progress = clickX / width;
-//   const newTime = progress * duration;
-//   audioRef.current.currentTime = newTime;
-// };
-const handleProgressBarClick = (event) => {
-  const progressBar = progressBarRef.current;
-  const audio = audioRef.current;
 
-  if (!progressBar || !audio || !audio.duration) return;
+  const handleProgressBarClick = (event) => {
+    const progressBar = progressBarRef.current;
+    const audio = audioRef.current;
 
-  const rect = progressBar.getBoundingClientRect();
-  const clickX = event.clientX - rect.left;
-  const width = rect.width;
-  const progress = 1 - (clickX / width);
+    if (!progressBar || !audio || !audio.duration) return;
 
-  audio.currentTime = progress * audio.duration;
-};
+    const rect = progressBar.getBoundingClientRect();
+    const clickX = event.clientX - rect.left;
+    const width = rect.width;
+    const progress = clickX / width;
+
+    audio.currentTime = progress * audio.duration;
+  };
 
   const normalized = (str) => (str || "").trim().toLowerCase().replace(/\s+/g, "");
 
-  // خريطة الأسماء البديلة لكل مدينة - تستخدم للفلترة
   const cityMap = {
     "Al Ahsa": ["الأحساء"],
     "Jordan": ["الأردن"],
@@ -339,8 +339,6 @@ const handleProgressBarClick = (event) => {
     "Homs": ["حمص"]
   };
 
-
-  // فلترة الأماكن المعروضة حسب المدينة المحددة مع استثناءات خاصة
   const filteredFeatures = geojsonData?.features.filter((feature) => {
     const rawCity = feature.properties.city || feature.properties.place || "";
     const normalizedCity = normalized(rawCity);
@@ -349,10 +347,7 @@ const handleProgressBarClick = (event) => {
 
     if (!selectedCity || !cityMap[selectedCity]) return true;
 
-    // استثناء خاص: لا تعرض "ذات عرق" عند اختيار "العراق"
     if (selectedCity === "العراق" && placeName.includes("ذات عرق")) return false;
-
-    // استثناء خاص: لا تعرض "الصخرة" عند اختيار "البحرين"
     if (selectedCity === "البحرين" && placeName.includes("الصخرة")) return false;
 
     const aliases = cityMap[selectedCity] || [];
@@ -368,16 +363,13 @@ const handleProgressBarClick = (event) => {
         ])
       );
       mapRef.current.fitBounds(bounds, { padding: [50, 50] });
-      setMapZoom(mapRef.current.getZoom()); // تعيين الزووم الحالي بعد fitBounds
+      setMapZoom(mapRef.current.getZoom());
     }
   }, [filteredFeatures, mapTargetPosition]);
 
-
-  // إنشاء قائمة المدن مرتبة أبجدياً
   const cityList = Object.keys(cityMap).sort();
 
   return (
-
     <div className="App">
       <h2>{t("mapsection.maptitle")}</h2>
 
@@ -400,37 +392,38 @@ const handleProgressBarClick = (event) => {
                   {t(`FilterByCity.${city}`, city)}
                 </option>
               ))}
-
             </select>
             <div style={{ position: "relative", width: "100%", color: "black" }}>
+              
               <input
-                type="text"
-                placeholder="ابحث عن مكان..."
-                className="search-input filter-select"
-                value={searchTerm}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  setSearchTerm(value);
+  type="text"
+  placeholder={t("mapsection.searchPlaceholder")}
+  className="search-input filter-select"
+  value={searchTerm}
+  onChange={(e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
 
-                  if (!value || !geojsonData) {
-                    setSuggestions([]);
-                    setSearchError("");
-                    return;
-                  }
+    if (!value || !geojsonData) {
+      setSuggestions([]);
+      setSearchError("");
+      return;
+    }
 
-                  const filtered = geojsonData.features
-                    .map((f) => f.properties.place)
-                    .filter((place) =>
-                      place?.toLowerCase().includes(value.trim().toLowerCase())
-                    );
+    const filtered = [
+      ...geojsonData.features.map((f) => f.properties.place),
+      ...englishPlaces.map((p) => p.place_en)
+    ].filter((place) =>
+      place?.toLowerCase().includes(value.trim().toLowerCase())
+    );
 
-                  setSuggestions(filtered.slice(0, 5));
-                  setSearchError("");
-                }}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") handleSearch();
-                }}
-              />
+    setSuggestions(filtered.slice(0, 5));
+    setSearchError("");
+  }}
+  onKeyDown={(e) => {
+    if (e.key === "Enter") handleSearch();
+  }}
+/>
 
               {suggestions.length > 0 && (
                 <ul className="suggestion-list">
@@ -451,67 +444,17 @@ const handleProgressBarClick = (event) => {
           </div>
 
           <MapContainer
-
-            //mapLib={import('maplibre-gl')}
             center={defaultPosition}
             zoom={5}
             style={{ height: "100%", width: "100%", backgroundColor: "#ffffff" }}
             whenCreated={(mapInstance) => {
               mapRef.current = mapInstance;
-
             }}
-
-
           >
             <TileLayer
               url="https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png"
               attribution='&copy; <a href="https://carto.com/">CARTO</a>'
             />
-            {/* <TileLayer
-              url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            /> */}
-
-
-
-
-            {/* الطبقه الجديده حقت الماب من geo  */}
-
-            {/* {geoData && (
-    <GeoJSON
-      data={geoData}
-      style={() => ({
-        color: "#ff7800",
-        weight: 2,
-        fillOpacity: 0.1,
-      })}
-      onEachFeature={(feature, layer) => {
-        
-        if (feature.properties && feature.properties.name) {
-          layer.bindPopup(feature.properties.name);
-        }
-      }}
-    />
-  )} */}
-
-            {/* <GeoJSON
-  data={geoData}
-  onEachFeature={(feature, layer) => {
-    let displayName = feature.properties.name || feature.properties.admin;
-
-    if (displayName === 'Israel' || displayName === 'ישראל') {
-      displayName = 'فلسطين'; // استبدل الاسم هنا
-    }
-
-    layer.bindPopup(displayName);
-  }}
-  style={() => ({
-    color: "#008000",
-    weight: 2,
-    fillOpacity: 0.1,
-  })}
-/> */}
-
 
             <MapMover position={mapTargetPosition} />
 
@@ -566,6 +509,7 @@ const handleProgressBarClick = (event) => {
 
           {selectedPlace && <div className="map-overlay" />}
         </div>
+
         {selectedPlace && (
           <div className="details-sidebar">
             <button
@@ -586,21 +530,15 @@ const handleProgressBarClick = (event) => {
               />
 
               <div className="audio-controls-overlay">
-                {/* هنا تعديل جديد  */}
                 <div className="progress-container">
                   <span className="time-text">{formatTime(elapsedTime)}</span>
-
                   <div className="progress-bar" ref={progressBarRef} onClick={handleProgressBarClick}>
                     <div className="progress-fill" style={{ width: `${progress}%` }} />
-
                   </div>
-
                   <span className="time-text">{formatTime(duration - elapsedTime)}</span>
                 </div>
-                {/* نهاية التعديل الجديد */}
+
                 <div className="audio-control-btn-group">
-
-
                   <button
                     className="audio-control-btn"
                     onClick={() => handleSeek(10)}
@@ -609,7 +547,6 @@ const handleProgressBarClick = (event) => {
                     <MdOutlineReplay10 size={24} />
                   </button>
 
-                  {/* برضو تعديل جديد  */}
                   {!isPlaying && duration > 0 && elapsedTime >= duration ? (
                     <button
                       className="audio-control-btn"
@@ -637,6 +574,7 @@ const handleProgressBarClick = (event) => {
                       )}
                     </button>
                   )}
+
                   <button
                     className="audio-control-btn"
                     onClick={() => handleSeek(-10)}
@@ -645,7 +583,6 @@ const handleProgressBarClick = (event) => {
                     <MdOutlineForward10 size={24} />
                   </button>
 
-                  {/* زر التحكم بالسرعة */}
                   <div className="speed-control-wrapper">
                     <button
                       className="audio-control-btn"
@@ -671,7 +608,6 @@ const handleProgressBarClick = (event) => {
                   </div>
                 </div>
               </div>
-
             </div>
 
             <div className="details-description">
@@ -719,7 +655,6 @@ const handleProgressBarClick = (event) => {
                       "_blank"
                     );
                   }
-
                 }}
                 className="circle-icon-button"
               >
@@ -735,14 +670,13 @@ const handleProgressBarClick = (event) => {
                   };
                   if (navigator.share) {
                     navigator.share(shareData).catch((err) => {
-                      console.error("{t(mapsection.share)}", err)
+                      console.error("فشل في المشاركة", err)
                     })
                   } else {
                     navigator.clipboard.writeText(storyUrl).then(() => {
-                      alert("{t(mapsection.copy)}")
+                      alert("تم نسخ الرابط")
                     })
                   }
-
                 }}
                 className="circle-icon-button"
               >
@@ -752,16 +686,12 @@ const handleProgressBarClick = (event) => {
                 <div className="circle-icon-button">
                   <FaEye className="icon" />
                 </div>
-                <span className="views-text" >{selectedPlace.views ?? 0}</span>
+                <span className="views-text">{selectedPlace.views ?? 0}</span>
               </div>
-
-              {/* <Tooltip id="storySource" place="top" style={{ zIndex: 9999 }} />          */}
             </div>
-
           </div>
         )}
       </div>
     </div>
   );
-
 };

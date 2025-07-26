@@ -34,7 +34,8 @@
     "share":"فشل في المشاركة",
     "copy":"تم نسخ رابط القصة",
     "AudioValid":"لا يوجد ملف صوني متاح لهذا المكان",
-    "ResumeAudio":"فشل استئناف الصوت"
+    "ResumeAudio":"فشل استئناف الصوت",
+    "searchPlaceholder": "ابحث عن مكان..."
   },
   "contactsection":{
     "contacttitle":"ساعدنا في تحسين المحتوى !",

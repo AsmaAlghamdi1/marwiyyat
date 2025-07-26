@@ -34,7 +34,8 @@
     "share": "Faild To Share",
     "copy": "The Story Link Has Been Copied",
     "AudioValid": "No Audio File Available For This Location",
-    "ResumeAudio": "Audio Resume Failed"
+    "ResumeAudio": "Audio Resume Failed",
+    "searchPlaceholder": "Search for a place"
   },
   "contactsection": {
     "contacttitle": "Help us improve the content !",
