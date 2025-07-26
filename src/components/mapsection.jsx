@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react"; 
-import { MapContainer, TileLayer,Marker,Tooltip,useMap,useMapEvents,GeoJSON} from "react-leaflet";
+import { useEffect, useRef, useState } from "react";
+import { MapContainer, TileLayer, Marker, Tooltip, useMap, useMapEvents, GeoJSON } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "../css/mapsection.css";
@@ -25,7 +25,7 @@ const MapMover = ({ position, zoom }) => {
   const map = useMap();
   useEffect(() => {
     if (position) {
-      map.flyTo(position, zoom, { duration: 0.2,easeLinearity: 0.2,});
+      map.flyTo(position, zoom, { duration: 0.2, easeLinearity: 0.2, });
     }
   }, [position, zoom, map]);
 
@@ -66,8 +66,8 @@ export const Mapsection = () => {
   const [mapTargetPosition, setMapTargetPosition] = useState(null);
   const [mapZoom, setMapZoom] = useState(5);
   const audioRef = useRef(null);
-  const [isLoading,setIsLoading]=useState(false);
-  const[isPlaying, setIsPlaying]= useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [selectedCity, setSelectedCity] = useState("");
   const [playbackRate, setPlaybackRate] = useState(1);
@@ -80,14 +80,14 @@ export const Mapsection = () => {
   const [geoData, setGeoData] = useState(null);
   const progressBarRef = useRef(null); 
 
-  useEffect(()=>{
-      if (audioRef.current) {
-    audioRef.current.pause();
-    // audioRef.current.currentTime = 0;
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      // audioRef.current.currentTime = 0;
       audioRef.current = null;
-    setIsPlaying(false);
-  }
-  },[selectedPlace]);
+      setIsPlaying(false);
+    }
+  }, [selectedPlace]);
   const handleAudioToggle = () => {
     if (!selectedPlace.audio) {
       alert("{t(mapsection.AudioValid)}");
@@ -103,7 +103,7 @@ export const Mapsection = () => {
     if (audioRef.current) {
       audioRef.current.playbackRate = playbackRate;
       audioRef.current
-      
+
         .play()
         .then(() => {
           setIsPlaying(true);
@@ -121,22 +121,22 @@ export const Mapsection = () => {
 
     /*تعديل جديد */
     audio.onloadedmetadata = () => {
-  setDuration(audio.duration);
-};
+      setDuration(audio.duration);
+    };
 
-audio.ontimeupdate = () => {
-  if (audio.duration) {
-    setElapsedTime(audio.currentTime);
-    setProgress((audio.currentTime / audio.duration) * 100);
-  }
-};
+    audio.ontimeupdate = () => {
+      if (audio.duration) {
+        setElapsedTime(audio.currentTime);
+        setProgress((audio.currentTime / audio.duration) * 100);
+      }
+    };
 
-audio.onended = () => {
-  setIsPlaying(false);
-  setProgress(100);
-  setElapsedTime(duration); 
-};
-/** نهاية التعديل الجديد*/
+    audio.onended = () => {
+      setIsPlaying(false);
+      setProgress(100);
+      setElapsedTime(duration);
+    };
+    /** نهاية التعديل الجديد*/
 
     audio.onended = () => setIsPlaying(false);
 
@@ -159,13 +159,13 @@ audio.onended = () => {
       audioRef.current.currentTime += seconds;
     }
   };
-const changePlaybackRate = (rate) => {
-  setPlaybackRate(rate);
-  if (audioRef.current) {
-    audioRef.current.playbackRate = rate;
-  }
-  setShowSpeedMenu(false);
-};
+  const changePlaybackRate = (rate) => {
+    setPlaybackRate(rate);
+    if (audioRef.current) {
+      audioRef.current.playbackRate = rate;
+    }
+    setShowSpeedMenu(false);
+  };
 
 
   const defaultPosition = [23, 44];
@@ -192,11 +192,11 @@ const changePlaybackRate = (rate) => {
       .catch((err) => console.error("Error loading images JSON:", err));
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     fetch('/Geo.json')
-    .then(res=>res.json())
-    .then(data=>setGeoData(data));
-  },[]);
+      .then(res => res.json())
+      .then(data => setGeoData(data));
+  }, []);
   const createDivIcon = (imgUrl, isActive = false) => {
     return L.divIcon({
       html: `<div class="custom-div-icon ${isActive ? "active-marker" : ""}">
@@ -223,11 +223,11 @@ const changePlaybackRate = (rate) => {
         story: data.story || "",
         city: data.city || "",
         summary: data.summary || "",
-        audio:data.audio,
+        audio: data.audio,
         lat: lat,
         lng: lng,
-        views : data.views !==undefined ? data.views : 0,
-        source : data.source,
+        views: data.views !== undefined ? data.views : 0,
+        source: data.source,
       });
 
       setMapTargetPosition([lat, lng]);
@@ -296,48 +296,49 @@ const handleProgressBarClick = (event) => {
 
   // خريطة الأسماء البديلة لكل مدينة - تستخدم للفلترة
   const cityMap = {
-    "الأحساء": ["الأحساء"],
-    "الأردن": ["الأردن"],
-    "البحرين": ["البحرين"],
-    "الجزيرة العربية": ["الجزيرة"],
-    "الرياض": ["الرياض", "نجد"],
-   "جنوب المملكة العربية السعودية": ["جنوب المملكة", "أطراف اليمن"],
-    "الصمان": ["الصمان"],
-    "القسطنطينية": ["القسطنطينية"],
-    "القنفذة": ["القنفذة"],
-    "الكويت": ["الكويت"],
-    "المغرب": ["المغرب"],
-    "الموصل": ["الموصل"],
-    "الليث": ["الليث"],
-    "اليمن": ["اليمن", "صنعاء", "مأرب"],
-    "إيران": ["إيران", "قزوين"],
-    "اثيوبيا": ["اثيوبيا"],
-    "العراق": ["العراق", "بغداد", "البصرة", "الكوفة"],
-    "العلا": ["العلا"],
-    "الطائف": ["الطائف"],
-    "بين مكة و المدينة": ["بين مكة و المدينة", "بين مكة والمدينة", "بين مكة والطائف", "مكة المدينة"],
-    "تبالة": ["تبالة"],
-    "تركيا": ["تركيا", "أنطاكية"],
-    "تبوك": ["تبوك"],
-    "سوريا": ["سوريا", "حمص"],
-    "شرق اسيا": ["شرق اسيا"],
-    "غرب السعودية": ["غرب السعودية"],
-    "فلسطين": ["فلسطين", "القدس"],
-    "مدين": ["مدين"],
-    "مجمع البحرين": ["مجمع البحرين"],
-    "مصر": ["مصر"],
-    "مكة المكرمة": ["مكة", "منى", "مزدلفة", "عرفة", "جبل مطل على منى", "ميقات اهل العراق"],
-    "منطقة عسير": ["عسير", "نجران"],
-    "المدينة المنورة": ["المدينة", "طيبة", "شمال المدينة", "خيبر", "ينبع"],
-    "الحجر": ["الحجر", "مدائن صالح"],
-    "بلاد الشام": ["بلاد الشام"],
-    "بلاد الجوف": ["بلاد الجوف"],
-    "ينبع": ["ينبع"],
-    "خيبر": ["خيبر"],
-    "حائل": ["حائل"],
-    "عسفان": ["عسفان"],
-    "حمص": ["حمص"]
+    "Al Ahsa": ["الأحساء"],
+    "Jordan": ["الأردن"],
+    "Bahrain": ["البحرين"],
+    "Arabian Peninsula": ["الجزيرة"],
+    "Riyadh": ["الرياض", "نجد"],
+    "Southern Saudi Arabia": ["جنوب المملكة", "أطراف اليمن"],
+    "As Saman": ["الصمان"],
+    "Constantinople": ["القسطنطينية"],
+    "Al Qunfudhah": ["القنفذة"],
+    "Kuwait": ["الكويت"],
+    "Morocco": ["المغرب"],
+    "Mosul": ["الموصل"],
+    "Al Lith": ["الليث"],
+    "Yemen": ["اليمن", "صنعاء", "مأرب"],
+    "Iran": ["إيران", "قزوين"],
+    "Ethiopia": ["اثيوبيا"],
+    "Iraq": ["العراق", "بغداد", "البصرة", "الكوفة"],
+    "Al Ula": ["العلا"],
+    "Taif": ["الطائف"],
+    "Between Mecca and Medina": ["بين مكة و المدينة", "بين مكة والمدينة", "بين مكة والطائف", "مكة المدينة"],
+    "Tabalah": ["تبالة"],
+    "Turkey": ["تركيا", "أنطاكية"],
+    "Tabuk": ["تبوك"],
+    "Syria": ["سوريا", "حمص"],
+    "East Asia": ["شرق اسيا"],
+    "Western Saudi Arabia": ["غرب السعودية"],
+    "Palestine": ["فلسطين", "القدس"],
+    "Medain": ["مدين"],
+    "Majmaa albahrain": ["مجمع البحرين"],
+    "Egypt": ["مصر"],
+    "Mecca": ["مكة", "منى", "مزدلفة", "عرفة", "جبل مطل على منى", "ميقات اهل العراق"],
+    "Asir Region": ["عسير", "نجران"],
+    "Medina": ["المدينة", "طيبة", "شمال المدينة", "خيبر", "ينبع"],
+    "Al Hijr": ["الحجر", "مدائن صالح"],
+    "Levant": ["بلاد الشام"],
+    "Al Jawf": ["بلاد الجوف"],
+    "Yanbu": ["ينبع"],
+    "Khaybar": ["خيبر"],
+    "Hail": ["حائل"],
+    "Asfan": ["عسفان"],
+    "Homs": ["حمص"]
   };
+
 
   // فلترة الأماكن المعروضة حسب المدينة المحددة مع استثناءات خاصة
   const filteredFeatures = geojsonData?.features.filter((feature) => {
@@ -346,7 +347,7 @@ const handleProgressBarClick = (event) => {
     const normalizedSelected = normalized(selectedCity);
     const placeName = feature.properties.place || "";
 
-    if (!normalizedSelected || normalizedSelected === "الكل") return true;
+    if (!selectedCity || !cityMap[selectedCity]) return true;
 
     // استثناء خاص: لا تعرض "ذات عرق" عند اختيار "العراق"
     if (selectedCity === "العراق" && placeName.includes("ذات عرق")) return false;
@@ -366,7 +367,7 @@ const handleProgressBarClick = (event) => {
           f.geometry.coordinates[0],
         ])
       );
-     mapRef.current.fitBounds(bounds, { padding: [50, 50] });
+      mapRef.current.fitBounds(bounds, { padding: [50, 50] });
       setMapZoom(mapRef.current.getZoom()); // تعيين الزووم الحالي بعد fitBounds
     }
   }, [filteredFeatures, mapTargetPosition]);
@@ -376,7 +377,7 @@ const handleProgressBarClick = (event) => {
   const cityList = Object.keys(cityMap).sort();
 
   return (
-  
+
     <div className="App">
       <h2>{t("mapsection.maptitle")}</h2>
 
@@ -392,15 +393,16 @@ const handleProgressBarClick = (event) => {
                 setMapTargetPosition(null);
               }}
             >
-              <option value="">اختر المدينة</option>
-              <option value="الكل">الكل</option>
+              <option value="">{t("FilterByCity.Choose country/City")}</option>
+              <option value="All">{t("FilterByCity.All")}</option>
               {cityList.map((city, i) => (
                 <option key={i} value={city}>
-                  {city}
+                  {t(`FilterByCity.${city}`, city)}
                 </option>
               ))}
+
             </select>
-            <div style={{ position: "relative", width: "100%",color:"black" }}>
+            <div style={{ position: "relative", width: "100%", color: "black" }}>
               <input
                 type="text"
                 placeholder="ابحث عن مكان..."
@@ -449,22 +451,22 @@ const handleProgressBarClick = (event) => {
           </div>
 
           <MapContainer
-            
+
             //mapLib={import('maplibre-gl')}
             center={defaultPosition}
             zoom={5}
             style={{ height: "100%", width: "100%", backgroundColor: "#ffffff" }}
             whenCreated={(mapInstance) => {
-            mapRef.current = mapInstance;
-            
+              mapRef.current = mapInstance;
+
             }}
-            
-           
+
+
           >
-           <TileLayer
-  url="https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png"
-  attribution='&copy; <a href="https://carto.com/">CARTO</a>'
-/>
+            <TileLayer
+              url="https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png"
+              attribution='&copy; <a href="https://carto.com/">CARTO</a>'
+            />
             {/* <TileLayer
               url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -473,9 +475,9 @@ const handleProgressBarClick = (event) => {
 
 
 
-{/* الطبقه الجديده حقت الماب من geo  */}
+            {/* الطبقه الجديده حقت الماب من geo  */}
 
-  {/* {geoData && (
+            {/* {geoData && (
     <GeoJSON
       data={geoData}
       style={() => ({
@@ -492,7 +494,7 @@ const handleProgressBarClick = (event) => {
     />
   )} */}
 
-  {/* <GeoJSON
+            {/* <GeoJSON
   data={geoData}
   onEachFeature={(feature, layer) => {
     let displayName = feature.properties.name || feature.properties.admin;
@@ -509,7 +511,7 @@ const handleProgressBarClick = (event) => {
     fillOpacity: 0.1,
   })}
 /> */}
-        
+
 
             <MapMover position={mapTargetPosition} />
 
@@ -564,204 +566,202 @@ const handleProgressBarClick = (event) => {
 
           {selectedPlace && <div className="map-overlay" />}
         </div>
- {selectedPlace && (
-        <div className="details-sidebar">
-          <button
-            className="close-btn"
-            onClick={() => setSelectedPlace(null)}
-            title="إغلاق"
-          >
-            ×
-          </button>
+        {selectedPlace && (
+          <div className="details-sidebar">
+            <button
+              className="close-btn"
+              onClick={() => setSelectedPlace(null)}
+              title="إغلاق"
+            >
+              ×
+            </button>
 
-          <h3 className="place-title">{selectedPlace.name}</h3>
+            <h3 className="place-title">{selectedPlace.name}</h3>
 
-          <div style={{ position: "relative" }}>
-            <img
-              src={selectedPlace.image}
-              alt={selectedPlace.name}
-              className="details-image"
-            />
+            <div style={{ position: "relative" }}>
+              <img
+                src={selectedPlace.image}
+                alt={selectedPlace.name}
+                className="details-image"
+              />
 
-            <div className="audio-controls-overlay">
-             {/* هنا تعديل جديد  */}
-              <div className="progress-container">
-  <span className="time-text">{formatTime(elapsedTime)}</span>
+              <div className="audio-controls-overlay">
+                {/* هنا تعديل جديد  */}
+                <div className="progress-container">
+                  <span className="time-text">{formatTime(elapsedTime)}</span>
 
-  <div className="progress-bar" ref={progressBarRef} onClick={handleProgressBarClick} 
-  
-  >
-    <div className="progress-fill" style={{ width: `${progress}%` }}/>
-      
-  </div>
+                  <div className="progress-bar">
+                    <div className="progress-fill" style={{ width: `${progress}%` }} />
 
-  <span className="time-text">{formatTime(duration - elapsedTime)}</span>
-</div>
-{/* نهاية التعديل الجديد */}
-              <div className="audio-control-btn-group">
+                  </div>
 
-              
-                <button
-                className="audio-control-btn"
-                onClick={() => handleSeek(10)}
-                title={t("mapsection.forward")}
-              >
-                <MdOutlineReplay10 size={24} />
-              </button>
+                  <span className="time-text">{formatTime(duration - elapsedTime)}</span>
+                </div>
+                {/* نهاية التعديل الجديد */}
+                <div className="audio-control-btn-group">
 
-{/* برضو تعديل جديد  */}
-                {!isPlaying && duration > 0 && elapsedTime>= duration ? (
+
                   <button
-                   className="audio-control-btn"
-                  onClick={() => {
-                  audioRef.current.currentTime = 0;
-                  audioRef.current.play();
-                  setIsPlaying(true);
-                  }}
-                  title="إعادة التشغيل"
+                    className="audio-control-btn"
+                    onClick={() => handleSeek(10)}
+                    title={t("mapsection.forward")}
                   >
-              <MdReplay size={24} />
-                </button>
-                ) : (
-               <button
-                 className="audio-control-btn"
-                onClick={handleAudioToggle}
-                title={isPlaying ? t("mapsection.TurnOffAudio") : t("mapsection.TurnOnAudio")}
+                    <MdOutlineReplay10 size={24} />
+                  </button>
+
+                  {/* برضو تعديل جديد  */}
+                  {!isPlaying && duration > 0 && elapsedTime >= duration ? (
+                    <button
+                      className="audio-control-btn"
+                      onClick={() => {
+                        audioRef.current.currentTime = 0;
+                        audioRef.current.play();
+                        setIsPlaying(true);
+                      }}
+                      title="إعادة التشغيل"
+                    >
+                      <MdReplay size={24} />
+                    </button>
+                  ) : (
+                    <button
+                      className="audio-control-btn"
+                      onClick={handleAudioToggle}
+                      title={isPlaying ? t("mapsection.TurnOffAudio") : t("mapsection.TurnOnAudio")}
+                    >
+                      {isLoading ? (
+                        <FaSpinner className="icon spinner" />
+                      ) : isPlaying ? (
+                        <FaPause size={24} />
+                      ) : (
+                        <FaPlay size={24} />
+                      )}
+                    </button>
+                  )}
+                  <button
+                    className="audio-control-btn"
+                    onClick={() => handleSeek(-10)}
+                    title={t("mapsection.skip")}
+                  >
+                    <MdOutlineForward10 size={24} />
+                  </button>
+
+                  {/* زر التحكم بالسرعة */}
+                  <div className="speed-control-wrapper">
+                    <button
+                      className="audio-control-btn"
+                      onClick={() => setShowSpeedMenu((prev) => !prev)}
+                      title="السرعة"
+                    >
+                      <IoIosSpeedometer size={24} />
+                    </button>
+
+                    {showSpeedMenu && (
+                      <div className="speed-menu">
+                        {[1, 1.5, 2, 2.5].map((rate) => (
+                          <div
+                            key={rate}
+                            className={`speed-option ${playbackRate === rate ? "active" : ""}`}
+                            onClick={() => changePlaybackRate(rate)}
+                          >
+                            {rate}x {playbackRate === rate && "✓"}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div className="details-description">
+              <details className="details-section">
+                <summary className="summary-header">
+                  {t("mapsection.story")}
+                </summary>
+                <p>{selectedPlace.story}</p>
+              </details>
+
+              <details className="details-section">
+                <summary className="summary-header">
+                  {t("mapsection.city")}
+                </summary>
+                <p>{selectedPlace.city}</p>
+              </details>
+
+              <details className="details-section">
+                <summary className="summary-header">
+                  {t("mapsection.summary")}
+                </summary>
+                <p>{selectedPlace.summary}</p>
+              </details>
+            </div>
+
+            <div className="share-views-map">
+              <div style={{ position: "relative" }}>
+                <div
+                  className="circle-icon-button"
+                  onClick={() => setShowUserBox(!showUserBox)}
                 >
-                 {isLoading ? (
-                <FaSpinner className="icon spinner" />
-                 ) : isPlaying ? (
-                     <FaPause size={24} />
-                 ) : (
-                    <FaPlay size={24} />
-                 )}
-                </button>
-)}    
-               <button
-                className="audio-control-btn"
-                onClick={() => handleSeek(-10)}
-                title={t("mapsection.skip")}
+                  <PiBookOpenText className="icon" />
+                </div>
+
+                {showUserBox && (
+                  <div className="user-popup-box">
+                    <p style={{ color: "black" }}>{selectedPlace.source}</p>
+                  </div>
+                )}
+              </div>
+              <div
+                onClick={() => {
+                  if (selectedPlace.lat && selectedPlace.lng) {
+                    window.open(`https://www.google.com/maps?q=${selectedPlace.lat},${selectedPlace.lng}`,
+                      "_blank"
+                    );
+                  }
+
+                }}
+                className="circle-icon-button"
               >
-                <MdOutlineForward10 size={24} />
-              </button>
-
-                {/* زر التحكم بالسرعة */}
-  <div className="speed-control-wrapper">
-    <button
-      className="audio-control-btn"
-      onClick={() => setShowSpeedMenu((prev) => !prev)}
-      title="السرعة"
-    >
-      <IoIosSpeedometer size={24} />
-    </button>
-
-    {showSpeedMenu && (
-      <div className="speed-menu">
-        {[1, 1.5, 2, 2.5].map((rate) => (
-          <div
-            key={rate}
-            className={`speed-option ${playbackRate === rate ? "active" : ""}`}
-            onClick={() => changePlaybackRate(rate)}
-          >
-            {rate}x {playbackRate === rate && "✓"}
-          </div>
-        ))}
-      </div>
-    )}
-  </div> 
-  </div>
-            </div>
-
-          </div>
-
-          <div className="details-description">
-            <details className="details-section">
-              <summary className="summary-header">
-                {t("mapsection.story")}
-              </summary>
-              <p>{selectedPlace.story}</p>
-            </details>
-
-            <details className="details-section">
-              <summary className="summary-header">
-                {t("mapsection.city")}
-              </summary>
-              <p>{selectedPlace.city}</p>
-            </details>
-
-            <details className="details-section">
-              <summary className="summary-header">
-                {t("mapsection.summary")}
-              </summary>
-              <p>{selectedPlace.summary}</p>
-            </details>
-          </div>
-
-          <div className="share-views-map">
-<div style={{ position: "relative" }}>
-  <div
-    className="circle-icon-button"
-    onClick={() => setShowUserBox(!showUserBox)}
-  >
-    <PiBookOpenText className="icon" />
-  </div>
-
-  {showUserBox && (
-    <div className="user-popup-box">
-      <p style={{color:"black"}}>{selectedPlace.source}</p>
-    </div>
-  )}
-</div>
-            <div
-               onClick={()=>{
-                if(selectedPlace.lat&&selectedPlace.lng){
-                   window.open(`https://www.google.com/maps?q=${selectedPlace.lat},${selectedPlace.lng}`,
-                    "_blank"
-                   );
-                }
-               
-              }}
-              className="circle-icon-button"
-            >
-             <FaMapMarkerAlt className="icon"/>
-            </div>
-            <div
-               onClick={()=>{
-                const storyUrl= `http://localhost:5175/story/${selectedPlace.placeID}`;
-                const shareData ={
-                    title:"",
-                    text:"",
+                <FaMapMarkerAlt className="icon" />
+              </div>
+              <div
+                onClick={() => {
+                  const storyUrl = `http://localhost:5175/story/${selectedPlace.placeID}`;
+                  const shareData = {
+                    title: "",
+                    text: "",
                     url: storyUrl
-                };
-                if(navigator.share){
-                  navigator.share(shareData).catch((err)=>{
-                    console.error("{t(mapsection.share)}",err)
-                  })
-                } else{
-                  navigator.clipboard.writeText(storyUrl).then(()=>{
-                    alert("{t(mapsection.copy)}")
-                  })
-                }
-               
-              }}
-              className="circle-icon-button"
-            >
-             <IoMdShare className="icon" />
+                  };
+                  if (navigator.share) {
+                    navigator.share(shareData).catch((err) => {
+                      console.error("{t(mapsection.share)}", err)
+                    })
+                  } else {
+                    navigator.clipboard.writeText(storyUrl).then(() => {
+                      alert("{t(mapsection.copy)}")
+                    })
+                  }
+
+                }}
+                className="circle-icon-button"
+              >
+                <IoMdShare className="icon" />
+              </div>
+              <div className="view-container">
+                <div className="circle-icon-button">
+                  <FaEye className="icon" />
+                </div>
+                <span className="views-text" >{selectedPlace.views ?? 0}</span>
+              </div>
+
+              {/* <Tooltip id="storySource" place="top" style={{ zIndex: 9999 }} />          */}
             </div>
-            <div className="view-container">  
-              <div className="circle-icon-button">
-                <FaEye className="icon"/>  
-              </div>                        
-              <span className="views-text" >{selectedPlace.views??0}</span>
-            </div>  
 
-            {/* <Tooltip id="storySource" place="top" style={{ zIndex: 9999 }} />          */}
           </div>
-
-        </div>
-      )}
+        )}
       </div>
     </div>
   );
-  
+
 };
