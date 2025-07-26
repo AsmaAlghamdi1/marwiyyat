@@ -590,7 +590,7 @@ const handleProgressBarClick = (event) => {
                 <div className="progress-container">
                   <span className="time-text">{formatTime(elapsedTime)}</span>
 
-                  <div className="progress-bar">
+                  <div className="progress-bar" ref={progressBarRef} onClick={handleProgressBarClick}>
                     <div className="progress-fill" style={{ width: `${progress}%` }} />
 
                   </div>
