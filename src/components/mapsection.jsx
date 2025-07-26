@@ -13,7 +13,7 @@ import { MdReplay } from "react-icons/md";
 import { IoIosSpeedometer } from "react-icons/io";
 import { PiBookOpenText } from "react-icons/pi";
 import "@maptiler/leaflet-maptilersdk";
-import { MaptilerLayer } from "@maptiler/leaflet-maptilersdk";
+
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: null,
   iconUrl: null,
@@ -78,7 +78,7 @@ export const Mapsection = () => {
   const [duration, setDuration] = useState(0);
   const [elapsedTime, setElapsedTime] = useState(0);
   const [geoData, setGeoData] = useState(null);
-  const MAPTILER_KEY = '6mEmGar3UZXTUEdpiFBZ';
+  const progressBarRef = useRef(null); 
 
   useEffect(()=>{
       if (audioRef.current) {
@@ -270,6 +270,27 @@ const changePlaybackRate = (rate) => {
       setSuggestions([]);
     }
   };
+//   const handleProgressBarClick = (event) => {
+//   const rect = progressBarRef.current.getBoundingClientRect();
+//   const clickX = event.clientX - rect.left;
+//   const width = rect.width;
+//   const progress = clickX / width;
+//   const newTime = progress * duration;
+//   audioRef.current.currentTime = newTime;
+// };
+const handleProgressBarClick = (event) => {
+  const progressBar = progressBarRef.current;
+  const audio = audioRef.current;
+
+  if (!progressBar || !audio || !audio.duration) return;
+
+  const rect = progressBar.getBoundingClientRect();
+  const clickX = event.clientX - rect.left;
+  const width = rect.width;
+  const progress = 1 - (clickX / width);
+
+  audio.currentTime = progress * audio.duration;
+};
 
   const normalized = (str) => (str || "").trim().toLowerCase().replace(/\s+/g, "");
 
@@ -567,7 +588,9 @@ const changePlaybackRate = (rate) => {
               <div className="progress-container">
   <span className="time-text">{formatTime(elapsedTime)}</span>
 
-  <div className="progress-bar">
+  <div className="progress-bar" ref={progressBarRef} onClick={handleProgressBarClick} 
+  
+  >
     <div className="progress-fill" style={{ width: `${progress}%` }}/>
       
   </div>
