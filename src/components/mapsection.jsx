@@ -1,12 +1,5 @@
 import { useEffect, useRef, useState } from "react"; 
-import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  Tooltip,
-  useMap,
-  useMapEvents,
-} from "react-leaflet";
+import { MapContainer, TileLayer,Marker,Tooltip,useMap,useMapEvents,GeoJSON} from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "../css/mapsection.css";
@@ -16,10 +9,16 @@ import { MdOutlineReplay10, MdOutlineForward10 } from "react-icons/md";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { IoMdShare } from "react-icons/io";
 import { FaEye } from "react-icons/fa6";
-// import { IoMdSpeedometer } from "react-icons/io";
 import { MdReplay } from "react-icons/md";
 import { IoIosSpeedometer } from "react-icons/io";
 import { PiBookOpenText } from "react-icons/pi";
+import "@maptiler/leaflet-maptilersdk";
+import { MaptilerLayer } from "@maptiler/leaflet-maptilersdk";
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: null,
+  iconUrl: null,
+  shadowUrl: null,
+});
 
 // مكون لتحريك الخريطة إلى موقع محدد عند التحديد
 const MapMover = ({ position, zoom }) => {
@@ -50,6 +49,8 @@ const HomeButton = ({ onClick }) => (
   </button>
 );
 
+
+
 const formatTime = (timeInSeconds) => {
   const minutes = Math.floor(timeInSeconds / 60);
   const seconds = Math.floor(timeInSeconds % 60);
@@ -71,13 +72,13 @@ export const Mapsection = () => {
   const [selectedCity, setSelectedCity] = useState("");
   const [playbackRate, setPlaybackRate] = useState(1);
   const [showSpeedMenu, setShowSpeedMenu] = useState(false);
-  //const [showSource,setShowSource] = useState(false);
   const [showUserBox, setShowUserBox] = useState(false);
-
   /* التغييرات الجديدة*/
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
   const [elapsedTime, setElapsedTime] = useState(0);
+  const [geoData, setGeoData] = useState(null);
+  const MAPTILER_KEY = '6mEmGar3UZXTUEdpiFBZ';
 
   useEffect(()=>{
       if (audioRef.current) {
@@ -191,9 +192,16 @@ const changePlaybackRate = (rate) => {
       .catch((err) => console.error("Error loading images JSON:", err));
   }, []);
 
+  useEffect(()=>{
+    fetch('/Geo.json')
+    .then(res=>res.json())
+    .then(data=>setGeoData(data));
+  },[]);
   const createDivIcon = (imgUrl, isActive = false) => {
     return L.divIcon({
-      html: `<div class="custom-div-icon ${isActive ? "active-marker" : ""}"><img src="${imgUrl}" alt="" /></div>`,
+      html: `<div class="custom-div-icon ${isActive ? "active-marker" : ""}">
+      <img src="${imgUrl}" alt="" />
+      </div>`,
       className: "",
       iconSize: [60, 60],
       iconAnchor: [30, 30],
@@ -205,7 +213,7 @@ const changePlaybackRate = (rate) => {
     try {
       const language = i18n.language || "ar";
       const response = await fetch(
-        `http://localhost:8000/place?lat=${lat}&lng=${lng}&lang=${language}`
+        `http://localhost:5050/place?lat=${lat}&lng=${lng}&lang=${language}`
       );
       const data = await response.json();
 
@@ -347,6 +355,7 @@ const changePlaybackRate = (rate) => {
   const cityList = Object.keys(cityMap).sort();
 
   return (
+  
     <div className="App">
       <h2>{t("mapsection.maptitle")}</h2>
 
@@ -419,17 +428,67 @@ const changePlaybackRate = (rate) => {
           </div>
 
           <MapContainer
+            
+            //mapLib={import('maplibre-gl')}
             center={defaultPosition}
             zoom={5}
-            style={{ height: "100%", width: "100%" }}
+            style={{ height: "100%", width: "100%", backgroundColor: "#ffffff" }}
             whenCreated={(mapInstance) => {
-              mapRef.current = mapInstance;
+            mapRef.current = mapInstance;
+            
             }}
+            
+           
           >
-            <TileLayer
+           <TileLayer
+  url="https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png"
+  attribution='&copy; <a href="https://carto.com/">CARTO</a>'
+/>
+            {/* <TileLayer
               url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            />
+            /> */}
+
+
+
+
+{/* الطبقه الجديده حقت الماب من geo  */}
+
+  {/* {geoData && (
+    <GeoJSON
+      data={geoData}
+      style={() => ({
+        color: "#ff7800",
+        weight: 2,
+        fillOpacity: 0.1,
+      })}
+      onEachFeature={(feature, layer) => {
+        
+        if (feature.properties && feature.properties.name) {
+          layer.bindPopup(feature.properties.name);
+        }
+      }}
+    />
+  )} */}
+
+  {/* <GeoJSON
+  data={geoData}
+  onEachFeature={(feature, layer) => {
+    let displayName = feature.properties.name || feature.properties.admin;
+
+    if (displayName === 'Israel' || displayName === 'ישראל') {
+      displayName = 'فلسطين'; // استبدل الاسم هنا
+    }
+
+    layer.bindPopup(displayName);
+  }}
+  style={() => ({
+    color: "#008000",
+    weight: 2,
+    fillOpacity: 0.1,
+  })}
+/> */}
+        
 
             <MapMover position={mapTargetPosition} />
 
@@ -680,7 +739,6 @@ const changePlaybackRate = (rate) => {
       )}
       </div>
     </div>
-    
   );
   
 };

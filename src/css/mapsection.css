@@ -714,5 +714,9 @@ h2 {
   white-space: nowrap;
 }
 
-
+.empty-icon{
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
 
