@@ -14,6 +14,8 @@ import { IoIosSpeedometer } from "react-icons/io";
 import { PiBookOpenText } from "react-icons/pi";
 import "@maptiler/leaflet-maptilersdk";
 import englishPlacesData from '../locales/places_with_en.json';
+import { FaHome } from "react-icons/fa";
+
 
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: null,
@@ -45,7 +47,7 @@ const MapInteractionHandler = ({ onInteraction }) => {
 
 const HomeButton = ({ onClick }) => (
   <button className="home-button" onClick={onClick} title="عودة إلى الخريطة الرئيسية">
-    🏠
+    <FaHome />
   </button>
 );
 
