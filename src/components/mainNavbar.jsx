@@ -7,6 +7,7 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import '../CSS/mainNavbar.css';
 import { useTranslation } from 'react-i18next'; 
 import language from '../assets/blacklanguage.png'
+import { MdLanguage } from "react-icons/md";
 
 
 export const MainNavbar = ({toggleTheme,theme}) => {
@@ -56,10 +57,14 @@ export const MainNavbar = ({toggleTheme,theme}) => {
           <a href="/#">{t("mainNavbar.home")}</a>
           <a href="/#MobadrahsectionURL">{t("mainNavbar.mobadra-description")}</a>
           <a href="/#ProjectsSliderURL">{t("mainNavbar.projects")}</a>
-          <span
-            onClick={() => i18n.changeLanguage(i18n.language === 'ar' ? 'en' : 'ar')}
-            style={{ cursor: 'pointer' }}
-            ><img src={language} alt="language" width={18} height={18} />{t("navbar.language")}</span>
+<span
+  className="lan"
+  onClick={() => i18n.changeLanguage(i18n.language === 'ar' ? 'en' : 'ar')}
+>
+  {t("navbar.language")}
+  <MdLanguage className="language-icon" />
+</span>
+
           
           
         </div>
