@@ -16,7 +16,7 @@
     height: 80px;
     padding: 0 2rem;
     background: linear-gradient(rgba(0, 0, 0, 0.507),
-            rgba(0, 0, 0, 0.03));
+            rgba(0, 0, 0, 0));
     /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7); */
     color: var(--textColor);
     display: grid;

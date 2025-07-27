@@ -8,6 +8,7 @@ import '../CSS/mainNavbar.css';
 import { useTranslation } from 'react-i18next'; 
 import language from '../assets/blacklanguage.png'
 
+
 export const MainNavbar = ({toggleTheme,theme}) => {
   const {t,i18n} =useTranslation();
   const isArabic = i18n.language === "ar";
