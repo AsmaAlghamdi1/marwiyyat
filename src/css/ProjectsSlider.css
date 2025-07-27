@@ -14,7 +14,7 @@
   text-align: center;
 }
 
-.project-card {
+/* .project-card {
   background-color: #f8f8f8;
   border-radius: 20px;
   height: 300px; 
@@ -27,6 +27,20 @@
   transition: all 0.3s ease;
   transform: scale(0.9);
   opacity: 0.8;
+  text-align: center;
+  overflow: hidden;
+} */
+ .project-card {
+  background-color: #f8f8f8;
+  border-radius: 20px;
+  height: 300px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
   text-align: center;
   overflow: hidden;
 }
