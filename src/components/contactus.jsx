@@ -132,11 +132,12 @@ const handleSubmit = async (e) => {
       setErrors({});
     } else {
       console.error("Server Error:", data);
-      alert("حسبي الله عليك تعبتني");
+          alert("حدث خطأ");
+
     }
   } catch (error) {
     console.error("Fetch Error:", error);
-    alert("الله ياخذك تعبتني");
+    alert("حدث خطأ");
   }
 };
 

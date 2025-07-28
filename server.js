@@ -1,7 +1,3 @@
-
-
-//هذا الكود الاخير هو الي بجربه 
-
 import express from 'express';
 import dotenv from 'dotenv';
 import { createClient } from '@supabase/supabase-js';
@@ -13,7 +9,7 @@ dotenv.config();
 const app = express();
 const PORT = 5050;
 app.use(cors());
-app.use(express.json()); // لازم يكون في البداية
+app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
 
 
@@ -30,7 +26,7 @@ app.get('/place', async (req, res) => {
   }
 
   try {
-    //  1. استدعاء الدالة الجغرافية بدل المطابقة الدقيقة
+    //  استدعاء الدالة الجغرافية بدل المطابقة الدقيقة
     const { data: places, error: placeError } = await supabase
       .rpc('get_nearest_place', {
         lat_input: parseFloat(lat),
@@ -84,24 +80,6 @@ app.get('/place', async (req, res) => {
   }
 });
 
-// app.post('/contact',(req,res)=>{
-//     const fullname = req.body.fullname;
-//     const email = req.body.email;
-//     const subject = req.body.subject;
-//     const message = req.body.message;
-//     const phone = req.body.phone;
-
-//     const query = 'INSERT INTO contacts(fullname,email,subject,message) VALUES (?,?,?,?)';
-//     db.query(query, [fullname, email, subject, message,phone], (err, result) => {
-//     if (err) {
-//       console.error('Error while entering data:', err);
-//       res.status(500).json({ message: 'Server error' });
-//     } else {
-//       res.status(200).json({ message: 'The data has been received successfully.' });
-//     }
-//   });
-// });
-
 app.post('/contact', async (req, res) => {
   console.log("Request Body:", req.body); // أضيفي هذا السطر
   const { fullname, email, subject, message, phone } = req.body;
@@ -111,10 +89,6 @@ app.post('/contact', async (req, res) => {
       .from('contacts')
       .insert([{ fullname, email, subject, message, phone }]);
 
-    // if (error) {
-    //   console.error('Supabase error:', error);
-    //   return res.status(500).json({ message: 'Database insert failed' });
-    // }
     if (error) {
   console.error('Supabase error:', error);
   return res.status(500).json({ message: 'Database insert failed', supabaseError: error.message });
