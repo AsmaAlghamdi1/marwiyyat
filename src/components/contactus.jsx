@@ -99,7 +99,7 @@ const handleSubmit = async (e) => {
         },
       });
 
-    // 👇 الإرسال إلى الباك-إند
+    // الإرسال إلى الباك-إند
     const response = await fetch("http://localhost:5050/contact", {
       method: "POST",
       headers: {
