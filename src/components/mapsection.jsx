@@ -69,7 +69,6 @@ export const Mapsection = () => {
   const audioRef = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [showDetails, setShowDetails] = useState(false);
   const [selectedCity, setSelectedCity] = useState("");
   const [playbackRate, setPlaybackRate] = useState(1);
   const [showSpeedMenu, setShowSpeedMenu] = useState(false);
@@ -92,6 +91,18 @@ export const Mapsection = () => {
       setIsPlaying(false);
     }
   }, [selectedPlace]);
+
+  useEffect(() => {
+  setProgress(0);
+  setElapsedTime(0);
+  setDuration(0);
+  setIsPlaying(false); 
+  if (audioRef.current) {
+    audioRef.current.pause();
+    audioRef.current.currentTime = 0;
+    audioRef.current = null;
+  }
+}, [selectedPlace?.audio]);
 
   const handleAudioToggle = () => {
     if (!selectedPlace.audio) {
@@ -290,7 +301,7 @@ export const Mapsection = () => {
     const rect = progressBar.getBoundingClientRect();
     const clickX = event.clientX - rect.left;
     const width = rect.width;
-    const progress = clickX / width;
+    const progress = 1-(clickX / width);
 
     audio.currentTime = progress * audio.duration;
   };
