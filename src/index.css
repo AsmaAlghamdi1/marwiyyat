@@ -1,4 +1,4 @@
-:root {
+/* :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -64,5 +64,92 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+} */
+
+/* =========================
+   GLOBAL STYLE TOKENS
+========================= */
+:root {
+  --color-primary: #0C8F5C;
+  --color-primary-soft: rgba(12, 143, 92, 0.35);
+  --color-primary-glow: rgba(12, 143, 92, 0.75);
+
+  --color-text: #333333;
+  --color-text-muted: #334e68;
+  --color-white: #ffffff;
+  --color-bg: #ffffff;
+  --color-light-bg: #f8f8f8;
+  --color-border: #dddddd;
+  --color-border-soft: #cccccc;
+  --color-danger: #d32f2f;
+  --color-danger-bg: #ffebee;
+  --color-danger-border: #f44336;
+  --color-error: red;
+
+  --shadow-btn: 4px 4px 10px rgba(0,0,0,0.2), -4px -4px 10px rgba(255,255,255,0.5);
+  --shadow-xs: 0 2px 6px rgba(0, 0, 0, 0.1);
+  --shadow-sm: 0 4px 8px rgba(0, 0, 0, 0.15);
+  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.2);
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 20px;
+  --radius-full: 999px;
+
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  background-color: var(--color-bg);
+  margin: 0;
+  font-family: 'Lama sans', sans-serif;
+  color: var(--color-text);
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+button {
+  outline: none;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }

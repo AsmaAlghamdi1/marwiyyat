@@ -2,10 +2,12 @@ import React, { useState, useRef } from "react";
 import '../css/contactus.css';
 import { useTranslation } from "react-i18next";
 import { gsap } from "gsap";
+import { useToast } from "../components/Toast";
 
 export const Contactus = () => {
   const { t, i18n } = useTranslation();
   const isArabic = i18n.language === "ar";
+  const { showToast } = useToast();
 
   const [form, setForm] = useState({
     fullName: "",
@@ -17,6 +19,7 @@ export const Contactus = () => {
 
   const [errors, setErrors] = useState({});
   const iconRef = useRef(null); // 🔹 مرجع للأيقونة
+
 
   const handleChange = (e) => {
     setForm({
@@ -117,7 +120,7 @@ const handleSubmit = async (e) => {
     const data = await response.json();
 
     if (response.ok) {
-      alert("تمم"); // تنبيه النجاح
+      showToast("تم ارسال الرساله بنجاح", "success"); // تنبيه النجاح
       console.log("Success:", data);
 
       // تفريغ الفورم
@@ -132,12 +135,12 @@ const handleSubmit = async (e) => {
       setErrors({});
     } else {
       console.error("Server Error:", data);
-          alert("حدث خطأ");
+          showToast("حدث خطأ", "error"); // تنبيه الخطأ من السيرفر
 
     }
   } catch (error) {
     console.error("Fetch Error:", error);
-    alert("حدث خطأ");
+    showToast("حدث خطأ", "error");
   }
 };
 

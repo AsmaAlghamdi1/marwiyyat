@@ -6,40 +6,9 @@ import { useTranslation } from 'react-i18next';
 import { GrLanguage } from "react-icons/gr";
 export const WhatWeOffer = () => {
   const {t,i18n} =useTranslation();
-  // const features = [
-  //   {
-  //     icon: <FaMapMarkedAlt />,
-  //     title: "خريطة تفاعلية للأماكن النبوية",
-  //   },
-  //   {
-  //     icon: <FaTags />,
-  //     title: "فلترة الأحاديث بسهولة",
-  //   },
-  //   {
-  //     icon: <FaHeadphonesAlt />,
-  //     title: "الإستماع الى الأحاديث صوتيا",
-  //   },
-  //   {
-  //     icon: <FaLightbulb />,
-  //     title: "تصنيف الأحاديث تلقائيا",
-  //   },
-  // ];
 
   return (
     <section id="goals" className="offer-section">
-      {/* <div className="offer-flex-container">
-        <div className="offer-content">
-          <h2 className="offer-title">ماذا تقدم لك المنصة ؟</h2>
-          <div className="offer-grid">
-            {features.map((item, index) => (
-              <div className="offer-item" key={index}>
-                <div className="icon-circle">{item.icon}</div>
-                <p className="offer-text">{item.title}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div> */}
       <h2 className="offer-title">{t("whatweoffer.offertitle")}</h2>
       <div className="card-wrapper">
 
@@ -68,7 +37,6 @@ export const WhatWeOffer = () => {
       </div>
       <div className="card-content">
           <div className="icon-circle">
-            {/* <FaLightbulb /> */}
             <GrLanguage />
           </div>
           <h3 className="main-feature">{t("whatweoffer.feature3")}</h3>

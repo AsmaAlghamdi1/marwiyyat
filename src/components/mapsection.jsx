@@ -15,7 +15,7 @@ import { PiBookOpenText } from "react-icons/pi";
 import "@maptiler/leaflet-maptilersdk";
 import englishPlacesData from '../locales/places_with_en.json';
 import { FaHome } from "react-icons/fa";
-
+import { useToast } from "../components/Toast";
 
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: null,
@@ -51,6 +51,7 @@ const HomeButton = ({ onClick }) => (
   </button>
 );
 
+
 const formatTime = (timeInSeconds) => {
   const minutes = Math.floor(timeInSeconds / 60);
   const seconds = Math.floor(timeInSeconds % 60);
@@ -79,7 +80,7 @@ export const Mapsection = () => {
   const [geoData, setGeoData] = useState(null);
   const progressBarRef = useRef(null);
   const [englishPlaces, setEnglishPlaces] = useState([]);
-
+  const { showToast } = useToast();
   useEffect(() => {
     setEnglishPlaces(englishPlacesData);
   }, []);
@@ -106,7 +107,7 @@ export const Mapsection = () => {
 
   const handleAudioToggle = () => {
     if (!selectedPlace.audio) {
-      alert("الصوت غير متوفر لهذا المكان");
+      showToast("الصوت غير متوفر لهذا المكان", "error");
       return;
     }
 
@@ -683,11 +684,12 @@ export const Mapsection = () => {
                   };
                   if (navigator.share) {
                     navigator.share(shareData).catch((err) => {
+                      showToast("فشل في المشاركة", "error");
                       console.error("فشل في المشاركة", err)
                     })
                   } else {
                     navigator.clipboard.writeText(storyUrl).then(() => {
-                      alert("تم نسخ الرابط")
+                      showToast("تم نسخ الرابط", "success");
                     })
                   }
                 }}
