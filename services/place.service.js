@@ -90,7 +90,7 @@ export const getNearestPlaceDetails = async ({ lat, lng, lang = "ar" }) => {
     placeID: place.id,
     city: place.city,
     story: place.story,
-    source: null,
+    source: place.source,
     summary: place.summary,
     audio: place.audio_url,
     image_url: place.picture_url,
