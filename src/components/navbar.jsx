@@ -28,11 +28,6 @@ export const Navbar = () => {
                     <a href="#goals" className="hover-underline">{t("navbar.goals")}</a>
                     <a href="#map" className="hover-underline">{t("navbar.map")}</a> 
                     <a href="#contact" className="hover-underline">{t("navbar.contact")}</a> 
-                    
-                    
-                    
-                    
-                {/* </Scrollspy> */}
                  
                 <span
                     onClick={() => i18n.changeLanguage(i18n.language === 'ar' ? 'en' : 'ar')}

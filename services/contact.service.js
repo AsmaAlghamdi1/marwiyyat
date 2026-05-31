@@ -1,22 +1,3 @@
-// import { supabase } from "../config/supabase.js";
-
-// export const saveContactMessage = async ({
-//   fullname,
-//   email,
-//   subject,
-//   message,
-//   phone,
-// }) => {
-//   const { data, error } = await supabase
-//     .from("contacts")
-//     .insert([{ fullname, email, subject, message, phone }]);
-
-//   if (error) {
-//     throw new Error(error.message);
-//   }
-
-//   return data;
-// };
 import nodemailer from "nodemailer";
 
 export const sendContactEmail = async ({

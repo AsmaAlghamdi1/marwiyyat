@@ -10,28 +10,9 @@ import Mainpage from "./pages/mainpage";
 import { BrowserRouter as Router,Routes,Route } from 'react-router-dom';
 import { MainNavbar } from './components/mainNavbar';
 import './i18n';
-// import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 function App() {
-  // const [theme, setTheme] = useState('light'); // القيمة المبدئية
-
-  // كل ما تغير الثيم، نحدث كلاس على body
-  // useEffect(() => {
-  //   document.body.className = theme;
-  // }, [theme]);
-
-  // زر التبديل
-  // const toggleTheme = () => {
-  //   setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
-  // };
-
-  // useEffect(() => {
-  //   AOS.init({
-  //     duration: 1500, 
-  //     once: true      
-  //   });
-  // }, []);
 
   const { i18n } = useTranslation();
 
@@ -42,12 +23,10 @@ function App() {
 
   return (
     <>
-
-  {/* <MainNavbar toggleTheme={toggleTheme} theme={theme}/> */}
     <Router>
       <Routes>
-        <Route path="/" element={<Mainpage />}/>
-        <Route path="/home" element={<Homepage/>}/>
+        {/* <Route path="/" element={<Mainpage />}/> */}
+        <Route path="/" element={<Homepage/>}/>
       </Routes>
     </Router>
    
